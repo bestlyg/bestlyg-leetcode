@@ -19,3 +19,8 @@
 
 - 学习 TypeScript
 - 基于[基于 TypeScript 从零重构 axios](https://coding.imooc.com/class/330.html)
+
+## [kaikeba-web-full-stack](https://github.com/bestlyg/projects/tree/kaikeba-web-full-stack)
+
+- 学习 web 全栈
+- 基于[开课吧 - web 全栈架构师](https://www.kaikeba.com/vipcourse/web)
