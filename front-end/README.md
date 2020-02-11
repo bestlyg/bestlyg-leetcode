@@ -2,7 +2,7 @@
 
 ## source-code
 
--[手写 Promise 源码](https://gitee.com/BesLlyg/bestlyg-projects/tree/master/front-end/source-code/promise.js)
+- [手写 Promise 源码](https://gitee.com/BesLlyg/bestlyg-projects/tree/master/front-end/source-code/promise.js)
 
 ## study-project
 
