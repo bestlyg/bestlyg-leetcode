@@ -1,6 +1,6 @@
 #data-structure-and-algorithm
-##ts
-data-structure-and-algorithm/ts/package-lock.json
-data-structure-and-algorithm/ts/node_modules
-data-structure-and-algorithm/ts/out
-data-structure-and-algorithm/ts/coverage
+##typescript
+data-structure-and-algorithm/typescript/package-lock.json
+data-structure-and-algorithm/typescript/node_modules
+data-structure-and-algorithm/typescript/out
+data-structure-and-algorithm/typescript/coverage
