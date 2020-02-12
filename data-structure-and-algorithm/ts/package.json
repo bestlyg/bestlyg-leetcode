@@ -1,0 +1,21 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:node": "tsc && node out/index.js",
+    "start:ts-node": "ts-node index.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^25.1.2",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  }
+}
