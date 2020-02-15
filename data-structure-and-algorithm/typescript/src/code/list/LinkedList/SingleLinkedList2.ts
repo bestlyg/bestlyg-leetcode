@@ -1,5 +1,5 @@
 /**
- * 单链表 无头结点
+ * 单链表 有头结点
  */
 import { AbstractList } from "../AbstractList";
 import { isNumber } from "../../../utils";
@@ -14,10 +14,24 @@ class Node<T> {
     return `Node:${this.element}->${this.next?.element}`;
   }
 }
-export class SingleLinkedList<T> extends AbstractList<T> {
-  firstNode?: Node<T>;
+export class SingleLinkedList2<T> extends AbstractList<T> {
+  firstNode: Node<T>;
   constructor() {
     super(0);
+    this.firstNode = new Node<T>({} as T, undefined);
+  }
+  public add(element: T, index: number = this.size()): void {
+    this.rangeCheckForAdd(index);
+    if (index === 0) {
+      this.addFirst(element);
+    } else if (index === this.size()) {
+      this.addLast(element);
+    } else {
+      const prev = this.node(index - 1);
+      const newNode: Node<T> = new Node(element, prev.next);
+      prev.next = newNode;
+      this.length++;
+    }
   }
   public remove(element: number | T): number | T {
     if (isNumber(element)) {
@@ -50,21 +64,8 @@ export class SingleLinkedList<T> extends AbstractList<T> {
       return index!;
     }
   }
-  public add(element: T, index: number = this.size()): void {
-    this.rangeCheckForAdd(index);
-    if (index === 0) {
-      this.addFirst(element);
-    } else if (index === this.size()) {
-      this.addLast(element);
-    } else {
-      const prev = this.node(index - 1);
-      const newNode: Node<T> = new Node(element, prev.next);
-      prev.next = newNode;
-      this.length++;
-    }
-  }
   public clear(): void {
-    this.firstNode = undefined;
+    this.firstNode.next = undefined;
     this.length = 0;
   }
   public get(index: number): T {
@@ -78,7 +79,7 @@ export class SingleLinkedList<T> extends AbstractList<T> {
     return oldElement;
   }
   public indexOf(element: T): number {
-    let cur = this.firstNode;
+    let cur = this.firstNode.next;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (cur!.element === element) {
         return i;
@@ -89,34 +90,30 @@ export class SingleLinkedList<T> extends AbstractList<T> {
   }
   public first(): T {
     this.thorwEmpty("first");
-    return this.firstNode!.element!;
+    return this.firstNode.next!.element;
   }
   public addFirst(element: T): void {
-    if (this.firstNode) {
-      const newNode = new Node<T>(element, this.firstNode);
-      this.firstNode = newNode;
-    } else {
-      this.firstNode = new Node<T>(element);
-    }
+    const newNode = new Node<T>(element, this.firstNode.next);
+    this.firstNode.next = newNode;
     this.length++;
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
-    const oldNode = this.firstNode;
-    this.firstNode = this.firstNode!.next;
-    return oldNode!.element!;
+    const oldNode = this.firstNode.next;
+    this.firstNode.next = this.firstNode.next!.next;
+    return oldNode!.element;
   }
   public last(): T {
     this.thorwEmpty("last");
     return this.node(this.size() - 1).element;
   }
   public addLast(element: T): void {
-    if (this.firstNode) {
+    if (this.firstNode.next) {
       const newNode = new Node<T>(element);
       const prev = this.node(this.size() - 1);
       prev.next = newNode;
     } else {
-      this.firstNode = new Node<T>(element);
+      this.addFirst(element);
     }
     this.length++;
   }
@@ -137,16 +134,16 @@ export class SingleLinkedList<T> extends AbstractList<T> {
    */
   private node(index: number): Node<T> {
     this.rangeCheck(index);
-    let cur = this.firstNode as Node<T>;
+    let cur = this.firstNode.next;
     for (let i = 0; i < index; i++) {
-      cur = cur.next!;
+      cur = cur!.next!;
     }
-    return cur;
+    return cur!;
   }
   toString(): string {
     this.thorwEmpty("toString");
     let string = `size:${this.size()},elements:[`;
-    let cur = this.firstNode;
+    let cur = this.firstNode.next;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (i !== 0) {
         string += ",";
