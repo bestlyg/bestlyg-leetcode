@@ -1,35 +1,11 @@
-// import Fibonacci from "./src/code/Fibonacci";
-// import { time } from "./src/utils";
-// import ArrayList from "./src/code/list/ArrayList/ArrayList";
-const a = 1;
-console.log(typeof a);
+import { getPerson, Person } from "./src/utils";
+import { SingleLinkedList } from "./src/code/list/LinkedList/SingleLinkedList";
 
-// time("fib1", () => {
-//   const fib1 = Fibonacci.fib1(30);
-//   console.log(fib1);
-// });
-// time("fib2", () => {
-//   const fib2 = Fibonacci.fib2(30);
-//   console.log(fib2);
-// });
-// time("fib3", () => {
-//   const fib3 = Fibonacci.fib3(30);
-//   console.log(fib3);
-// });
-// class Person {
-//   private age: number;
-//   private name: string;
-//   constructor(age: number, name: string) {
-//     this.age = age;
-//     this.name = name;
-//   }
-//   public toString(): string {
-//     return `Person name:${this.name} age:${this.age}`;
-//   }
-// }
-// const list = new ArrayList<Person>();
-// list.add(new Person(1, "1"));
-// list.add(new Person(2, "2"));
-// list.add(new Person(3, "3"));
-// list.add(new Person(4, "4"));
-// console.log(list.toString());
+const list = new SingleLinkedList<Person>();
+const obj1 = getPerson(1);
+const obj2 = getPerson(2);
+const obj3 = getPerson(3);
+list.add(obj1);
+list.add(obj2);
+list.add(obj3);
+console.log(list.remove(obj3));

@@ -92,32 +92,26 @@ export default class ArrayList<T> extends AbstractList<T> {
     return string;
   }
 
-  first(): T {
+  public first(): T {
     this.thorwEmpty("first");
     return this.elements[0];
   }
-  addFirst(element: T): void {
+  public addFirst(element: T): void {
     this.elements.unshift(element);
   }
-  delFirst(): T {
+  public delFirst(): T {
     this.thorwEmpty("delFirst");
     return this.elements.shift()!;
   }
-  last(): T {
+  public last(): T {
     this.thorwEmpty("last");
     return this.elements[this.elements.length - 1];
   }
-  addLast(element: T): void {
+  public addLast(element: T): void {
     this.elements.push(element);
   }
-  delLast(): T {
+  public delLast(): T {
     this.thorwEmpty("delLast");
     return this.elements.pop()!;
-  }
-
-  private thorwEmpty(method: string) {
-    if (this.isEmpty()) {
-      throw new Error(`ArrayList is Empty can not ${method}`);
-    }
   }
 }

@@ -14,9 +14,6 @@ export abstract class AbstractList<T> implements List<T> {
   public contains(element: T): boolean {
     return this.indexOf(element) !== this.ELEMENT_NOT_FOUND;
   }
-  protected outOfBounds(index: number): void {
-    throw new Error("Index:" + index + ", Size:" + this.length);
-  }
   protected rangeCheck(index: number): void {
     if (index < 0 || index >= this.length) {
       this.outOfBounds(index);
@@ -26,6 +23,14 @@ export abstract class AbstractList<T> implements List<T> {
     if (index < 0 || index > this.length) {
       this.outOfBounds(index);
     }
+  }
+  protected thorwEmpty(method: string) {
+    if (this.isEmpty()) {
+      throw new Error(`List is Empty can not use the Method: ${method}`);
+    }
+  }
+  protected outOfBounds(index: number): void {
+    throw new Error("Index:" + index + ", Size:" + this.length);
   }
   abstract remove(element: number | T): number | T;
   abstract add(element: T, index?: number): void;
