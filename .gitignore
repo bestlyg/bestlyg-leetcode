@@ -1,7 +1,8 @@
+#all
+node_modules
+package-lock.json
 #data-structure-and-algorithm
 ##typescript
-data-structure-and-algorithm/typescript/package-lock.json
-data-structure-and-algorithm/typescript/node_modules
 data-structure-and-algorithm/typescript/out
 data-structure-and-algorithm/typescript/coverage
 ### java

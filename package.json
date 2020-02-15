@@ -1,0 +1,23 @@
+{
+  "name": "bestlyg-projects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/BesLlyg/bestlyg-projects.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "git-cz": "^4.3.1"
+  },
+  "devDependencies": {
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.1.0"
+  }
+}

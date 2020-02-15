@@ -4,3 +4,6 @@ export function time(name: string, fn: Function) {
   fn();
   console.timeEnd(timeTag);
 }
+export function isNumber(number: any): number is number {
+  return typeof number === "number";
+}

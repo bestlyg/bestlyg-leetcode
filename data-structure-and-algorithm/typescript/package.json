@@ -6,7 +6,7 @@
   "scripts": {
     "start:node": "tsc && node out/index.js",
     "start:ts-node": "ts-node index.ts",
-    "test": "jest"
+    "test": "jest --runInBand --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
