@@ -30,7 +30,7 @@ export abstract class AbstractList<T> implements List<T> {
     }
   }
   protected outOfBounds(index: number): void {
-    throw new Error("Index:" + index + ", Size:" + this.length);
+    throw new Error("Index:" + index + ", Size:" + this.size());
   }
   abstract remove(element: number | T): number | T;
   abstract add(element: T, index?: number): void;

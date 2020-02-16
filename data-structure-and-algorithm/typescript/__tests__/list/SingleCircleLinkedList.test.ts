@@ -1,9 +1,9 @@
-import { SingleLinkedList2 } from "../../src/code/list/LinkedList/SingleLinkedList2";
 import { Person, getPerson } from "../../src/utils";
+import { SingleCircleLinkedList } from "../../src/code/list/LinkedList/SingleCircleLinkedList";
 function getNewList() {
-  return new SingleLinkedList2<Person>();
+  return new SingleCircleLinkedList<Person>();
 }
-describe("SingleLinkedList2", () => {
+describe("SingleCircleLinkedList", () => {
   test("toString", () => {
     const list = getNewList();
     list.add(getPerson(1));
