@@ -1,4 +1,4 @@
-export interface List<T> {
+export default interface List<T> {
   readonly ELEMENT_NOT_FOUND: number;
   /**
    * 清除所有元素

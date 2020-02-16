@@ -1,5 +1,5 @@
 /**
- * 双链表
+ * 双向循环链表
  */
 import AbstractList from "../AbstractList";
 import { isNumber } from "../../../utils";
@@ -22,7 +22,7 @@ class Node<T> {
     }`;
   }
 }
-export default class DuLinkList<T> extends AbstractList<T> {
+export default class DuCircleLinkedList<T> extends AbstractList<T> {
   firstNode: Node<T> | undefined;
   lastNode: Node<T> | undefined;
   public add(element: T, index: number = this.size()): void {

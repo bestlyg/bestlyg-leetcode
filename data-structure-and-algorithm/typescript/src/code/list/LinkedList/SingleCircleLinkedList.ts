@@ -1,7 +1,7 @@
 /**
  * 单向循环链表
  */
-import { AbstractList } from "../AbstractList";
+import AbstractList from "../AbstractList";
 import { isNumber } from "../../../utils";
 class Node<T> {
   element: T;
@@ -14,7 +14,7 @@ class Node<T> {
     return `Node:${this.element}->${this.next.element}`;
   }
 }
-export class SingleCircleLinkedList<T> extends AbstractList<T> {
+export default class SingleCircleLinkedList<T> extends AbstractList<T> {
   firstNode: Node<T> | undefined;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);

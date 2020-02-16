@@ -1,5 +1,5 @@
-import { List } from "./List";
-export abstract class AbstractList<T> implements List<T> {
+import List from "./List";
+export default abstract class AbstractList<T> implements List<T> {
   ELEMENT_NOT_FOUND: number = -1;
   protected length: number = 0;
   public size(): number {

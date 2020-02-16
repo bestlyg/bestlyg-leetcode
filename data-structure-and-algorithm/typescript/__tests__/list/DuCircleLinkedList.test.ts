@@ -1,9 +1,9 @@
 import { Person, getPerson } from "../../src/utils";
-import DuLinkList from "../../src/code/list/LinkedList/DuLinkedList";
+import DuCircleLinkedList from "../../src/code/list/LinkedList/DuCircleLinkedList";
 function getNewList() {
-  return new DuLinkList<Person>();
+  return new DuCircleLinkedList<Person>();
 }
-describe("DuLinkedList", () => {
+describe("DuCircleLinkedList", () => {
   test("toString", () => {
     const list = getNewList();
     list.add(getPerson(1));

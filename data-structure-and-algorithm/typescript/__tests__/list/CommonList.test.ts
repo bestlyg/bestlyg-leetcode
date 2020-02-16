@@ -1,10 +1,11 @@
-import { SingleLinkedList } from "./../../src/code/list/LinkedList/SingleLinkedList";
+import SingleLinkedList from "./../../src/code/list/LinkedList/SingleLinkedList";
 import { Person, getPerson } from "../../src/utils";
-import { SingleCircleLinkedList } from "../../src/code/list/LinkedList/SingleCircleLinkedList";
+import SingleCircleLinkedList from "../../src/code/list/LinkedList/SingleCircleLinkedList";
 import ArrayList from "../../src/code/list/ArrayList/ArrayList";
-import { SingleLinkedList2 } from "../../src/code/list/LinkedList/SingleLinkedList2";
-import { DuLinkList } from "../../src/code/list/LinkedList/DuLinkedList";
-import { List } from "../../src/code/list/List";
+import SingleLinkedList2 from "../../src/code/list/LinkedList/SingleLinkedList2";
+import DuLinkList from "../../src/code/list/LinkedList/DuLinkedList";
+import List from "../../src/code/list/List";
+import DuCircleLinkedList from "../../src/code/list/LinkedList/DuCircleLinkedList";
 const run = (name: string, getNewList: () => List<Person>) =>
   describe(name, () => {
     test("add first", () => {
@@ -269,5 +270,8 @@ describe("All List Test", () => {
   });
   run("SingleCircleLinkedList", () => {
     return new SingleCircleLinkedList<Person>();
+  });
+  run("DuCircleLinkedList", () => {
+    return new DuCircleLinkedList<Person>();
   });
 });

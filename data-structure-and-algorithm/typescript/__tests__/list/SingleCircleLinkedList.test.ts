@@ -1,5 +1,5 @@
 import { Person, getPerson } from "../../src/utils";
-import { SingleCircleLinkedList } from "../../src/code/list/LinkedList/SingleCircleLinkedList";
+import SingleCircleLinkedList from "../../src/code/list/LinkedList/SingleCircleLinkedList";
 function getNewList() {
   return new SingleCircleLinkedList<Person>();
 }

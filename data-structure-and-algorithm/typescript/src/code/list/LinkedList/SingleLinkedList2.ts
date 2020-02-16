@@ -1,7 +1,7 @@
 /**
  * 单链表 有头结点
  */
-import { AbstractList } from "../AbstractList";
+import AbstractList from "../AbstractList";
 import { isNumber } from "../../../utils";
 class Node<T> {
   element: T;
@@ -14,7 +14,7 @@ class Node<T> {
     return `Node:${this.element}->${this.next?.element}`;
   }
 }
-export class SingleLinkedList2<T> extends AbstractList<T> {
+export default class SingleLinkedList2<T> extends AbstractList<T> {
   firstNode: Node<T>;
   constructor() {
     super();
