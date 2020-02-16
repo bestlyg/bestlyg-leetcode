@@ -1,10 +1,10 @@
 import { getPerson, Person } from "./src/utils";
-import { DuLinkList } from "./src/code/list/LinkedList/DuLinkedList";
+import DuCircleLinkedList from "./src/code/list/LinkedList/DuCircleLinkedList";
 
-const list = new DuLinkList<Person>();
+const list = new DuCircleLinkedList<Person>();
 list.add(getPerson(1));
+console.log(list.toString());
 list.add(getPerson(2));
+console.log(list.toString());
 list.add(getPerson(3));
-list.add(getPerson(4));
-list.add(getPerson(5));
-console.log(list.get(3));
+console.log(list.toString());
