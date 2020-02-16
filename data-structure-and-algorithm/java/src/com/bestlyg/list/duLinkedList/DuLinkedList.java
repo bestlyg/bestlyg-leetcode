@@ -1,8 +1,8 @@
-package com.bestlyg.list.duLinkList;
+package com.bestlyg.list.duLinkedList;
 
 import com.bestlyg.list.AbstractList;
 
-public class DuLinkList<E> extends AbstractList<E> {
+public class DuLinkedList<E> extends AbstractList<E> {
 	private Node<E> first;
 	private Node<E> last;
 	
