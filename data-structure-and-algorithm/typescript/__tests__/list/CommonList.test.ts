@@ -4,7 +4,8 @@ import { SingleCircleLinkedList } from "../../src/code/list/LinkedList/SingleCir
 import ArrayList from "../../src/code/list/ArrayList/ArrayList";
 import { SingleLinkedList2 } from "../../src/code/list/LinkedList/SingleLinkedList2";
 import { DuLinkList } from "../../src/code/list/LinkedList/DuLinkedList";
-const run = (name: string, getNewList: Function) =>
+import { List } from "../../src/code/list/List";
+const run = (name: string, getNewList: () => List<Person>) =>
   describe(name, () => {
     test("add first", () => {
       const list = getNewList();
@@ -199,6 +200,11 @@ const run = (name: string, getNewList: Function) =>
       const obj1 = getPerson(1);
       list.add(obj1);
       expect(list.delFirst()).toBe(obj1);
+      const list2 = getNewList();
+      const obj2 = getPerson(2);
+      list.add(obj1);
+      list.addFirst(obj2);
+      expect(list.delFirst()).toBe(obj2);
     });
     test("Last", () => {
       const list = getNewList();

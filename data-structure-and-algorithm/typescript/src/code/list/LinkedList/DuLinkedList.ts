@@ -25,9 +25,6 @@ class Node<T> {
 export class DuLinkList<T> extends AbstractList<T> {
   firstNode: Node<T> | undefined;
   lastNode: Node<T> | undefined;
-  constructor() {
-    super(0);
-  }
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {

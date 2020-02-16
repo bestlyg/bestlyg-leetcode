@@ -17,7 +17,7 @@ class Node<T> {
 export class SingleLinkedList2<T> extends AbstractList<T> {
   firstNode: Node<T>;
   constructor() {
-    super(0);
+    super();
     this.firstNode = new Node<T>({} as T, undefined);
   }
   public add(element: T, index: number = this.size()): void {

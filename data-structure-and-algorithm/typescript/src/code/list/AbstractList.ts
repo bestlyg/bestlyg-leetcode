@@ -1,10 +1,7 @@
 import { List } from "./List";
 export abstract class AbstractList<T> implements List<T> {
   ELEMENT_NOT_FOUND: number = -1;
-  protected length: number;
-  constructor(length: number) {
-    this.length = length;
-  }
+  protected length: number = 0;
   public size(): number {
     return this.length;
   }
@@ -15,12 +12,12 @@ export abstract class AbstractList<T> implements List<T> {
     return this.indexOf(element) !== this.ELEMENT_NOT_FOUND;
   }
   protected rangeCheck(index: number): void {
-    if (index < 0 || index >= this.length) {
+    if (index < 0 || index >= this.size()) {
       this.outOfBounds(index);
     }
   }
   protected rangeCheckForAdd(index: number): void {
-    if (index < 0 || index > this.length) {
+    if (index < 0 || index > this.size()) {
       this.outOfBounds(index);
     }
   }

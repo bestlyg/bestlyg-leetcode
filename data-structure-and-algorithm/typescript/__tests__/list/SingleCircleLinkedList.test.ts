@@ -10,7 +10,7 @@ describe("SingleCircleLinkedList", () => {
     list.add(getPerson(2));
     list.add(getPerson(3));
     expect(list.toString()).toBe(
-      "size:3,elements:[Node:Person name:1 age:1->Person name:2 age:2,Node:Person name:2 age:2->Person name:3 age:3,Node:Person name:3 age:3->undefined]"
+      "size:3,elements:[Node:Person name:1 age:1->Person name:2 age:2,Node:Person name:2 age:2->Person name:3 age:3,Node:Person name:3 age:3->Person name:1 age:1]"
     );
   });
 });

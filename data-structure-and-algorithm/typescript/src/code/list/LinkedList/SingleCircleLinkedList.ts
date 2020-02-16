@@ -5,19 +5,29 @@ import { AbstractList } from "../AbstractList";
 import { isNumber } from "../../../utils";
 class Node<T> {
   element: T;
-  next?: Node<T>;
-  constructor(element: T, next?: Node<T>) {
+  next: Node<T>;
+  constructor(element: T, next: Node<T>) {
     this.element = element;
     this.next = next;
   }
   toString(): string {
-    return `Node:${this.element}->${this.next?.element}`;
+    return `Node:${this.element}->${this.next.element}`;
   }
 }
 export class SingleCircleLinkedList<T> extends AbstractList<T> {
-  firstNode?: Node<T>;
-  constructor() {
-    super(0);
+  firstNode: Node<T> | undefined;
+  public add(element: T, index: number = this.size()): void {
+    this.rangeCheckForAdd(index);
+    if (index === 0) {
+      this.addFirst(element);
+    } else if (index === this.size()) {
+      this.addLast(element);
+    } else {
+      const prev = this.node(index - 1);
+      const newNode: Node<T> = new Node(element, prev.next);
+      prev.next = newNode;
+      this.length++;
+    }
   }
   public remove(element: number | T): number | T {
     if (isNumber(element)) {
@@ -50,19 +60,6 @@ export class SingleCircleLinkedList<T> extends AbstractList<T> {
       return index!;
     }
   }
-  public add(element: T, index: number = this.size()): void {
-    this.rangeCheckForAdd(index);
-    if (index === 0) {
-      this.addFirst(element);
-    } else if (index === this.size()) {
-      this.addLast(element);
-    } else {
-      const prev = this.node(index - 1);
-      const newNode: Node<T> = new Node(element, prev.next);
-      prev.next = newNode;
-      this.length++;
-    }
-  }
   public clear(): void {
     this.firstNode = undefined;
     this.length = 0;
@@ -92,44 +89,49 @@ export class SingleCircleLinkedList<T> extends AbstractList<T> {
     return this.firstNode!.element!;
   }
   public addFirst(element: T): void {
-    if (this.firstNode) {
-      const newNode = new Node<T>(element, this.firstNode);
-      this.firstNode = newNode;
-    } else {
-      this.firstNode = new Node<T>(element);
-    }
+    const newNode = new Node<T>(element, {} as Node<T>);
+    const lastNode = this.size() === 0 ? newNode : this.node(this.size() - 1);
+    lastNode.next = newNode;
+    this.firstNode = newNode;
     this.length++;
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
+    if (this.length === 1) {
+      return this.delLastNode();
+    }
     const oldNode = this.firstNode;
     this.firstNode = this.firstNode!.next;
-    return oldNode!.element!;
+    return oldNode!.element;
   }
   public last(): T {
     this.thorwEmpty("last");
     return this.node(this.size() - 1).element;
   }
   public addLast(element: T): void {
-    if (this.firstNode) {
-      const newNode = new Node<T>(element);
-      const prev = this.node(this.size() - 1);
-      prev.next = newNode;
-    } else {
-      this.firstNode = new Node<T>(element);
+    const newNode = new Node<T>(element, {} as Node<T>);
+    const lastNode = this.size() === 0 ? newNode : this.node(this.size() - 1);
+    lastNode.next = newNode;
+    if (this.size() === 0) {
+      this.firstNode = newNode;
     }
+    newNode.next = this.firstNode!;
     this.length++;
   }
   public delLast(): T {
     this.thorwEmpty("delLast");
     if (this.length === 1) {
-      return this.delFirst();
-    } else {
-      const prev = this.node(this.size() - 2);
-      const oldNode = prev.next;
-      prev.next = undefined;
-      return oldNode!.element!;
+      return this.delLastNode();
     }
+    const prev = this.node(this.size() - 2);
+    const oldNode = prev.next;
+    prev.next = this.firstNode!;
+    return oldNode.element;
+  }
+  private delLastNode(): T {
+    const el = this.firstNode!.element;
+    this.clear();
+    return el;
   }
   /**
    * 根据index返回Node

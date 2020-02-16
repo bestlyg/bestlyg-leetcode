@@ -16,9 +16,6 @@ class Node<T> {
 }
 export class SingleLinkedList<T> extends AbstractList<T> {
   firstNode?: Node<T>;
-  constructor() {
-    super(0);
-  }
   public remove(element: number | T): number | T {
     if (isNumber(element)) {
       this.rangeCheck(element);

@@ -1,11 +1,7 @@
 import { AbstractList } from "../AbstractList";
 import { isNumber } from "../../../utils";
-const DEFAULT_CAPACITY = 10;
 export default class ArrayList<T> extends AbstractList<T> {
   private elements: Array<T> = []; //所有元素储存
-  constructor() {
-    super(DEFAULT_CAPACITY);
-  }
   /**
    * 清除所有元素
    */
@@ -24,7 +20,7 @@ export default class ArrayList<T> extends AbstractList<T> {
    * @return
    */
   public isEmpty(): boolean {
-    return this.elements.length === 0;
+    return this.size() === 0;
   }
   /**
    * 查看元素的索引
@@ -66,7 +62,7 @@ export default class ArrayList<T> extends AbstractList<T> {
   public contains(element: T): boolean {
     return this.indexOf(element) !== this.ELEMENT_NOT_FOUND;
   }
-  add(element: T, index: number = this.length): void {
+  add(element: T, index: number = this.size()): void {
     this.elements.splice(index, 0, element);
   }
   public remove(index: number | T): number | T {
@@ -105,7 +101,7 @@ export default class ArrayList<T> extends AbstractList<T> {
   }
   public last(): T {
     this.thorwEmpty("last");
-    return this.elements[this.elements.length - 1];
+    return this.elements[this.size() - 1];
   }
   public addLast(element: T): void {
     this.elements.push(element);
