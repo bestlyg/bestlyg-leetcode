@@ -1,4 +1,4 @@
-import ArrayList from "../list/ArrayList/ArrayList";
+import ArrayList from "../list/ArrayList";
 import List from "../list/List";
 
 export default class Stack<T> {

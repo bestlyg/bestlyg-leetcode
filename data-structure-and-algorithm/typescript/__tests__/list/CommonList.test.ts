@@ -1,11 +1,11 @@
-import SingleLinkedList from "./../../src/code/list/LinkedList/SingleLinkedList";
+import SingleLinkedList from "../../src/code/list/SingleLinkedList";
 import { Person, getPerson } from "../../src/utils";
-import SingleCircleLinkedList from "../../src/code/list/LinkedList/SingleCircleLinkedList";
-import ArrayList from "../../src/code/list/ArrayList/ArrayList";
-import SingleLinkedList2 from "../../src/code/list/LinkedList/SingleLinkedList2";
-import DuLinkList from "../../src/code/list/LinkedList/DuLinkedList";
+import SingleCircleLinkedList from "../../src/code/list/SingleCircleLinkedList";
+import ArrayList from "../../src/code/list/ArrayList";
+import SingleLinkedList2 from "../../src/code/list/SingleLinkedList2";
+import DuLinkList from "../../src/code/list/DuLinkedList";
 import List from "../../src/code/list/List";
-import DuCircleLinkedList from "../../src/code/list/LinkedList/DuCircleLinkedList";
+import DuCircleLinkedList from "../../src/code/list/DuCircleLinkedList";
 const run = (name: string, getNewList: () => List<Person>) =>
   describe(name, () => {
     test("add first", () => {
@@ -227,16 +227,7 @@ const run = (name: string, getNewList: () => List<Person>) =>
       list.add(obj1);
       expect(list.delLast()).toBe(obj1);
     });
-    test("throwEmpty", () => {
-      const list = getNewList();
-      try {
-        list.delFirst();
-      } catch (error) {
-        expect(error.toString()).toBe(
-          "Error: List is Empty can not use the Method: delFirst"
-        );
-      }
-    });
+
     test("rangeCheck", () => {
       const list = getNewList();
       list.add(getPerson(1));

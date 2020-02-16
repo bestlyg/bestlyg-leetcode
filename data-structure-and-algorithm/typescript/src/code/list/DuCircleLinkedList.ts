@@ -1,8 +1,8 @@
 /**
  * 双向循环链表
  */
-import AbstractList from "../AbstractList";
-import { isNumber } from "../../../utils";
+import AbstractList from "./AbstractList";
+import { isNumber } from "../../utils";
 class Node<T> {
   element: T;
   prev: Node<T>;

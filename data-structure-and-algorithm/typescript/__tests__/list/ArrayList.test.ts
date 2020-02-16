@@ -1,4 +1,4 @@
-import ArrayList from "../../src/code/list/ArrayList/ArrayList";
+import ArrayList from "../../src/code/list/ArrayList";
 import { Person, getPerson } from "../../src/utils";
 function getNewList() {
   return new ArrayList<Person>();

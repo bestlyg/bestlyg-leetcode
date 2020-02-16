@@ -1,8 +1,8 @@
 /**
  * 单链表 无头结点
  */
-import AbstractList from "../AbstractList";
-import { isNumber } from "../../../utils";
+import AbstractList from "./AbstractList";
+import { isNumber } from "../../utils";
 class Node<T> {
   element: T;
   next?: Node<T>;

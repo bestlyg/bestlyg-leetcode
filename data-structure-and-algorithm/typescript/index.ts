@@ -1,5 +1,5 @@
 import { getPerson, Person } from "./src/utils";
-import DuCircleLinkedList from "./src/code/list/LinkedList/DuCircleLinkedList";
+import DuCircleLinkedList from "./src/code/list/DuCircleLinkedList";
 
 const list = new DuCircleLinkedList<Person>();
 list.add(getPerson(1));

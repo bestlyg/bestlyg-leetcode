@@ -1,25 +1,30 @@
 /**
- * 单链表 有头结点
+ * 双链表
  */
-import AbstractList from "../AbstractList";
-import { isNumber } from "../../../utils";
+import AbstractList from "./AbstractList";
+import { isNumber } from "../../utils";
 class Node<T> {
   element: T;
-  next?: Node<T>;
-  constructor(element: T, next?: Node<T>) {
+  prev: Node<T> | undefined;
+  next: Node<T> | undefined;
+  constructor(
+    prev: Node<T> | undefined,
+    element: T,
+    next: Node<T> | undefined
+  ) {
+    this.prev = prev;
     this.element = element;
     this.next = next;
   }
   toString(): string {
-    return `Node:${this.element}->${this.next?.element}`;
+    return `Node:${this.prev ? this.prev.element : "null"}->${this.element}->${
+      this.next ? this.next.element : "null"
+    }`;
   }
 }
-export default class SingleLinkedList2<T> extends AbstractList<T> {
-  firstNode: Node<T>;
-  constructor() {
-    super();
-    this.firstNode = new Node<T>({} as T, undefined);
-  }
+export default class DuLinkList<T> extends AbstractList<T> {
+  firstNode: Node<T> | undefined;
+  lastNode: Node<T> | undefined;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {
@@ -27,9 +32,11 @@ export default class SingleLinkedList2<T> extends AbstractList<T> {
     } else if (index === this.size()) {
       this.addLast(element);
     } else {
-      const prev = this.node(index - 1);
-      const newNode: Node<T> = new Node(element, prev.next);
-      prev.next = newNode;
+      const next = this.node(index);
+      const prev = next.prev;
+      const newNode: Node<T> = new Node(prev, element, next);
+      prev!.next = newNode;
+      next.prev = newNode;
       this.length++;
     }
   }
@@ -65,7 +72,8 @@ export default class SingleLinkedList2<T> extends AbstractList<T> {
     }
   }
   public clear(): void {
-    this.firstNode.next = undefined;
+    this.firstNode = undefined;
+    this.lastNode = undefined;
     this.length = 0;
   }
   public get(index: number): T {
@@ -79,7 +87,7 @@ export default class SingleLinkedList2<T> extends AbstractList<T> {
     return oldElement;
   }
   public indexOf(element: T): number {
-    let cur = this.firstNode.next;
+    let cur = this.firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (cur!.element === element) {
         return i;
@@ -90,28 +98,35 @@ export default class SingleLinkedList2<T> extends AbstractList<T> {
   }
   public first(): T {
     this.thorwEmpty("first");
-    return this.firstNode.next!.element;
+    return this.firstNode!.element;
   }
   public addFirst(element: T): void {
-    const newNode = new Node<T>(element, this.firstNode.next);
-    this.firstNode.next = newNode;
+    if (this.firstNode) {
+      const oldNode = this.firstNode;
+      this.firstNode = new Node<T>(undefined, element, oldNode);
+      oldNode.prev = this.firstNode;
+    } else {
+      const newNode = new Node<T>(undefined, element, undefined);
+      this.firstNode = newNode;
+      this.lastNode = newNode;
+    }
     this.length++;
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
-    const oldNode = this.firstNode.next;
-    this.firstNode.next = this.firstNode.next!.next;
-    return oldNode!.element;
+    const oldNode = this.firstNode;
+    this.firstNode = this.firstNode!.next;
+    return oldNode!.element!;
   }
   public last(): T {
     this.thorwEmpty("last");
-    return this.node(this.size() - 1).element;
+    return this.lastNode!.element;
   }
   public addLast(element: T): void {
-    if (this.firstNode.next) {
-      const newNode = new Node<T>(element);
-      const prev = this.node(this.size() - 1);
-      prev.next = newNode;
+    if (this.lastNode) {
+      const newNode = new Node<T>(this.lastNode, element, undefined);
+      this.lastNode.next = newNode;
+      this.lastNode = newNode;
       this.length++;
     } else {
       this.addFirst(element);
@@ -134,16 +149,25 @@ export default class SingleLinkedList2<T> extends AbstractList<T> {
    */
   private node(index: number): Node<T> {
     this.rangeCheck(index);
-    let cur = this.firstNode.next;
-    for (let i = 0; i < index; i++) {
-      cur = cur!.next!;
+    const length = this.size();
+    if (index <= length >> 1) {
+      let cur = this.firstNode!;
+      for (let i = 0; i < index; i++) {
+        cur = cur.next!;
+      }
+      return cur;
+    } else {
+      let cur = this.lastNode!;
+      for (let i = this.size() - 1; i > index; i--) {
+        cur = cur.prev!;
+      }
+      return cur;
     }
-    return cur!;
   }
   toString(): string {
     this.thorwEmpty("toString");
     let string = `size:${this.size()},elements:[`;
-    let cur = this.firstNode.next;
+    let cur = this.firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (i !== 0) {
         string += ",";

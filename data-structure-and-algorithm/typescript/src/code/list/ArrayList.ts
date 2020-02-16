@@ -1,5 +1,5 @@
-import AbstractList from "../AbstractList";
-import { isNumber } from "../../../utils";
+import AbstractList from "./AbstractList";
+import { isNumber } from "../../utils";
 export default class ArrayList<T> extends AbstractList<T> {
   private elements: Array<T> = []; //所有元素储存
   /**
