@@ -17,8 +17,8 @@ class Node<T> {
   }
 }
 export default class DuCircleLinkedList<T> extends AbstractList<T> {
-  firstNode: Node<T> | undefined;
-  lastNode: Node<T> | undefined;
+  firstNode: Node<T> | null = null;
+  lastNode: Node<T> | null = null;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {
@@ -46,8 +46,8 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
         const prev = this.node(element - 1);
         el = prev.next!.element!;
         prev.next = prev.next!.next;
+        this.length--;
       }
-      this.length--;
       return el;
     } else {
       const index = this.indexOf(element);
@@ -66,8 +66,8 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     }
   }
   public clear(): void {
-    this.firstNode = undefined;
-    this.lastNode = undefined;
+    this.firstNode = null;
+    this.lastNode = null;
     this.length = 0;
   }
   public get(index: number): T {
@@ -116,6 +116,7 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     }
     const oldNode = this.firstNode;
     this.firstNode = this.firstNode!.next;
+    this.length--;
     return oldNode!.element!;
   }
   public last(): T {
@@ -142,6 +143,7 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
       const prev = oldNode.prev;
       prev.next = this.firstNode!;
       this.lastNode = prev;
+      this.length--;
       return oldNode!.element!;
     }
   }
@@ -172,7 +174,6 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     }
   }
   toString(): string {
-    this.thorwEmpty("toString");
     let string = `size:${this.size()},elements:[`;
     let cur = this.firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {

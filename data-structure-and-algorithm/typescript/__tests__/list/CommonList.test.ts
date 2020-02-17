@@ -8,6 +8,14 @@ import List from "../../src/code/list/List";
 import DuCircleLinkedList from "../../src/code/list/DuCircleLinkedList";
 const run = (name: string, getNewList: () => List<Person>) =>
   describe(name, () => {
+    test("add last and del first", () => {
+      const list = getNewList();
+      const obj1 = getPerson(1);
+      list.addLast(obj1);
+      expect(list.first()).toBe(obj1);
+      expect(list.delFirst()).toBe(obj1);
+      expect(list.isEmpty()).toBe(true);
+    });
     test("add first", () => {
       const list = getNewList();
       const obj1 = getPerson(1);
@@ -60,6 +68,10 @@ const run = (name: string, getNewList: () => List<Person>) =>
       list.add(getPerson(2));
       list.add(getPerson(3));
       expect(list.size()).toBe(3);
+      list.clear();
+      list.add(getPerson(1));
+      list.remove(0);
+      expect(list.size()).toBe(0);
     });
     test("isEmpty ", () => {
       const list = getNewList();
@@ -226,6 +238,13 @@ const run = (name: string, getNewList: () => List<Person>) =>
       const obj1 = getPerson(1);
       list.add(obj1);
       expect(list.delLast()).toBe(obj1);
+    });
+    test("toString with empty", () => {
+      const list = getNewList();
+      expect(list.toString()).toBe("size:0,elements:[]");
+      list.add(getPerson(1));
+      list.remove(0);
+      expect(list.toString()).toBe("size:0,elements:[]");
     });
     test("throwEmpty", () => {
       const list = getNewList();

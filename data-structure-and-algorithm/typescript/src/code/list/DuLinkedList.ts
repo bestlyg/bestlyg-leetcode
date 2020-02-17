@@ -5,13 +5,9 @@ import AbstractList from "./AbstractList";
 import { isNumber } from "../../utils";
 class Node<T> {
   element: T;
-  prev: Node<T> | undefined;
-  next: Node<T> | undefined;
-  constructor(
-    prev: Node<T> | undefined,
-    element: T,
-    next: Node<T> | undefined
-  ) {
+  prev: Node<T> | null;
+  next: Node<T> | null;
+  constructor(prev: Node<T> | null, element: T, next: Node<T> | null) {
     this.prev = prev;
     this.element = element;
     this.next = next;
@@ -22,9 +18,9 @@ class Node<T> {
     }`;
   }
 }
-export default class DuLinkList<T> extends AbstractList<T> {
-  firstNode: Node<T> | undefined;
-  lastNode: Node<T> | undefined;
+export default class DuLinkedList<T> extends AbstractList<T> {
+  firstNode: Node<T> | null = null;
+  lastNode: Node<T> | null = null;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {
@@ -52,8 +48,8 @@ export default class DuLinkList<T> extends AbstractList<T> {
         const prev = this.node(element - 1);
         el = prev.next!.element!;
         prev.next = prev.next!.next;
+        this.length--;
       }
-      this.length--;
       return el;
     } else {
       const index = this.indexOf(element);
@@ -72,8 +68,8 @@ export default class DuLinkList<T> extends AbstractList<T> {
     }
   }
   public clear(): void {
-    this.firstNode = undefined;
-    this.lastNode = undefined;
+    this.firstNode = null;
+    this.lastNode = null;
     this.length = 0;
   }
   public get(index: number): T {
@@ -103,10 +99,10 @@ export default class DuLinkList<T> extends AbstractList<T> {
   public addFirst(element: T): void {
     if (this.firstNode) {
       const oldNode = this.firstNode;
-      this.firstNode = new Node<T>(undefined, element, oldNode);
+      this.firstNode = new Node<T>(null, element, oldNode);
       oldNode.prev = this.firstNode;
     } else {
-      const newNode = new Node<T>(undefined, element, undefined);
+      const newNode = new Node<T>(null, element, null);
       this.firstNode = newNode;
       this.lastNode = newNode;
     }
@@ -114,8 +110,12 @@ export default class DuLinkList<T> extends AbstractList<T> {
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
+    if (this.size() === 1) {
+      return this.delLastNode();
+    }
     const oldNode = this.firstNode;
     this.firstNode = this.firstNode!.next;
+    this.length--;
     return oldNode!.element!;
   }
   public last(): T {
@@ -124,7 +124,7 @@ export default class DuLinkList<T> extends AbstractList<T> {
   }
   public addLast(element: T): void {
     if (this.lastNode) {
-      const newNode = new Node<T>(this.lastNode, element, undefined);
+      const newNode = new Node<T>(this.lastNode, element, null);
       this.lastNode.next = newNode;
       this.lastNode = newNode;
       this.length++;
@@ -135,13 +135,18 @@ export default class DuLinkList<T> extends AbstractList<T> {
   public delLast(): T {
     this.thorwEmpty("delLast");
     if (this.length === 1) {
-      return this.delFirst();
-    } else {
-      const prev = this.node(this.size() - 2);
-      const oldNode = prev.next;
-      prev.next = undefined;
-      return oldNode!.element!;
+      return this.delLastNode();
     }
+    const prev = this.node(this.size() - 2);
+    const oldNode = prev.next;
+    prev.next = null;
+    this.length--;
+    return oldNode!.element!;
+  }
+  private delLastNode(): T {
+    const el = this.firstNode!.element;
+    this.clear();
+    return el;
   }
   /**
    * 根据index返回Node
@@ -165,7 +170,6 @@ export default class DuLinkList<T> extends AbstractList<T> {
     }
   }
   toString(): string {
-    this.thorwEmpty("toString");
     let string = `size:${this.size()},elements:[`;
     let cur = this.firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
