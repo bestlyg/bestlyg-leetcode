@@ -1,13 +1,13 @@
 import AbstractQueue from "./AbstractQueue";
 
 export default class CircleQueue<T> extends AbstractQueue<T> {
-  private head: number = 0;
-  private length: number = 0;
+  protected head: number = 0;
+  protected length: number = 0;
   private capacity = 10;
-  private elements: (T | null)[];
+  protected elements: (T | null)[];
   constructor(capacity: number) {
     super();
-    this.capacity = capacity < this.capacity ? this.capacity : capacity;
+    this.capacity = capacity <= this.capacity ? this.capacity : capacity;
     this.elements = new Array<T | null>(this.capacity).fill(null);
   }
   size(): number {
@@ -41,13 +41,18 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
     this.length--;
     return el!;
   }
-  private ensureCapacity() {
+  protected ensureCapacity() {
     const capacity = this.capacity;
-    if (capacity === this.size()) {
-      this.capacity = capacity + (capacity >> 1);
+    if (capacity !== this.size()) return;
+    this.capacity = capacity + (capacity >> 1);
+    const newEl = new Array<T | null>(this.capacity).fill(null);
+    for (let i = 0, len = this.capacity; i < len; i++) {
+      newEl[i] = this.elements[this.index(i)];
     }
+    this.elements = newEl;
+    this.head = 0;
   }
-  private index(index: number): number {
+  protected index(index: number): number {
     index += this.head;
     return index - (index >= this.capacity ? this.capacity : 0);
   }

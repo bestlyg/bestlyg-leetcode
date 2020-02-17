@@ -4,17 +4,16 @@ import SingleLinkedList from "./src/code/list/SingleLinkedList";
 import CircleQueue from "./src/code/queue/CircleQueue";
 
 const queue = new CircleQueue<Person>(10);
-const obj1 = getPerson(1);
-const obj2 = getPerson(2);
-const obj3 = getPerson(3);
-queue.enQueue(obj1);
+for (let i = 0; i < 10; i++) {
+  queue.enQueue(getPerson(i));
+}
 console.log(queue.toString());
-queue.enQueue(obj2);
-queue.enQueue(obj3);
+for (let i = 0; i < 9; i++) {
+  queue.deQueue();
+}
 console.log(queue.toString());
-queue.deQueue();
+for (let i = 0; i < 3; i++) {
+  queue.enQueue(getPerson(i));
+  console.log(queue.toString());
+}
 console.log(queue.toString());
-console.log(queue.front());
-queue.deQueue();
-console.log(queue.toString());
-console.log(queue.front());

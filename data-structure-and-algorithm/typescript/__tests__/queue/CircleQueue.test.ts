@@ -1,6 +1,6 @@
 import { Person, getPerson } from "./../../src/utils";
 import CircleQueue from "../../src/code/queue/CircleQueue";
-function getNewQueue(capacity: number = 4) {
+function getNewQueue(capacity: number = 10) {
   return new CircleQueue<Person>(capacity);
 }
 describe("circlequeue", () => {
@@ -38,21 +38,21 @@ describe("circlequeue", () => {
   });
   test("ensureCapacity", () => {
     const queue = getNewQueue();
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       queue.enQueue(getPerson(i));
     }
     expect(queue.toString()).toBe(
-      "size:10,head:0,[Person name:0 age:0,Person name:1 age:1,Person name:2 age:2,Person name:3 age:3,Person name:4 age:4,Person name:5 age:5,Person name:6 age:6,Person name:7 age:7,Person name:8 age:8,Person name:9 age:9]"
+      "size:15,head:0,[Person name:0 age:0,Person name:1 age:1,Person name:2 age:2,Person name:3 age:3,Person name:4 age:4,Person name:5 age:5,Person name:6 age:6,Person name:7 age:7,Person name:8 age:8,Person name:9 age:9,Person name:10 age:10,Person name:11 age:11,Person name:12 age:12,Person name:13 age:13,Person name:14 age:14]"
     );
     queue.enQueue(getPerson(11));
     expect(queue.toString()).toBe(
-      "size:11,head:0,[Person name:0 age:0,Person name:1 age:1,Person name:2 age:2,Person name:3 age:3,Person name:4 age:4,Person name:5 age:5,Person name:6 age:6,Person name:7 age:7,Person name:8 age:8,Person name:9 age:9,Person name:11 age:11,null,null,null,null]"
+      "size:16,head:0,[Person name:0 age:0,Person name:1 age:1,Person name:2 age:2,Person name:3 age:3,Person name:4 age:4,Person name:5 age:5,Person name:6 age:6,Person name:7 age:7,Person name:8 age:8,Person name:9 age:9,Person name:10 age:10,Person name:11 age:11,Person name:12 age:12,Person name:13 age:13,Person name:14 age:14,Person name:11 age:11,null,null,null,null,null,null]"
     );
     for (let i = 0; i < 5; i++) {
       queue.deQueue();
     }
     expect(queue.toString()).toBe(
-      "size:6,head:5,[null,null,null,null,null,Person name:5 age:5,Person name:6 age:6,Person name:7 age:7,Person name:8 age:8,Person name:9 age:9,Person name:11 age:11,null,null,null,null]"
+      "size:11,head:5,[null,null,null,null,null,Person name:5 age:5,Person name:6 age:6,Person name:7 age:7,Person name:8 age:8,Person name:9 age:9,Person name:10 age:10,Person name:11 age:11,Person name:12 age:12,Person name:13 age:13,Person name:14 age:14,Person name:11 age:11,null,null,null,null,null,null]"
     );
   });
   test("small capacity", () => {
