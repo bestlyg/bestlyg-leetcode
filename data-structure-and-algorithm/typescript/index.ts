@@ -1,12 +1,20 @@
 import { getPerson, Person } from "./src/utils";
 import DuCircleLinkedList from "./src/code/list/DuCircleLinkedList";
 import SingleLinkedList from "./src/code/list/SingleLinkedList";
+import CircleQueue from "./src/code/queue/CircleQueue";
 
-const list = new SingleLinkedList<Person>();
+const queue = new CircleQueue<Person>(10);
 const obj1 = getPerson(1);
-list.clear();
-console.log(list.size());
-list.add(obj1);
-console.log(list.size());
-list.remove(0);
-console.log(list.size());
+const obj2 = getPerson(2);
+const obj3 = getPerson(3);
+queue.enQueue(obj1);
+console.log(queue.toString());
+queue.enQueue(obj2);
+queue.enQueue(obj3);
+console.log(queue.toString());
+queue.deQueue();
+console.log(queue.toString());
+console.log(queue.front());
+queue.deQueue();
+console.log(queue.toString());
+console.log(queue.front());
