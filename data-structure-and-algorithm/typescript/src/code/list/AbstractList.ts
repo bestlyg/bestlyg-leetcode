@@ -1,3 +1,4 @@
+import { thorwEmptyError } from "./../../utils";
 import List from "./List";
 export default abstract class AbstractList<T> implements List<T> {
   ELEMENT_NOT_FOUND: number = -1;
@@ -23,7 +24,7 @@ export default abstract class AbstractList<T> implements List<T> {
   }
   protected thorwEmpty(method: string) {
     if (this.isEmpty()) {
-      throw new Error(`List is Empty can not use the Method: ${method}`);
+      thorwEmptyError("List")(method);
     }
   }
   protected outOfBounds(index: number): void {

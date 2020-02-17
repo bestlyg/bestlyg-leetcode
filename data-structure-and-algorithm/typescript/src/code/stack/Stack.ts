@@ -1,5 +1,6 @@
 import ArrayList from "../list/ArrayList";
 import List from "../list/List";
+import { thorwEmptyError } from "../../utils";
 
 export default class Stack<T> {
   private list: List<T> = new ArrayList<T>();
@@ -30,7 +31,7 @@ export default class Stack<T> {
   }
   private thorwEmpty(method: string) {
     if (this.isEmpty()) {
-      throw new Error(`Stack is Empty can not use the Method: ${method}`);
+      thorwEmptyError("Stack")(method);
     }
   }
 }

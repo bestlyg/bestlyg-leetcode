@@ -227,7 +227,25 @@ const run = (name: string, getNewList: () => List<Person>) =>
       list.add(obj1);
       expect(list.delLast()).toBe(obj1);
     });
-
+    test("throwEmpty", () => {
+      const list = getNewList();
+      try {
+        list.delFirst();
+      } catch (error) {
+        expect(error.toString()).toBe(
+          "Error: List is Empty can not use the Method: delFirst"
+        );
+      }
+    });
+    test("rangeCheck", () => {
+      const list = getNewList();
+      list.add(getPerson(1));
+      try {
+        list.remove(-1);
+      } catch (error) {
+        expect(error.toString()).toBe("Error: Index:-1, Size:1");
+      }
+    });
     test("rangeCheck", () => {
       const list = getNewList();
       list.add(getPerson(1));

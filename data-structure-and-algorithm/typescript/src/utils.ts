@@ -4,6 +4,9 @@ export function time(name: string, fn: Function) {
   fn();
   console.timeEnd(timeTag);
 }
+export const thorwEmptyError = (struct: string) => (method: string) => {
+  throw new Error(`${struct} is Empty can not use the Method: ${method}`);
+};
 export function isNumber(number: any): number is number {
   return typeof number === "number";
 }
