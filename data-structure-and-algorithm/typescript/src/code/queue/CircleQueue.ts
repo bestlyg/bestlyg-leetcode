@@ -54,6 +54,9 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
   }
   protected index(index: number): number {
     index += this.head;
+    if (index < 0) {
+      return index + this.capacity;
+    }
     return index - (index >= this.capacity ? this.capacity : 0);
   }
   toString(): string {
