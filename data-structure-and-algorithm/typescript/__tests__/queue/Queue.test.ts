@@ -10,7 +10,7 @@ describe("queue", () => {
     queue.enQueue(getPerson(2));
     queue.enQueue(getPerson(3));
     expect(queue.toString()).toBe(
-      "size:3,front->[Person name:1 age:1,Person name:2 age:2,Person name:3 age:3]"
+      "size:3,front->[Person name:1 age:1,Person name:2 age:2,Person name:3 age:3]<-rear"
     );
   });
 });

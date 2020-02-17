@@ -2,7 +2,7 @@ import DuLinkedList from "../list/DuLinkedList";
 import List from "../list/List";
 import AbstractQueue from "./AbstractQueue";
 export default class Queue<T> extends AbstractQueue<T> {
-  private list: List<T> = new DuLinkedList<T>();
+  protected list: List<T> = new DuLinkedList<T>();
   size(): number {
     return this.list.size();
   }
@@ -30,7 +30,7 @@ export default class Queue<T> extends AbstractQueue<T> {
       }
       string += this.list.get(i);
     }
-    string += "]";
+    string += "]<-rear";
     return string;
   }
 }

@@ -14,11 +14,11 @@ export default interface IDeque<T> extends IQueue<T> {
   /**
    * 尾部出队
    */
-  deQueueRear(): void;
+  deQueueRear(): T;
   /**
    * 头部出队
    */
-  deQueueFront(): void;
+  deQueueFront(): T;
   /**
    * 查看尾元素
    */

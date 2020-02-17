@@ -1,6 +1,7 @@
 import { Person, getPerson } from "../../src/utils";
 import Queue from "../../src/code/queue/Queue";
 import IQueue from "../../src/code/queue/IQueue";
+import Deque from "../../src/code/queue/Deque";
 
 const run = (name: string, getNewQueue: () => IQueue<Person>) =>
   describe(name, () => {
@@ -45,6 +46,10 @@ const run = (name: string, getNewQueue: () => IQueue<Person>) =>
       queue.enQueue(obj3);
       expect(queue.front()).toBe(obj1);
     });
+    test("toString with empty", () => {
+      const queue = getNewQueue();
+      expect(queue.toString()).toBe("size:0,front->[]<-rear");
+    });
     test("throwEmpty", () => {
       const list = getNewQueue();
       try {
@@ -59,5 +64,8 @@ const run = (name: string, getNewQueue: () => IQueue<Person>) =>
 describe("All Queue Test", () => {
   run("Queue", () => {
     return new Queue<Person>();
+  });
+  run("Deque", () => {
+    return new Deque<Person>();
   });
 });
