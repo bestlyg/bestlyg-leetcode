@@ -1,6 +1,6 @@
-import { thorwEmptyError } from "./../../utils";
-import List from "./List";
-export default abstract class AbstractList<T> implements List<T> {
+import { thorwEmptyError } from "../../utils";
+import IList from "./IList";
+export default abstract class AbstractList<T> implements IList<T> {
   ELEMENT_NOT_FOUND: number = -1;
   protected length: number = 0;
   public size(): number {

@@ -1,9 +1,9 @@
 import ArrayList from "../list/ArrayList";
-import List from "../list/List";
+import IList from "../list/IList";
 import { thorwEmptyError } from "../../utils";
 
 export default class Stack<T> {
-  private list: List<T> = new ArrayList<T>();
+  private list: IList<T> = new ArrayList<T>();
 
   public clear(): void {
     this.list.clear();

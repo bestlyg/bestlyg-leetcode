@@ -1,4 +1,4 @@
-import { Person, getPerson } from "./../../src/utils";
+import { Person, getPerson } from "../../src/utils";
 import CircleQueue from "../../src/code/queue/CircleQueue";
 function getNewQueue(capacity: number = 10) {
   return new CircleQueue<Person>(capacity);

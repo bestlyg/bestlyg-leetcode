@@ -1,15 +1,3 @@
-export function time(name: string, fn: Function) {
-  const timeTag: string = "time->" + name;
-  console.time(timeTag);
-  fn();
-  console.timeEnd(timeTag);
-}
-export const thorwEmptyError = (struct: string) => (method: string) => {
-  throw new Error(`${struct} is Empty can not use the Method: ${method}`);
-};
-export function isNumber(number: any): number is number {
-  return typeof number === "number";
-}
 export class Person {
   private age: number;
   private name: string;

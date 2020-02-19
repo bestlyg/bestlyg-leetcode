@@ -1,8 +1,8 @@
 import DuLinkedList from "../list/DuLinkedList";
-import List from "../list/List";
+import IList from "../list/IList";
 import AbstractQueue from "./AbstractQueue";
 export default class Queue<T> extends AbstractQueue<T> {
-  protected list: List<T> = new DuLinkedList<T>();
+  protected list: IList<T> = new DuLinkedList<T>();
   size(): number {
     return this.list.size();
   }

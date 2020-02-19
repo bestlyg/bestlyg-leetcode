@@ -4,9 +4,9 @@ import SingleCircleLinkedList from "../../src/code/list/SingleCircleLinkedList";
 import ArrayList from "../../src/code/list/ArrayList";
 import SingleLinkedList2 from "../../src/code/list/SingleLinkedList2";
 import DuLinkList from "../../src/code/list/DuLinkedList";
-import List from "../../src/code/list/List";
+import IList from "../../src/code/list/IList";
 import DuCircleLinkedList from "../../src/code/list/DuCircleLinkedList";
-const run = (name: string, getNewList: () => List<Person>) =>
+const run = (name: string, getNewList: () => IList<Person>) =>
   describe(name, () => {
     test("add last and del first", () => {
       const list = getNewList();
