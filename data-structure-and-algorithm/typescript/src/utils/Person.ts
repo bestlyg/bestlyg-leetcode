@@ -5,6 +5,12 @@ export class Person {
     this.age = age;
     this.name = name;
   }
+  get Age() {
+    return this.age;
+  }
+  get Name() {
+    return this.name;
+  }
   public toString(): string {
     return `Person name:${this.name} age:${this.age}`;
   }
