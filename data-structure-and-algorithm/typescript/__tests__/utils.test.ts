@@ -1,4 +1,4 @@
-import { time, isNumber, Person, getPerson } from "../src/utils";
+import { time, isNumber, Person, getPerson, extend } from "../src/utils";
 describe("Utils Test", () => {
   test("time", () => {
     expect(
@@ -12,10 +12,17 @@ describe("Utils Test", () => {
     expect(isNumber("1")).toBe(false);
   });
   test("Person", () => {
-    getPerson(1);
-    getPerson(1);
-    getPerson(2);
-    getPerson(3);
-    getPerson(4);
+    const obj = getPerson(1);
+    const obj2 = getPerson(1);
+    expect(obj === obj2).toBe(true);
+  });
+  test("extend", () => {
+    function a(): number {
+      return 1;
+    }
+    const b = { test: "this is a test string" };
+    const extendObj = extend(a, b);
+    expect(extendObj()).toBe(1);
+    expect(extendObj.test).toBe(b.test);
   });
 });
