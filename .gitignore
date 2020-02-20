@@ -4,7 +4,7 @@ package-lock.json
 yarn.lock
 #data-structure-and-algorithm
 ##typescript
-data-structure-and-algorithm/typescript/out
+data-structure-and-algorithm/typescript/dist
 data-structure-and-algorithm/typescript/coverage
 ### java
 data-structure-and-algorithm/java/bin
