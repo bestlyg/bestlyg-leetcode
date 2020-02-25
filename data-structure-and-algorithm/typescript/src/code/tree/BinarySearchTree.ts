@@ -6,6 +6,10 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
     super();
     this._compare = _compare;
   }
+  /**
+   * 添加元素
+   * @param {T} element 元素的值
+   */
   public add(element: T): void {
     if (this.root === null) {
       this.root = this.createNode(element, null);
@@ -37,6 +41,10 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
     this._size++;
     this.afterAdd(newNode);
   }
+  /**
+   * 删除元素
+   * @param {T} element 元素的值，若不存在则树不动
+   */
   public remove(element: T): void {
     this._remove(this.node(element));
   }
@@ -71,9 +79,19 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
       this.afterRemove(node);
     }
   }
+  /**
+   * 判断该值是否在树中
+   * @param {T} element 值
+   * @return {boolean} true|false
+   */
   public contains(element: T): boolean {
     return this.node(element) !== null;
   }
+  /**
+   * 获取值所在的节点
+   * @param {T} element 值
+   * @return {Node<T>|null} 返回节点或null
+   */
   public get(element: T): Node<T> | null {
     return this.node(element);
   }

@@ -6,9 +6,17 @@ import Queue from "../queue/Queue";
 export default class BinaryTree<T> {
   protected _size: number = 0;
   protected root: Node<T> | null = null;
+  /**
+   * 返回树的大小
+   * @return {number} 返回树的大小
+   */
   public size(): number {
     return this._size;
   }
+  /**
+   * 判断树是否为空
+   * @return {boolean} true|false
+   */
   public isEmpty(): boolean {
     return this._size === 0;
   }
@@ -16,34 +24,71 @@ export default class BinaryTree<T> {
     this.root = null;
     this._size = 0;
   }
+  /**
+   * 前序遍历
+   * @param {(Element:T)=>boolean} visitor 遍历监视器 函数返回false时停止遍历
+   */
   public preorder(visitor: (element: T) => boolean): void {
     preorder(visitor, this.root);
   }
+  /**
+   * 中序遍历
+   * @param {(Element:T)=>boolean} visitor 遍历监视器 函数返回false时停止遍历
+   */
   public inorder(visitor: (element: T) => boolean): void {
     inorder(visitor, this.root);
   }
+  /**
+   * 后序遍历
+   * @param {(Element:T)=>boolean} visitor 遍历监视器 函数返回false时停止遍历
+   */
   public postorder(visitor: (element: T) => boolean): void {
     postorder(visitor, this.root);
   }
+  /**
+   * 层序遍历
+   * @param {(Element:T)=>boolean} visitor 遍历监视器 函数返回false时停止遍历
+   */
   public levelOrder(visitor: (element: T) => boolean): void {
     if (this.root === null) return;
     levelOrder(visitor, this.root);
   }
+  /**
+   * 判断是否为真二叉树
+   * @return {boolean} true|false
+   */
   public isProper(): boolean {
     if (this.root === null) return false;
     return isProper(this.root);
   }
+  /**
+   * 判断是否为满二叉树
+   * @return {boolean} true|false
+   */
   public isFull(): boolean {
     if (this.root === null) return false;
     return Math.pow(2, this.height()) - 1 === this.size();
   }
+  /**
+   * 判断是否为完全二叉树
+   * @return {boolean} true|false
+   */
   public isComplete(): boolean {
     if (this.root === null) return false;
     return iSComplete(this.root);
   }
+  /**
+   * 返回树的高度
+   * @param {heightMethodType} method ergodic|recursion
+   */
   public height(method: heightMethodType = "ergodic"): number {
     return height(this.root, method);
   }
+  /**
+   * 获取前驱节点
+   * @param {Node<T>} node 节点
+   * @return {Node<T>|null} 返回前驱节点或null
+   */
   public predecessor(node: Node<T>): Node<T> | null {
     let p = node.left;
     if (p != null) {
@@ -57,6 +102,11 @@ export default class BinaryTree<T> {
     }
     return node.parent;
   }
+  /**
+   * 获取后继结点
+   * @param {Node<T>} node 节点
+   * @return {Node<T>|null} 返回前驱节点或null
+   */
   public successor(node: Node<T>): Node<T> | null {
     let p = node.right;
     if (p != null) {
