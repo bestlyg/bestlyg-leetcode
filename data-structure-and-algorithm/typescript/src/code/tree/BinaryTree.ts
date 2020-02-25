@@ -70,6 +70,9 @@ export default class BinaryTree<T> {
     }
     return node.parent;
   }
+  protected createNode(element: T, parent: Node<T> | null): Node<T> {
+    return new Node<T>(element, parent);
+  }
 }
 /**
  * 获取当前节点的高度

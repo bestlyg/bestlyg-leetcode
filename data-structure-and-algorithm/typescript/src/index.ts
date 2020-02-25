@@ -10,6 +10,7 @@ import Deque from "./code/queue/Deque";
 import CircleQueue from "./code/queue/CircleQueue";
 import CircleDeque from "./code/queue/CircleDeque";
 import BinaryTree from "./code/tree/BinaryTree";
+import AVLTree from "./code/tree/AVLTree";
 export {
   ArrayList,
   SingleLinkedList,
@@ -22,6 +23,7 @@ export {
   Deque,
   CircleQueue,
   CircleDeque,
-  BinaryTree
+  BinaryTree,
+  AVLTree
 };
 export * from "./types";

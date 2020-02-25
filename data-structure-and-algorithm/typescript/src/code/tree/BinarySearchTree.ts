@@ -8,8 +8,9 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   }
   public add(element: T): void {
     if (this.root === null) {
-      this.root = new Node<T>(element, null);
+      this.root = this.createNode(element, null);
       this._size++;
+      this.afterAdd(this.root);
       return;
     }
     let node: Node<T> | null = this.root;
@@ -27,13 +28,14 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
         return;
       }
     } while (node != null);
-    const newNode = new Node<T>(element, parent);
+    const newNode = this.createNode(element, parent);
     if (cmp > 0) {
       parent.right = newNode;
     } else {
       parent.left = newNode;
     }
     this._size++;
+    this.afterAdd(newNode);
   }
   public remove(element: T): void {
     this._remove(this.node(element));
@@ -56,14 +58,17 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
       } else {
         node.parent.right = replacement;
       }
+      this.afterRemove(node);
     } else if (node.parent === null) {
       this.root = null;
+      this.afterRemove(node);
     } else {
       if (node === node.parent.left) {
         node.parent.left = null;
       } else {
         node.parent.right = null;
       }
+      this.afterRemove(node);
     }
   }
   public contains(element: T): boolean {
@@ -72,6 +77,8 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   public get(element: T): Node<T> | null {
     return this.node(element);
   }
+  protected afterAdd(node: Node<T>): void {}
+  protected afterRemove(node: Node<T>): void {}
   private node(element: T): Node<T> | null {
     let node = this.root;
     while (node !== null) {
