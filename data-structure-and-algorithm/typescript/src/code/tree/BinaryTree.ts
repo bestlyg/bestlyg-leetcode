@@ -1,9 +1,10 @@
-import { heightMethodType } from "./../../types/index";
-import { extend } from "../../utils/index";
+import { BinaryTreeInfo } from "./BinaryTreesPrinter";
+// import { heightMethodType } from "./../../types/index";
+import { extend, toString } from "../../utils/index";
 import Node from "./Node";
 import Queue from "../queue/Queue";
 
-export default class BinaryTree<T> {
+export default class BinaryTree<T> implements BinaryTreeInfo {
   protected _size: number = 0;
   protected root: Node<T> | null = null;
   /**
@@ -79,10 +80,34 @@ export default class BinaryTree<T> {
   }
   /**
    * 返回树的高度
-   * @param {heightMethodType} method ergodic|recursion
    */
-  public height(method: heightMethodType = "ergodic"): number {
-    return height(this.root, method);
+  public height(): number {
+    const root = this.root;
+    function _height(node: Node<T> | null): number {
+      if (node === null) return 0;
+      return 1 + Math.max(_height(node.left), _height(node.right));
+    }
+    return _height(root);
+    // if (root === null) return 0;
+    // let height = 0;
+    // let levelSize = 1;
+    // const queue = new Queue<Node<T>>();
+    // queue.enQueue(root);
+    // while (!queue.isEmpty()) {
+    //   const node = queue.deQueue();
+    //   levelSize--;
+    //   if (node.left != null) {
+    //     queue.enQueue(node.left);
+    //   }
+    //   if (node.right != null) {
+    //     queue.enQueue(node.right);
+    //   }
+    //   if (levelSize === 0) {
+    //     levelSize = queue.size();
+    //     height++;
+    //   }
+    // }
+    // return height;
   }
   /**
    * 获取前驱节点
@@ -123,18 +148,25 @@ export default class BinaryTree<T> {
   protected createNode(element: T, parent: Node<T> | null): Node<T> {
     return new Node<T>(element, parent);
   }
-}
-/**
- * 获取当前节点的高度
- * @param node
- * @param method
- */
-function height<T>(node: Node<T> | null, method: heightMethodType): number {
-  switch (method) {
-    case "ergodic":
-      return heightWithErgodic(node);
-    case "recursion":
-      return heightWithRecursion(node);
+  public _root(): any {
+    return this.root;
+  }
+
+  public _left(node: object): any {
+    return (node as Node<T>).left;
+  }
+
+  public _right(node: object): any {
+    return (node as Node<T>).right;
+  }
+
+  public _string(node: object): any {
+    const myNode = node as Node<T>;
+    let parentString = "null";
+    if (myNode.parent != null) {
+      parentString = toString(myNode.parent.element);
+    }
+    return toString(myNode) + " p(" + parentString + ")";
   }
 }
 /**
@@ -272,37 +304,4 @@ function _levelOrder<T>(
       queue.enQueue(node.right);
     }
   }
-}
-/**
- * 迭代展示高度
- * @param node
- */
-function heightWithErgodic<T>(node: Node<T> | null): number {
-  if (node === null) return 0;
-  let height = 0;
-  let levelSize = 1;
-  const queue = new Queue<Node<T>>();
-  queue.enQueue(node);
-  while (!queue.isEmpty()) {
-    const node = queue.deQueue();
-    levelSize--;
-    if (node.left != null) {
-      queue.enQueue(node.left);
-    }
-    if (node.right != null) {
-      queue.enQueue(node.right);
-    }
-    if (levelSize === 0) {
-      levelSize = queue.size();
-      height++;
-    }
-  }
-  return height;
-}
-function heightWithRecursion<T>(node: Node<T> | null): number {
-  if (node === null) return 0;
-  return (
-    1 +
-    Math.max(heightWithRecursion(node.left), heightWithRecursion(node.right))
-  );
 }

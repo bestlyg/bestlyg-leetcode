@@ -103,10 +103,8 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
       const cmp = this.compare(element, node.element);
       if (cmp === 0) return node;
       if (cmp > 0) {
-        console.log(2);
         node = node.right;
       } else {
-        console.log(1);
         node = node.left;
       }
     }

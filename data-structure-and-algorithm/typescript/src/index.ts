@@ -9,7 +9,8 @@ import Queue from "./code/queue/Queue";
 import Deque from "./code/queue/Deque";
 import CircleQueue from "./code/queue/CircleQueue";
 import CircleDeque from "./code/queue/CircleDeque";
-import BinaryTree from "./code/tree/BinaryTree";
+import BinarySearchTree from "./code/tree/BinarySearchTree";
+import BinaryTreesPrinter from "./code/tree/BinaryTreesPrinter";
 import AVLTree from "./code/tree/AVLTree";
 export {
   ArrayList,
@@ -23,7 +24,8 @@ export {
   Deque,
   CircleQueue,
   CircleDeque,
-  BinaryTree,
+  BinaryTreesPrinter,
+  BinarySearchTree,
   AVLTree
 };
 export * from "./types";

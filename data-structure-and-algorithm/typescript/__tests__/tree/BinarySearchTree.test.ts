@@ -275,10 +275,8 @@ describe("BinarySearchTree", () => {
   test("height", () => {
     const bst = getBST();
     expect(bst.height()).toBe(5);
-    expect(bst.height("recursion")).toBe(5);
     const bst2 = getNewBST();
     expect(bst2.height()).toBe(0);
-    expect(bst2.height("recursion")).toBe(0);
   });
   test("isComplete", () => {
     const bst = getBST();

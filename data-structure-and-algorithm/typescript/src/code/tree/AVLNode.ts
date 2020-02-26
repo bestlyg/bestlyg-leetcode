@@ -1,7 +1,7 @@
 import Node from "./Node";
 export default class AVLNode<T> extends Node<T> {
-  public height: number = 1;
-  constructor(element: T, parent: Node<T>) {
+  private height: number = 1;
+  constructor(element: T, parent: Node<T> | null = null) {
     super(element, parent);
   }
   public balanceFactor(): number {

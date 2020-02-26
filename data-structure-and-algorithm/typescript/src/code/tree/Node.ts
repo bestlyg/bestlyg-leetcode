@@ -1,3 +1,4 @@
+import { toString } from "../../utils";
 export default class Node<T> {
   element: T;
   left: Node<T> | null = null;
@@ -31,5 +32,8 @@ export default class Node<T> {
     if (this.isLeftChild()) return this.parent!.right;
     if (this.isRightChild()) return this.parent!.left;
     return null;
+  }
+  public toString(): string {
+    return this.element + "";
   }
 }
