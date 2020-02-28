@@ -9,6 +9,14 @@ function getNewBST(
 ): BinarySearchTree<Person> {
   return new BinarySearchTree<Person>(fn);
 }
+function inorderToString(tree: BinarySearchTree<Person>) {
+  let string = "";
+  tree.inorder((el: Person) => {
+    string += el.Age + " ";
+    return false;
+  });
+  return string;
+}
 function getBST(
   array: Person[] = [
     getPerson(6),
@@ -51,112 +59,57 @@ describe("BinarySearchTree", () => {
     bst.add(getPerson(1));
     bst.add(getPerson(2));
     bst.add(getPerson(3));
-    let string = "";
-    bst.inorder((person: Person) => {
-      string += person.Age + " ";
-      return false;
-    });
-    expect(string).toBe("1 2 3 4 ");
+    expect(inorderToString(bst)).toBe("1 2 3 4 ");
     bst.add(getPerson(1));
-    string = "";
-    bst.inorder((person: Person) => {
-      string += person.Age + " ";
-      return false;
-    });
-    expect(string).toBe("1 2 3 4 ");
+    expect(inorderToString(bst)).toBe("1 2 3 4 ");
   });
   describe("remove", () => {
     test("remove null", () => {
       const bst = getBST();
-      let string = "";
       bst.remove(getPerson(11));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("1 2 3 4 5 6 7 8 9 ");
+      expect(inorderToString(bst)).toBe("1 2 3 4 5 6 7 8 9 ");
     });
     test("remove node with one right children", () => {
       const bst = getBST();
-      let string = "";
       bst.remove(getPerson(3));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("1 2 4 5 6 7 8 9 ");
+      expect(inorderToString(bst)).toBe("1 2 4 5 6 7 8 9 ");
     });
     test("remove node with one left children", () => {
       const bst = getNewBST();
-      let string = "";
       bst.add(getPerson(3));
       bst.add(getPerson(2));
       bst.add(getPerson(1));
       bst.remove(getPerson(2));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("1 3 ");
+      expect(inorderToString(bst)).toBe("1 3 ");
     });
     test("remove root without no children", () => {
       const bst = getNewBST();
       bst.add(getPerson(1));
       bst.remove(getPerson(1));
-      let string = "";
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("");
+      expect(inorderToString(bst)).toBe("");
     });
     test("remove root", () => {
       const bst = getBST();
-      let string = "";
       bst.remove(getPerson(6));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("1 2 3 4 5 7 8 9 ");
+      expect(inorderToString(bst)).toBe("1 2 3 4 5 7 8 9 ");
     });
     test("remove root with one children", () => {
       const bst = getNewBST();
-      let string = "";
       bst.add(getPerson(1));
       bst.add(getPerson(2));
       bst.remove(getPerson(1));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("2 ");
+      expect(inorderToString(bst)).toBe("2 ");
     });
     test("remove leaf", () => {
       const bst = getNewBST();
-      let string = "";
       bst.add(getPerson(5));
       bst.add(getPerson(3));
       bst.add(getPerson(6));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("3 5 6 ");
-      string = "";
+      expect(inorderToString(bst)).toBe("3 5 6 ");
       bst.remove(getPerson(3));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("5 6 ");
-      string = "";
+      expect(inorderToString(bst)).toBe("5 6 ");
       bst.remove(getPerson(6));
-      bst.inorder((person: Person) => {
-        string += person.Age + " ";
-        return false;
-      });
-      expect(string).toBe("5 ");
+      expect(inorderToString(bst)).toBe("5 ");
     });
   });
   test("contains", () => {
@@ -190,13 +143,8 @@ describe("BinarySearchTree", () => {
     expect(bst.get(getPerson(12))).toBeNull();
   });
   test("inorder", () => {
-    let string = "";
     const bst = getBST();
-    bst.inorder((person: Person) => {
-      string += person.Age + " ";
-      return false;
-    });
-    expect(string).toBe("1 2 3 4 5 6 7 8 9 ");
+    expect(inorderToString(bst)).toBe("1 2 3 4 5 6 7 8 9 ");
   });
   test("inorder with stop", () => {
     let string = "";

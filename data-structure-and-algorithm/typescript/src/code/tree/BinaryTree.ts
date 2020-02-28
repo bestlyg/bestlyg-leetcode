@@ -166,7 +166,7 @@ export default class BinaryTree<T> implements BinaryTreeInfo {
     if (myNode.parent != null) {
       parentString = toString(myNode.parent.element);
     }
-    return toString(myNode) + " p(" + parentString + ")";
+    return toString(myNode) + "_P(" + parentString + ")";
   }
 }
 /**

@@ -17,10 +17,13 @@ import Node from "./src/code/tree/Node";
 import BinaryTreesPrinter from "./src/code/tree/BinaryTreesPrinter";
 import BinarySearchTree from "./src/code/tree/BinarySearchTree";
 import { toString } from "./src/utils/index";
-const tree = new AVLTree<number>((n1, n2) => n1 - n2);
-const nums = [79, 91, 14, 51, 10, 11, 95, 62, 84, 74, 19, 9, 18, 12];
+import RedBlackTree from "./src/code/tree/RedBlackTree";
+const tree = new RedBlackTree<number>((n1, n2) => n1 - n2);
+const nums = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50];
 for (const num of nums) {
-  console.log(`===\n【${num}】:`);
+  // console.log(`===\n【${num}】:`);
   tree.add(num);
-  BinaryTreesPrinter.print(tree);
+  // BinaryTreesPrinter.print(tree);
 }
+tree.remove(20);
+BinaryTreesPrinter.print(tree);

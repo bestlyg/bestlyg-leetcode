@@ -66,7 +66,7 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
       } else {
         node.parent.right = replacement;
       }
-      this.afterRemove(node);
+      this.afterRemove(replacement);
     } else if (node.parent === null) {
       this.root = null;
       this.afterRemove(node);

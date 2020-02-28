@@ -1,8 +1,8 @@
-import BinarySearchTree from "./BinarySearchTree";
+import BalanceBinarySearchTree from "./BalanceBinarySearchTree";
 import Node from "./Node";
 import AVLNode from "./AVLNode";
 // import { rebalanceMethodType } from "../../types";
-export default class AVLTree<T> extends BinarySearchTree<T> {
+export default class AVLTree<T> extends BalanceBinarySearchTree<T> {
   protected afterAdd(node: Node<T>): void {
     while (node.parent !== null) {
       node = node.parent;
@@ -24,7 +24,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
       }
     }
   }
-  protected createNode(element: T, parent: Node<T>): Node<T> {
+  protected createNode(element: T, parent: Node<T> | null): Node<T> {
     return new AVLNode<T>(element, parent);
   }
   private isBalanced(node: Node<T>): boolean {
@@ -50,7 +50,16 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
       }
     }
   }
-  private rotate(
+  // protected afterRotate(
+  //   grand: Node<T>,
+  //   parent: Node<T>,
+  //   child: Node<T> | null
+  // ) {
+  //   super.afterRotate(grand, parent, child);
+  //   this.updateHeight(grand);
+  //   this.updateHeight(parent);
+  // }
+  protected rotate(
     r: Node<T>,
     b: Node<T>,
     c: Node<T> | null,
@@ -58,77 +67,9 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     e: Node<T> | null,
     f: Node<T>
   ): void {
-    d.parent = r.parent;
-    if (r.isLeftChild()) {
-      r.parent!.left = d;
-    } else if (r.isRightChild()) {
-      r.parent!.right = d;
-    } else {
-      this.root = d;
-    }
-    b.right = c;
-    if (c != null) {
-      c.parent = b;
-    }
+    super.rotate(r, b, c, d, e, f);
     this.updateHeight(b);
-    f.left = e;
-    if (e != null) {
-      e.parent = f;
-    }
     this.updateHeight(f);
-    d.left = b;
-    d.right = f;
-    b.parent = d;
-    f.parent = d;
     this.updateHeight(d);
   }
-  // private rebalance(grand: Node<T>): void {
-  //   const parent = (grand as AVLNode<T>).tallerChild();
-  //   const node = (parent as AVLNode<T>).tallerChild();
-  //   if (parent.isLeftChild()) {
-  //     if (node.isLeftChild()) {
-  //       this.rotateRight(grand);
-  //     } else {
-  //       this.rotateLeft(parent);
-  //       this.rotateRight(grand);
-  //     }
-  //   } else {
-  //     if (node.isLeftChild()) {
-  //       this.rotateRight(parent);
-  //       this.rotateLeft(grand);
-  //     } else {
-  //       this.rotateLeft(grand);
-  //     }
-  //   }
-  // }
-  // private rotateLeft(grand: Node<T>): void {
-  //   const parent: Node<T> = grand.right!;
-  //   const child: Node<T> | null = parent.left;
-  //   grand.right = child;
-  //   parent.left = grand;
-  //   this.afterRotate(grand, parent, child);
-  // }
-  // private rotateRight(grand: Node<T>): void {
-  //   const parent: Node<T> = grand.left!;
-  //   const child: Node<T> | null = parent.right;
-  //   grand.left = child;
-  //   parent.right = grand;
-  //   this.afterRotate(grand, parent, child);
-  // }
-  // private afterRotate(grand: Node<T>, parent: Node<T>, child: Node<T> | null) {
-  //   parent.parent = grand.parent;
-  //   if (grand.isLeftChild()) {
-  //     grand.parent!.left = parent;
-  //   } else if (grand.isRightChild()) {
-  //     grand.parent!.right = parent;
-  //   } else {
-  //     this.root = parent;
-  //   }
-  //   if (child !== null) {
-  //     child.parent = grand;
-  //   }
-  //   grand.parent = parent;
-  //   this.updateHeight(grand);
-  //   this.updateHeight(parent);
-  // }
 }
