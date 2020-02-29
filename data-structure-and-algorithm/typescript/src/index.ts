@@ -12,6 +12,9 @@ import CircleDeque from "./code/queue/CircleDeque";
 import BinarySearchTree from "./code/tree/BinarySearchTree";
 import BinaryTreesPrinter from "./code/tree/BinaryTreesPrinter";
 import AVLTree from "./code/tree/AVLTree";
+import RedBlackTree from "./code/tree/RedBlackTree";
+import ListSet from "./code/set/ListSet";
+import TreeSet from "./code/set/TreeSet";
 export {
   ArrayList,
   SingleLinkedList,
@@ -26,6 +29,9 @@ export {
   CircleDeque,
   BinaryTreesPrinter,
   BinarySearchTree,
-  AVLTree
+  AVLTree,
+  RedBlackTree,
+  ListSet,
+  TreeSet
 };
 export * from "./types";

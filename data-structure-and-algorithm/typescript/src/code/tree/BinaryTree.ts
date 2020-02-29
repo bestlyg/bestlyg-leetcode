@@ -1,6 +1,7 @@
 import { BinaryTreeInfo } from "./BinaryTreesPrinter";
 // import { heightMethodType } from "./../../types/index";
-import { visitorMixin, toString, Visitor } from "../../utils/index";
+import { toString } from "../../utils/index";
+import { Visitor, visitorMixin } from "./Visitor";
 import Node from "./Node";
 import Queue from "../queue/Queue";
 
