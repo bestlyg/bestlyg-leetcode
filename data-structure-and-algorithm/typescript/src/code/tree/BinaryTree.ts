@@ -1,11 +1,17 @@
 import { BinaryTreeInfo } from "./BinaryTreesPrinter";
+import IBinaryTree from "./IBinaryTree";
 // import { heightMethodType } from "./../../types/index";
 import { toString } from "../../utils/index";
 import { Visitor, visitorMixin } from "./Visitor";
 import Node from "./Node";
 import Queue from "../queue/Queue";
 
-export default class BinaryTree<T> implements BinaryTreeInfo {
+export default abstract class BinaryTree<T>
+  implements IBinaryTree<T>, BinaryTreeInfo {
+  abstract add(element: T): void;
+  abstract remove(element: T): void;
+  abstract contains(element: T): boolean;
+  abstract get(element: T): Node<T> | null;
   protected _size: number = 0;
   protected root: Node<T> | null = null;
   /**

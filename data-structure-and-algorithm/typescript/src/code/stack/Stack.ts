@@ -1,11 +1,12 @@
 import ArrayList from "../list/ArrayList";
 import IList from "../list/IList";
+import IStack from "./IStack";
 import { thorwEmptyError } from "../../utils";
 /**
  * @constructor
  * @type 栈
  */
-export default class Stack<T> {
+export default class Stack<T> implements IStack<T> {
   private list: IList<T> = new ArrayList<T>();
   /**
    * 清空栈
