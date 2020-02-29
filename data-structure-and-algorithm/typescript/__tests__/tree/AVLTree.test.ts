@@ -1,5 +1,5 @@
 import { Person, getPerson, BinaryTrees } from "../../src/utils";
-import AVLTree from "../../src/code/tree/AVLTree";
+import AVLTree from "../../src/core/tree/AVLTree";
 function testCompare(p1: Person, p2: Person): number {
   return p1.Age - p2.Age;
 }

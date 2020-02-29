@@ -1,7 +1,7 @@
 import { Person, getPerson } from "../../src/utils";
-import ISet from "../../src/code/set/ISet";
-import ListSet from "../../src/code/set/ListSet";
-import TreeSet from "../../src/code/set/TreeSet";
+import ISet from "../../src/core/set/ISet";
+import ListSet from "../../src/core/set/ListSet";
+import TreeSet from "../../src/core/set/TreeSet";
 
 const run = (name: string, getNewSet: () => ISet<Person>) => {
   describe(name, () => {

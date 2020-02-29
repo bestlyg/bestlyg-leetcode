@@ -1,5 +1,5 @@
 import { Person, getPerson } from "../../src/utils";
-import Stack from "../../src/code/stack/Stack";
+import Stack from "../../src/core/stack/Stack";
 function getNewStack(): Stack<Person> {
   return new Stack<Person>();
 }

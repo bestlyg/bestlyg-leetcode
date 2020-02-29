@@ -1,11 +1,11 @@
-import SingleLinkedList from "../../src/code/list/SingleLinkedList";
+import SingleLinkedList from "../../src/core/list/SingleLinkedList";
 import { Person, getPerson } from "../../src/utils";
-import SingleCircleLinkedList from "../../src/code/list/SingleCircleLinkedList";
-import ArrayList from "../../src/code/list/ArrayList";
-import SingleLinkedList2 from "../../src/code/list/SingleLinkedList2";
-import DuLinkList from "../../src/code/list/DuLinkedList";
-import IList from "../../src/code/list/IList";
-import DuCircleLinkedList from "../../src/code/list/DuCircleLinkedList";
+import SingleCircleLinkedList from "../../src/core/list/SingleCircleLinkedList";
+import ArrayList from "../../src/core/list/ArrayList";
+import SingleLinkedList2 from "../../src/core/list/SingleLinkedList2";
+import DuLinkList from "../../src/core/list/DuLinkedList";
+import IList from "../../src/core/list/IList";
+import DuCircleLinkedList from "../../src/core/list/DuCircleLinkedList";
 const run = (name: string, getNewList: () => IList<Person>) =>
   describe(name, () => {
     describe("add", () => {

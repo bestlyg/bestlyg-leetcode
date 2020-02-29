@@ -1,5 +1,5 @@
 import { Person, getPerson } from "../../src/utils";
-import DuLinkList from "../../src/code/list/DuLinkedList";
+import DuLinkList from "../../src/core/list/DuLinkedList";
 function getNewList() {
   return new DuLinkList<Person>();
 }

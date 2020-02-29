@@ -1,4 +1,4 @@
-import Node from "../../src/code/tree/Node";
+import Node from "../../src/core/tree/Node";
 import { getPerson, Person } from "../../src/utils";
 
 describe("Node", () => {

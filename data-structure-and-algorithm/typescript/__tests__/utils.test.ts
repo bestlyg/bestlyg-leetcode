@@ -8,9 +8,9 @@ import {
   repeat,
   blank
 } from "../src/utils";
-import AVLTree from "../src/code/tree/AVLTree";
-import { BinaryTreesPrintStyle } from "../src/code/tree/BinaryTreesPrinter";
-import BinarySearchTree from "../src/code/tree/BinarySearchTree";
+import AVLTree from "../src/core/tree/AVLTree";
+import { BinaryTreesPrintStyle } from "../src/core/tree/BinaryTreesPrinter";
+import BinarySearchTree from "../src/core/tree/BinarySearchTree";
 describe("Utils Test", () => {
   test("time", () => {
     expect(

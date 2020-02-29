@@ -1,4 +1,4 @@
-import SingleLinkedList from "../../src/code/list/SingleLinkedList";
+import SingleLinkedList from "../../src/core/list/SingleLinkedList";
 import { Person, getPerson } from "../../src/utils";
 function getNewList() {
   return new SingleLinkedList<Person>();

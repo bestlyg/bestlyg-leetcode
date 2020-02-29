@@ -1,9 +1,9 @@
-import IList from "../code/list/IList";
-import IQueue from "../code/queue/IQueue";
-import IDeque from "../code/queue/IDeque";
-import IStack from "../code/stack/IStack";
-import ISet from "../code/set/ISet";
-import IBinaryTree from "../code/tree/IBinaryTree";
+import IList from "../core/list/IList";
+import IQueue from "../core/queue/IQueue";
+import IDeque from "../core/queue/IDeque";
+import IStack from "../core/stack/IStack";
+import ISet from "../core/set/ISet";
+import IBinaryTree from "../core/tree/IBinaryTree";
 
 export { IList, IQueue, IDeque, IStack, ISet, IBinaryTree };
 

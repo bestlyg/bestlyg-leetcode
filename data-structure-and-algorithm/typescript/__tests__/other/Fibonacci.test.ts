@@ -1,4 +1,4 @@
-import Fibonacci from "../../src/code/other/Fibonacci";
+import Fibonacci from "../../src/core/other/Fibonacci";
 describe("Fibonacci", () => {
   describe("fib1", () => {
     const fib1 = Fibonacci.fib1;

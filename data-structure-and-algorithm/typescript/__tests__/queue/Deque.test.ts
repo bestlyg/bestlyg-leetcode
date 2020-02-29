@@ -1,4 +1,4 @@
-import Deque from "./../../src/code/queue/Deque";
+import Deque from "./../../src/core/queue/Deque";
 import { Person, getPerson } from "../../src/utils";
 function getNewQueue() {
   return new Deque<Person>();

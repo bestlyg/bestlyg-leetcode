@@ -1,5 +1,5 @@
 import { Person, getPerson } from "./Person";
-import BinaryTrees from "../code/tree/BinaryTreesPrinter";
+import BinaryTrees from "../core/tree/BinaryTreesPrinter";
 function time(name: string, fn: Function) {
   const timeTag: string = "time->" + name;
   console.time(timeTag);

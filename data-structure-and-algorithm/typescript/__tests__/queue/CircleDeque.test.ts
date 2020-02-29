@@ -1,5 +1,5 @@
 import { Person, getPerson } from "../../src/utils";
-import CircleDeque from "../../src/code/queue/CircleDeque";
+import CircleDeque from "../../src/core/queue/CircleDeque";
 function getNewQueue(capacity: number = 10) {
   return new CircleDeque<Person>(capacity);
 }

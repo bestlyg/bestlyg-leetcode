@@ -1,5 +1,5 @@
 import { Person, getPerson } from "../../src/utils";
-import DuCircleLinkedList from "../../src/code/list/DuCircleLinkedList";
+import DuCircleLinkedList from "../../src/core/list/DuCircleLinkedList";
 function getNewList() {
   return new DuCircleLinkedList<Person>();
 }

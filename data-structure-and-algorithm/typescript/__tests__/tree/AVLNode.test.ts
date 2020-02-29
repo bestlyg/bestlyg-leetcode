@@ -1,4 +1,4 @@
-import AVLNode from "../../src/code/tree/AVLNode";
+import AVLNode from "../../src/core/tree/AVLNode";
 
 describe("AVLNode", () => {
   test("balanceFactor", () => {

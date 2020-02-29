@@ -1,5 +1,5 @@
 import { Person, getPerson } from "../../src/utils";
-import RedBlackTree from "../../src/code/tree/RedBlackTree";
+import RedBlackTree from "../../src/core/tree/RedBlackTree";
 
 function testCompare(p1: Person, p2: Person): number {
   return p1.Age - p2.Age;

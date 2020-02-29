@@ -6,7 +6,7 @@ import RedBlackNode, {
   isBlack,
   isRed,
   color
-} from "./../../src/code/tree/RedBlackNode";
+} from "./../../src/core/tree/RedBlackNode";
 
 describe("RedBlackNode", () => {
   const node = new RedBlackNode<number>(1);

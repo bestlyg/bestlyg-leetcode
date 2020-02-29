@@ -1,7 +1,7 @@
 import { Person, getPerson } from "../../src/utils";
-import Queue from "../../src/code/queue/Queue";
-import IQueue from "../../src/code/queue/IQueue";
-import Deque from "../../src/code/queue/Deque";
+import Queue from "../../src/core/queue/Queue";
+import IQueue from "../../src/core/queue/IQueue";
+import Deque from "../../src/core/queue/Deque";
 
 const run = (name: string, getNewQueue: () => IQueue<Person>) =>
   describe(name, () => {
