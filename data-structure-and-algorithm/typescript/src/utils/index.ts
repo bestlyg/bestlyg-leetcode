@@ -1,5 +1,4 @@
 import { Person, getPerson } from "./Person";
-import BinaryTrees from "../core/tree/BinaryTreesPrinter";
 function time(name: string, fn: Function) {
   const timeTag: string = "time->" + name;
   console.time(timeTag);
@@ -30,7 +29,6 @@ const toString = (() => {
   return (val: any) => String(val);
 })();
 export {
-  BinaryTrees,
   Person,
   getPerson,
   extend,
