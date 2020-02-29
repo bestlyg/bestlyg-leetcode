@@ -30,7 +30,7 @@ export default abstract class AbstractList<T> implements IList<T> {
   protected outOfBounds(index: number): void {
     throw new Error("Index:" + index + ", Size:" + this.size());
   }
-  abstract remove(element: number | T): number | T;
+  abstract remove(element: number): T;
   abstract add(element: T, index?: number): void;
   abstract clear(): void;
   abstract get(index: number): T;

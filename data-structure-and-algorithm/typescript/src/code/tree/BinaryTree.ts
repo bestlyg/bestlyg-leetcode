@@ -1,6 +1,6 @@
 import { BinaryTreeInfo } from "./BinaryTreesPrinter";
 // import { heightMethodType } from "./../../types/index";
-import { extend, toString } from "../../utils/index";
+import { visitorMixin, toString, Visitor } from "../../utils/index";
 import Node from "./Node";
 import Queue from "../queue/Queue";
 
@@ -210,14 +210,6 @@ function iSComplete<T>(node: Node<T>): boolean {
   }
   return true;
 }
-interface visitorObj {
-  stop: boolean;
-}
-function visitorMixin<T>(
-  visitor: (element: T) => boolean
-): ((element: T) => boolean) & visitorObj {
-  return extend(visitor, { stop: false });
-}
 /**
  * 前序遍历
  * @param visitor
@@ -229,10 +221,7 @@ function preorder<T>(
 ): void {
   _preorder(visitorMixin(visitor), node);
 }
-function _preorder<T>(
-  visitor: ((element: T) => boolean) & visitorObj,
-  node: Node<T> | null
-) {
+function _preorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
   if (node === null || visitor.stop) return;
   visitor.stop = visitor(node.element);
   _preorder(visitor, node.left);
@@ -249,10 +238,7 @@ function inorder<T>(
 ): void {
   _inorder(visitorMixin(visitor), node);
 }
-function _inorder<T>(
-  visitor: ((element: T) => boolean) & visitorObj,
-  node: Node<T> | null
-) {
+function _inorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
   if (node === null || visitor.stop) return;
   _inorder(visitor, node.left);
   if (visitor.stop) return;
@@ -270,10 +256,7 @@ function postorder<T>(
 ): void {
   _postorder(visitorMixin(visitor), node);
 }
-function _postorder<T>(
-  visitor: ((element: T) => boolean) & visitorObj,
-  node: Node<T> | null
-) {
+function _postorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
   if (node === null || visitor.stop) return;
   _postorder(visitor, node.left);
   _postorder(visitor, node.right);
@@ -288,10 +271,7 @@ function _postorder<T>(
 function levelOrder<T>(visitor: (element: T) => boolean, node: Node<T>): void {
   _levelOrder(visitorMixin(visitor), node);
 }
-function _levelOrder<T>(
-  visitor: ((element: T) => boolean) & visitorObj,
-  node: Node<T>
-): void {
+function _levelOrder<T>(visitor: Visitor<T>, node: Node<T>): void {
   const queue = new Queue<Node<T>>();
   queue.enQueue(node);
   while (!queue.isEmpty()) {

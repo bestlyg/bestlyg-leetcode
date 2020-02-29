@@ -2,7 +2,6 @@
  * 单链表 无头结点
  */
 import AbstractList from "./AbstractList";
-import { isNumber } from "../../utils";
 class Node<T> {
   element: T;
   next: Node<T> | null;
@@ -16,36 +15,20 @@ class Node<T> {
 }
 export default class SingleLinkedList<T> extends AbstractList<T> {
   firstNode: Node<T> | null = null;
-  public remove(element: number | T): number | T {
-    if (isNumber(element)) {
-      this.rangeCheck(element);
-      let el: T;
-      if (element === 0) {
-        el = this.delFirst();
-      } else if (element === this.size() - 1) {
-        el = this.delLast();
-      } else {
-        const prev = this.node(element - 1);
-        el = prev.next!.element!;
-        prev.next = prev.next!.next;
-        this.length--;
-      }
-      return el;
+  public remove(element: number): T {
+    this.rangeCheck(element);
+    let el: T;
+    if (element === 0) {
+      el = this.delFirst();
+    } else if (element === this.size() - 1) {
+      el = this.delLast();
     } else {
-      const index = this.indexOf(element);
-      this.rangeCheck(index);
-      if (index === 0) {
-        this.delFirst();
-      } else if (index === this.size() - 1) {
-        this.delLast();
-      } else {
-        const prev = this.node(index - 1);
-        const oldNode = prev.next;
-        prev.next = oldNode!.next;
-      }
+      const prev = this.node(element - 1);
+      el = prev.next!.element!;
+      prev.next = prev.next!.next;
       this.length--;
-      return index!;
     }
+    return el;
   }
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);

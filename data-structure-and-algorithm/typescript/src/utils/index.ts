@@ -18,6 +18,13 @@ function extend<T, U>(to: T, from: U): T & U {
   }
   return to as T & U;
 }
+interface IVisitor {
+  stop: boolean;
+}
+type Visitor<T> = ((element: T) => boolean) & IVisitor;
+function visitorMixin<T>(visitor: (element: T) => boolean): Visitor<T> {
+  return extend(visitor, { stop: false });
+}
 function repeat(string: string, count: number): string {
   if (count <= 0) return "";
   return "".padStart(count, string);
@@ -39,5 +46,7 @@ export {
   time,
   toString,
   repeat,
-  blank
+  blank,
+  Visitor,
+  visitorMixin
 };

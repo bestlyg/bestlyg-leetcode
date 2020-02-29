@@ -8,58 +8,60 @@ import IList from "../../src/code/list/IList";
 import DuCircleLinkedList from "../../src/code/list/DuCircleLinkedList";
 const run = (name: string, getNewList: () => IList<Person>) =>
   describe(name, () => {
-    test("add last and del first", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      list.addLast(obj1);
-      expect(list.first()).toBe(obj1);
-      expect(list.delFirst()).toBe(obj1);
-      expect(list.isEmpty()).toBe(true);
-    });
-    test("add first", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      list.add(obj1);
-      expect(list.first()).toBe(obj1);
-      const obj2 = getPerson(2);
-      list.add(obj2, 0);
-      expect(list.first()).toBe(obj2);
-      const obj3 = getPerson(3);
-      list.addFirst(obj3);
-      expect(list.first()).toBe(obj3);
-    });
-    test("add last", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      const obj2 = getPerson(2);
-      const obj3 = getPerson(3);
-      list.add(obj1);
-      list.add(obj2);
-      list.add(obj3);
-      const obj4 = getPerson(4);
-      list.add(obj4, list.size());
-      expect(list.last()).toBe(obj4);
-      const obj5 = getPerson(5);
-      list.addLast(obj5);
-      expect(list.last()).toBe(obj5);
-    });
-    test("add last in empty obj", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      list.addLast(obj1);
-      expect(list.get(0)).toBe(obj1);
-    });
-    test("add without first and last", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      const obj2 = getPerson(2);
-      const obj3 = getPerson(3);
-      list.add(obj1);
-      list.add(obj2);
-      list.add(obj3);
-      const obj4 = getPerson(4);
-      list.add(obj4, 1);
-      expect(list.get(1)).toBe(obj4);
+    describe("add", () => {
+      test("add last and del first", () => {
+        const list = getNewList();
+        const obj1 = getPerson(1);
+        list.addLast(obj1);
+        expect(list.first()).toBe(obj1);
+        expect(list.delFirst()).toBe(obj1);
+        expect(list.isEmpty()).toBe(true);
+      });
+      test("add first", () => {
+        const list = getNewList();
+        const obj1 = getPerson(1);
+        list.add(obj1);
+        expect(list.first()).toBe(obj1);
+        const obj2 = getPerson(2);
+        list.add(obj2, 0);
+        expect(list.first()).toBe(obj2);
+        const obj3 = getPerson(3);
+        list.addFirst(obj3);
+        expect(list.first()).toBe(obj3);
+      });
+      test("add last", () => {
+        const list = getNewList();
+        const obj1 = getPerson(1);
+        const obj2 = getPerson(2);
+        const obj3 = getPerson(3);
+        list.add(obj1);
+        list.add(obj2);
+        list.add(obj3);
+        const obj4 = getPerson(4);
+        list.add(obj4, list.size());
+        expect(list.last()).toBe(obj4);
+        const obj5 = getPerson(5);
+        list.addLast(obj5);
+        expect(list.last()).toBe(obj5);
+      });
+      test("add last in empty obj", () => {
+        const list = getNewList();
+        const obj1 = getPerson(1);
+        list.addLast(obj1);
+        expect(list.get(0)).toBe(obj1);
+      });
+      test("add without first and last", () => {
+        const list = getNewList();
+        const obj1 = getPerson(1);
+        const obj2 = getPerson(2);
+        const obj3 = getPerson(3);
+        list.add(obj1);
+        list.add(obj2);
+        list.add(obj3);
+        const obj4 = getPerson(4);
+        list.add(obj4, 1);
+        expect(list.get(1)).toBe(obj4);
+      });
     });
 
     test("size", () => {
@@ -142,32 +144,6 @@ const run = (name: string, getNewList: () => IList<Person>) =>
       const list = getNewList();
       expect(list.contains(getPerson(1))).toBe(false);
     });
-    test("remove first element", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      list.add(obj1);
-      expect(list.remove(obj1)).toBe(0);
-    });
-    test("remove last element", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      const obj2 = getPerson(2);
-      const obj3 = getPerson(3);
-      list.add(obj1);
-      list.add(obj2);
-      list.add(obj3);
-      expect(list.remove(obj3)).toBe(2);
-    });
-    test("remove other element", () => {
-      const list = getNewList();
-      const obj1 = getPerson(1);
-      const obj2 = getPerson(2);
-      const obj3 = getPerson(3);
-      list.add(obj1);
-      list.add(obj2);
-      list.add(obj3);
-      expect(list.remove(obj2)).toBe(1);
-    });
     test("remove first index", () => {
       const list = getNewList();
       const obj1 = getPerson(1);
@@ -193,6 +169,16 @@ const run = (name: string, getNewList: () => IList<Person>) =>
       list.add(obj2);
       list.add(obj3);
       expect(list.remove(1)).toBe(obj2);
+    });
+    test("remove 0-14", () => {
+      const list = getNewList();
+      for (let i = 0; i < 15; i++) {
+        list.add(getPerson(i));
+      }
+      for (let i = 0; i < 15; i++) {
+        list.remove(0);
+      }
+      expect(list.isEmpty()).toBe(true);
     });
     test("first", () => {
       const list = getNewList();

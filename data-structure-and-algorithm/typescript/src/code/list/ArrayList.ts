@@ -1,5 +1,4 @@
 import AbstractList from "./AbstractList";
-import { isNumber } from "../../utils";
 export default class ArrayList<T> extends AbstractList<T> {
   private elements: Array<T> = []; //所有元素储存
   /**
@@ -65,16 +64,9 @@ export default class ArrayList<T> extends AbstractList<T> {
   add(element: T, index: number = this.size()): void {
     this.elements.splice(index, 0, element);
   }
-  public remove(index: number | T): number | T {
-    if (!isNumber(index)) {
-      index = this.indexOf(index);
-      this.rangeCheck(index);
-      this.elements.splice(index, 1);
-      return index;
-    } else {
-      this.rangeCheck(index);
-      return this.elements.splice(index, 1)[0];
-    }
+  public remove(index: number): T {
+    this.rangeCheck(index);
+    return this.elements.splice(index, 1)[0];
   }
   public toString(): string {
     let string = `size:${this.size()},elements:[`;

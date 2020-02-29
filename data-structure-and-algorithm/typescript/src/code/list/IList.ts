@@ -45,12 +45,11 @@ export default interface IList<T> {
   set(index: number, element: T): T;
   /**
    * 删除元素
-   * 当传入的是number类型时返回删除的值
-   * 当传入的是T类型时返回删除的下标
-   * @param {T|number} element 传入元素的值或者元素的下标
-   * @return {T|number} 删除成功返回值或下标
+   * 当传入元素下标返回删除的节点值
+   * @param {number} element 传入元素的下标
+   * @return {T} 删除成功返回值
    */
-  remove(element: T | number): T | number;
+  remove(index: number): T;
   /**
    * 获取元素的index
    * @param {T} element 元素的值
