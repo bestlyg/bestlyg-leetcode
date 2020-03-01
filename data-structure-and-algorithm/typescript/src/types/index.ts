@@ -2,10 +2,11 @@ import IList from "../core/list/IList";
 import IQueue from "../core/queue/IQueue";
 import IDeque from "../core/queue/IDeque";
 import IStack from "../core/stack/IStack";
-import ISet from "../core/set/ISet";
 import IBinaryTree from "../core/tree/IBinaryTree";
+import ISet from "../core/set/ISet";
+import IMap from "../core/map/IMap";
 
-export { IList, IQueue, IDeque, IStack, ISet, IBinaryTree };
+export { IList, IQueue, IDeque, IStack, ISet, IBinaryTree, IMap };
 
 // /**
 //  * @type ergodic 遍历

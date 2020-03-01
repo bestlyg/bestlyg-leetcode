@@ -2,6 +2,7 @@ import { Person, getPerson } from "../../src/utils";
 import ISet from "../../src/core/set/ISet";
 import ListSet from "../../src/core/set/ListSet";
 import TreeSet from "../../src/core/set/TreeSet";
+import TreeSet2 from "../../src/core/set/TreeSet2";
 
 const run = (name: string, getNewSet: () => ISet<Person>) => {
   describe(name, () => {
@@ -84,5 +85,8 @@ describe("All Set Test", () => {
   });
   run("TreeSet", () => {
     return new TreeSet<Person>((e1, e2) => e1.Age - e2.Age);
+  });
+  run("TreeSet2", () => {
+    return new TreeSet2<Person>((e1, e2) => e1.Age - e2.Age);
   });
 });

@@ -15,6 +15,8 @@ import AVLTree from "./core/tree/AVLTree";
 import RedBlackTree from "./core/tree/RedBlackTree";
 import ListSet from "./core/set/ListSet";
 import TreeSet from "./core/set/TreeSet";
+import TreeSet2 from "./core/set/TreeSet2";
+import TreeMap from "./core/map/TreeMap";
 export {
   ArrayList,
   SingleLinkedList,
@@ -32,6 +34,8 @@ export {
   AVLTree,
   RedBlackTree,
   ListSet,
-  TreeSet
+  TreeSet,
+  TreeSet2,
+  TreeMap
 };
 export * from "./types";

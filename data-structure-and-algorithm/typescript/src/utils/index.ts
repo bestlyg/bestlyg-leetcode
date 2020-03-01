@@ -28,6 +28,9 @@ const toString = (() => {
   // const method = Object.prototype.toString;
   return (val: any) => String(val);
 })();
+interface IVisitor {
+  stop: boolean;
+}
 export {
   Person,
   getPerson,
@@ -37,5 +40,6 @@ export {
   time,
   toString,
   repeat,
-  blank
+  blank,
+  IVisitor
 };
