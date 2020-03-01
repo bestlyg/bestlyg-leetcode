@@ -118,6 +118,18 @@ public class ArrayList<E> extends AbstractList<E> {
 		return ELEMENT_NOT_FOUND;
 	}
 
+//	public int indexOf(E element) {
+//		for (int i = 0; i < size; i++) {
+//			if (valEquals(element, elements[i]))
+//				return i; // 2n
+//		}
+//		return ELEMENT_NOT_FOUND;
+//	}
+//
+//	private boolean valEquals(Object v1, Object v2) {
+//		return v1 == null ? v2 == null : v1.equals(v2);
+//	}
+
 	/**
 	 * 保证要有capacity的容量
 	 * 

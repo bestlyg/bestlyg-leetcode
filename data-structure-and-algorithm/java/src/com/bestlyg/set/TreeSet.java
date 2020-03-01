@@ -1,57 +1,46 @@
 package com.bestlyg.set;
 
-import java.util.Comparator;
-
-import com.bestlyg.tree.BinaryTree;
-import com.bestlyg.tree.RBTree;
+import com.bestlyg.map.Map;
+import com.bestlyg.map.TreeMap;
 
 public class TreeSet<E> implements Set<E> {
-	private RBTree<E> tree;
-	
-	public TreeSet() {
-		this(null);
-	}
-	
-	public TreeSet(Comparator<E> comparator) {
-		tree = new RBTree<>(comparator);
-	}
-	
+	Map<E, Object> map = new TreeMap<>();
+
 	@Override
 	public int size() {
-		return tree.size();
+		return map.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return tree.isEmpty();
+		return map.isEmpty();
 	}
 
 	@Override
 	public void clear() {
-		tree.clear();
+		map.clear();
 	}
 
 	@Override
 	public boolean contains(E element) {
-		return tree.contains(element);
+		return map.containsKey(element);
 	}
 
 	@Override
 	public void add(E element) {
-		tree.add(element);
+		map.put(element, null);
 	}
 
 	@Override
 	public void remove(E element) {
-		tree.remove(element);
+		map.remove(element);
 	}
 
 	@Override
 	public void traversal(Visitor<E> visitor) {
-		tree.inorder(new BinaryTree.Visitor<E>() {
-			@Override
-			public boolean visit(E element) {
-				return visitor.visit(element);
+		map.traversal(new Map.Visitor<E, Object>() {
+			public boolean visit(E key, Object value) {
+				return visitor.visit(key);
 			}
 		});
 	}

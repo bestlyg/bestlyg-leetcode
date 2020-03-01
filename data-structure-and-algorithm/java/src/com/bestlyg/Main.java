@@ -3,7 +3,7 @@ package com.bestlyg;
 import com.bestlyg.set.ListSet;
 import com.bestlyg.set.Set;
 import com.bestlyg.set.Set.Visitor;
-import com.bestlyg.set.TreeSet;
+import com.bestlyg.set.TreeSet2;
 import com.bestlyg.utils.Times;
 import com.bestlyg.utils.Times.Task;
 import com.bestlyg.utils.file.FileInfo;
@@ -20,7 +20,7 @@ public class Main {
 		listSet.add(12);
 		listSet.add(10);
 		
-		Set<Integer> treeSet = new TreeSet<>();
+		Set<Integer> treeSet = new TreeSet2<>();
 		treeSet.add(12);
 		treeSet.add(10);
 		treeSet.add(7);
@@ -62,7 +62,7 @@ public class Main {
 
 		Times.test("TreeSet", new Task() {
 			public void execute() {
-				testSet(new TreeSet<>(), words);
+				testSet(new TreeSet2<>(), words);
 			}
 		});
 		
