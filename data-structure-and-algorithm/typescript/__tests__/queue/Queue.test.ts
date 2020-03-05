@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import Queue from "../../src/core/queue/Queue";
 function getNewQueue() {
   return new Queue<Person>();

@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import DuLinkList from "../../src/core/list/DuLinkedList";
 function getNewList() {
   return new DuLinkList<Person>();

@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import SingleCircleLinkedList from "../../src/core/list/SingleCircleLinkedList";
 function getNewList() {
   return new SingleCircleLinkedList<Person>();

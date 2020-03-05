@@ -17,6 +17,7 @@ import ListSet from "./core/set/ListSet";
 import TreeSet from "./core/set/TreeSet";
 import TreeSet2 from "./core/set/TreeSet2";
 import TreeMap from "./core/map/TreeMap";
+import HashMap from "./core/hash/HashMap";
 export {
   ArrayList,
   SingleLinkedList,
@@ -36,6 +37,7 @@ export {
   ListSet,
   TreeSet,
   TreeSet2,
-  TreeMap
+  TreeMap,
+  HashMap
 };
 export * from "./types";

@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import CircleDeque from "../../src/core/queue/CircleDeque";
 function getNewQueue(capacity: number = 10) {
   return new CircleDeque<Person>(capacity);

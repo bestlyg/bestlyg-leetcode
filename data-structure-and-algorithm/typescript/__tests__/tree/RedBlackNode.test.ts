@@ -1,12 +1,13 @@
-import RedBlackNode, {
-  Color,
+import RedBlackNode from "../../src/core/tree/RedBlackNode";
+import {
   black,
-  colorOf,
-  red,
   isBlack,
   isRed,
-  color
-} from "./../../src/core/tree/RedBlackNode";
+  red,
+  colorOf,
+  color,
+  Color
+} from "../../src/utils/color";
 
 describe("RedBlackNode", () => {
   const node = new RedBlackNode<number>(1);

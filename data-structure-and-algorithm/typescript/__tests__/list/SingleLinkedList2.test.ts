@@ -1,5 +1,5 @@
 import SingleLinkedList2 from "../../src/core/list/SingleLinkedList2";
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 function getNewList() {
   return new SingleLinkedList2<Person>();
 }

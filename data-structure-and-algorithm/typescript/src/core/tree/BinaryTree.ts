@@ -1,13 +1,13 @@
-import { BinaryTreeInfo } from "./BinaryTreesPrinter";
+import { IBinaryTreesPrinter } from "./BinaryTreesPrinter";
 import IBinaryTree from "./IBinaryTree";
 // import { heightMethodType } from "./../../types/index";
 import { toString } from "../../utils/index";
-import { Visitor, visitorMixin } from "./Visitor";
+import { Visitor_T, visitorMixin_T } from "../../utils/visitor";
 import Node from "./Node";
 import Queue from "../queue/Queue";
 
 export default abstract class BinaryTree<T>
-  implements IBinaryTree<T>, BinaryTreeInfo {
+  implements IBinaryTree<T>, IBinaryTreesPrinter {
   abstract add(element: T): void;
   abstract remove(element: T): void;
   abstract contains(element: T): boolean;
@@ -170,9 +170,7 @@ export default abstract class BinaryTree<T>
   public _string(node: object): any {
     const myNode = node as Node<T>;
     let parentString = "null";
-    if (myNode.parent != null) {
-      parentString = toString(myNode.parent.element);
-    }
+    if (myNode.parent !== null) parentString = toString(myNode.parent.element);
     return toString(myNode) + "_P(" + parentString + ")";
   }
 }
@@ -226,9 +224,9 @@ function preorder<T>(
   visitor: (element: T) => boolean,
   node: Node<T> | null
 ): void {
-  _preorder(visitorMixin(visitor), node);
+  _preorder(visitorMixin_T(visitor), node);
 }
-function _preorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
+function _preorder<T>(visitor: Visitor_T<T>, node: Node<T> | null) {
   if (node === null || visitor.stop) return;
   visitor.stop = visitor(node.element);
   _preorder(visitor, node.left);
@@ -243,9 +241,9 @@ function inorder<T>(
   visitor: (element: T) => boolean,
   node: Node<T> | null
 ): void {
-  _inorder(visitorMixin(visitor), node);
+  _inorder(visitorMixin_T(visitor), node);
 }
-function _inorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
+function _inorder<T>(visitor: Visitor_T<T>, node: Node<T> | null) {
   if (node === null || visitor.stop) return;
   _inorder(visitor, node.left);
   if (visitor.stop) return;
@@ -261,9 +259,9 @@ function postorder<T>(
   visitor: (element: T) => boolean,
   node: Node<T> | null
 ): void {
-  _postorder(visitorMixin(visitor), node);
+  _postorder(visitorMixin_T(visitor), node);
 }
-function _postorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
+function _postorder<T>(visitor: Visitor_T<T>, node: Node<T> | null) {
   if (node === null || visitor.stop) return;
   _postorder(visitor, node.left);
   _postorder(visitor, node.right);
@@ -276,9 +274,9 @@ function _postorder<T>(visitor: Visitor<T>, node: Node<T> | null) {
  * @param node
  */
 function levelOrder<T>(visitor: (element: T) => boolean, node: Node<T>): void {
-  _levelOrder(visitorMixin(visitor), node);
+  _levelOrder(visitorMixin_T(visitor), node);
 }
-function _levelOrder<T>(visitor: Visitor<T>, node: Node<T>): void {
+function _levelOrder<T>(visitor: Visitor_T<T>, node: Node<T>): void {
   const queue = new Queue<Node<T>>();
   queue.enQueue(node);
   while (!queue.isEmpty()) {

@@ -1,5 +1,5 @@
 import ArrayList from "../../src/core/list/ArrayList";
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 function getNewList() {
   return new ArrayList<Person>();
 }

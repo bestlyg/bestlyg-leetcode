@@ -8,23 +8,23 @@ export enum BinaryTreesPrintStyle {
   LEVEL_ORDER_LINES
 }
 
-export interface BinaryTreeInfo {
+export interface IBinaryTreesPrinter {
   /**
    * 根节点
    */
-  _root(): object;
+  _root(): any;
   /**
    * 左节点
    * @param {object} node
    * @return {object | null}
    */
-  _left(node: object): object | null;
+  _left(node: object): any;
   /**
    * 右节点
    * @param {object} node
    * @return {object | null}
    */
-  _right(node: object): object | null;
+  _right(node: object): any;
   /**
    * 输出节点的方式
    * @param {object} node
@@ -34,20 +34,20 @@ export interface BinaryTreeInfo {
 }
 export default class BinaryTreesPrinter {
   public static print(
-    tree: BinaryTreeInfo,
+    tree: IBinaryTreesPrinter,
     style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
   ): void {
     if (tree === null || tree._root() === null) return;
     this.printer(tree, style).print();
   }
   public static printString(
-    tree: BinaryTreeInfo,
+    tree: IBinaryTreesPrinter,
     style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
   ): string {
     return this.printer(tree, style).printString();
   }
   private static printer(
-    tree: BinaryTreeInfo,
+    tree: IBinaryTreesPrinter,
     style: BinaryTreesPrintStyle
   ): Printer {
     switch (style) {
@@ -65,8 +65,8 @@ export default class BinaryTreesPrinter {
   }
 }
 abstract class Printer {
-  protected tree: BinaryTreeInfo;
-  constructor(tree: BinaryTreeInfo) {
+  protected tree: IBinaryTreesPrinter;
+  constructor(tree: IBinaryTreesPrinter) {
     this.tree = tree;
   }
   public abstract printString(): string;
@@ -75,7 +75,7 @@ abstract class Printer {
   }
 }
 class PreorderPrinter extends Printer {
-  constructor(tree: BinaryTreeInfo) {
+  constructor(tree: IBinaryTreesPrinter) {
     super(tree);
   }
   //├│─└┌
@@ -113,7 +113,7 @@ class PreorderPrinter extends Printer {
   }
 }
 class InorderPrinter extends Printer {
-  constructor(tree: BinaryTreeInfo) {
+  constructor(tree: IBinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
@@ -121,7 +121,7 @@ class InorderPrinter extends Printer {
   }
 }
 class PostorderPrinter extends Printer {
-  constructor(tree: BinaryTreeInfo) {
+  constructor(tree: IBinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
@@ -129,7 +129,7 @@ class PostorderPrinter extends Printer {
   }
 }
 class LevelOrderSlashes extends Printer {
-  constructor(tree: BinaryTreeInfo) {
+  constructor(tree: IBinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
@@ -137,7 +137,7 @@ class LevelOrderSlashes extends Printer {
   }
 }
 class LevelOrderLines extends Printer {
-  constructor(tree: BinaryTreeInfo) {
+  constructor(tree: IBinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {

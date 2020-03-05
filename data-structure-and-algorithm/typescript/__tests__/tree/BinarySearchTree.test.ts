@@ -1,4 +1,4 @@
-import { Person, getPerson } from "./../../src/utils/Person";
+import { Person, getPerson } from "./../../src/utils/model";
 import BinarySearchTree from "../../src/core/tree/BinarySearchTree";
 
 function testCompare(p1: Person, p2: Person): number {

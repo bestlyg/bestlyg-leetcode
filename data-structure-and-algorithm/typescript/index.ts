@@ -1,16 +1,30 @@
-import TreeMap from "./src/core/map/TreeMap";
-import BinaryTreesPrinter from "./src/core/tree/BinaryTreesPrinter";
-
-const map = new TreeMap<number, string>((e1, e2) => e1 - e2);
-const nums = [93, 21, 79, 15, 56, 51, 23];
-for (let num of nums) {
-  map.put(num, num + "");
+import { getClassName, isIHash } from "./src/utils/";
+import {
+  getPerson,
+  getMyNumber,
+  Key,
+  MyString,
+  getMyString,
+  getKey,
+  getMyObject,
+  Person,
+  getHash,
+  Hash
+} from "./src/utils/model";
+import { HashMap, BinaryTreesPrinter } from "./src";
+import { IHash } from "./src/types";
+function getNewMap(): HashMap<IHash, any> {
+  return new HashMap<IHash, any>();
 }
-BinaryTreesPrinter.print(map);
-for (let num of nums) {
-  console.log(`==============
-【${num}】`);
-  console.log(map.remove(num));
-  BinaryTreesPrinter.print(map);
+function getMap(
+  nums: number[] = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99]
+): HashMap<IHash, any> {
+  const map = getNewMap();
+  for (let num of nums) {
+    map.put(getKey(num), num);
+  }
+  return map;
 }
-console.log(map.size());
+const map = getNewMap();
+for (let i = 0; i < 100; i++) map.put(getKey(i), i);
+map.print();

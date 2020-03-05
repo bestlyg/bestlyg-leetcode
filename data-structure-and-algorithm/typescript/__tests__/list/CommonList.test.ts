@@ -1,5 +1,5 @@
 import SingleLinkedList from "../../src/core/list/SingleLinkedList";
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import SingleCircleLinkedList from "../../src/core/list/SingleCircleLinkedList";
 import ArrayList from "../../src/core/list/ArrayList";
 import SingleLinkedList2 from "../../src/core/list/SingleLinkedList2";

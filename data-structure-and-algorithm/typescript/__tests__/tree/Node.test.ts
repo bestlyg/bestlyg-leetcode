@@ -1,5 +1,5 @@
 import Node from "../../src/core/tree/Node";
-import { getPerson, Person } from "../../src/utils";
+import { getPerson, Person } from "../../src/utils/model";
 
 describe("Node", () => {
   test("hasTwoChildren", () => {

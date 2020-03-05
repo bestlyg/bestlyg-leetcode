@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import DuCircleLinkedList from "../../src/core/list/DuCircleLinkedList";
 function getNewList() {
   return new DuCircleLinkedList<Person>();

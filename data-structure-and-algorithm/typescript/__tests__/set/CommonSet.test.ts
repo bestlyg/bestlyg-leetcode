@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import ISet from "../../src/core/set/ISet";
 import ListSet from "../../src/core/set/ListSet";
 import TreeSet from "../../src/core/set/TreeSet";

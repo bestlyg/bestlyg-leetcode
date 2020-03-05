@@ -1,50 +1,29 @@
+import {
+  IColor,
+  Color,
+  black,
+  isBlack,
+  red,
+  isRed,
+  colorOf,
+  color
+} from "../../utils/color";
 import IMap from "./IMap";
-import { extend, IVisitor } from "../../utils";
-export enum Color {
-  RED,
-  BLACK
-}
-export function color<K, V>(
-  node: Node<K, V> | null,
-  color: Color
-): Node<K, V> | null {
-  if (node === null) return node;
-  node.color = color;
-  return node;
-}
-function red<K, V>(node: Node<K, V> | null): Node<K, V> | null {
-  return color(node, Color.RED);
-}
-function black<K, V>(node: Node<K, V> | null): Node<K, V> | null {
-  return color(node, Color.BLACK);
-}
-function colorOf<K, V>(node: Node<K, V> | null): Color {
-  return node === null ? Color.BLACK : node.color;
-}
-function isBlack<K, V>(node: Node<K, V> | null): boolean {
-  return colorOf(node) === Color.BLACK;
-}
-function isRed<K, V>(node: Node<K, V> | null): boolean {
-  return colorOf(node) === Color.RED;
-}
-type Visitor<K, V> = ((key: K, value: V) => boolean) & IVisitor;
-function visitorMixin<K, V>(visitor: (key: K, value: V) => boolean) {
-  return extend(visitor, { stop: false });
-}
+import { Visitor_KV, visitorMixin_KV } from "../../utils/visitor";
 function inorder<K, V>(
   visitor: (key: K, value: V) => boolean,
   node: Node<K, V> | null
 ): void {
-  _inorder(visitorMixin(visitor), node);
+  _inorder(visitorMixin_KV(visitor), node);
 }
-function _inorder<K, V>(visitor: Visitor<K, V>, node: Node<K, V> | null) {
+function _inorder<K, V>(visitor: Visitor_KV<K, V>, node: Node<K, V> | null) {
   if (node === null || visitor.stop) return;
   _inorder(visitor, node.left);
   if (visitor.stop) return;
   visitor.stop = visitor(node.key, node.value);
   _inorder(visitor, node.right);
 }
-export class Node<K, V> {
+export class Node<K, V> implements IColor {
   key: K;
   value: V;
   color: Color = Color.RED;
@@ -157,7 +136,7 @@ export default class TreeMap<K, V> implements IMap<K, V> {
     }
     if (isBlack(parent)) return;
     const uncle = parent.sibling();
-    const grand = red(parent.parent);
+    const grand = red(parent.parent) as Node<K, V>;
     if (isRed(uncle)) {
       black(parent);
       black(uncle);

@@ -1,4 +1,4 @@
-import { Person, getPerson } from "../../src/utils";
+import { Person, getPerson } from "../../src/utils/model";
 import Queue from "../../src/core/queue/Queue";
 import IQueue from "../../src/core/queue/IQueue";
 import Deque from "../../src/core/queue/Deque";

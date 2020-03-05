@@ -1,6 +1,6 @@
-import { Person, getPerson } from "../../src/utils";
 import TreeMap, { Node } from "../../src/core/map/TreeMap";
-import { Color, color } from "../../src/core/map/TreeMap";
+import { Person, getPerson } from "../../src/utils/model";
+import { color, Color } from "../../src/utils/color";
 function testCompare(e1: number, e2: number): number {
   return e1 - e2;
 }
@@ -8,14 +8,6 @@ function getNewMap(
   fn: (e1: number, e2: number) => number = testCompare
 ): TreeMap<number, Person> {
   return new TreeMap<number, Person>(fn);
-}
-function traversalToString(map: TreeMap<number, Person>) {
-  let string = "";
-  map.traversal((k: number, v: Person) => {
-    string += k + "_" + v + " ";
-    return false;
-  });
-  return string;
 }
 function getMap(
   nums: number[] = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99]
@@ -220,8 +212,5 @@ describe("TreeMap", () => {
       const node2 = map.getNode(1);
       expect(String(node2)).toBe("R_Key:1,Value:Person name:1 age:1");
     });
-  });
-  test("color null", () => {
-    expect(color(null, Color.BLACK)).toBeNull();
   });
 });
