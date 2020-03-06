@@ -425,8 +425,8 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
       }
     }
   }
-  private afterRemove(willNode: Node<K, V>, removeNode: Node<K, V>): void {}
-  private createNode(key: K, value: V, parent: Node<K, V> | null = null) {
+  protected afterRemove(willNode: Node<K, V>, removeNode: Node<K, V>): void {}
+  protected createNode(key: K, value: V, parent: Node<K, V> | null = null) {
     return new Node<K, V>(key, value, parent);
   }
   private node(k1: K, node: Node<K, V> | null = null): Node<K, V> | null {

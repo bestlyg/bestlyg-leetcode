@@ -18,6 +18,8 @@ import TreeSet from "./core/set/TreeSet";
 import TreeSet2 from "./core/set/TreeSet2";
 import TreeMap from "./core/map/TreeMap";
 import HashMap from "./core/hash/HashMap";
+import HashSet from "./core/hash/HashSet";
+import LinkedHashMap from "./core/hash/LinkedHashMap";
 export {
   ArrayList,
   SingleLinkedList,
@@ -38,6 +40,8 @@ export {
   TreeSet,
   TreeSet2,
   TreeMap,
-  HashMap
+  HashMap,
+  HashSet,
+  LinkedHashMap
 };
 export * from "./types";
