@@ -1,4 +1,5 @@
-import { blank, repeat } from "../../utils";
+import { blank, repeat } from "../utils";
+import { IBinaryTreesPrinter } from "../types";
 
 export enum BinaryTreesPrintStyle {
   PREORDER,
@@ -8,30 +9,6 @@ export enum BinaryTreesPrintStyle {
   LEVEL_ORDER_LINES
 }
 
-export interface IBinaryTreesPrinter {
-  /**
-   * 根节点
-   */
-  _root(): any;
-  /**
-   * 左节点
-   * @param {object} node
-   * @return {object | null}
-   */
-  _left(node: object): any;
-  /**
-   * 右节点
-   * @param {object} node
-   * @return {object | null}
-   */
-  _right(node: object): any;
-  /**
-   * 输出节点的方式
-   * @param {object} node
-   * @return {string}
-   */
-  _string(node: object): string;
-}
 export default class BinaryTreesPrinter {
   public static print(
     tree: IBinaryTreesPrinter,
@@ -85,12 +62,11 @@ class PreorderPrinter extends Printer {
     return this._printString(root, "");
   }
   private _printString(node: object, prefix: string): string {
-    const _string = this.tree._string;
     const left = this.tree._left(node);
     const right = this.tree._right(node);
-    const nodeString = _string(node);
+    const nodeString = this.tree._string(node);
     const halfLength = nodeString.length >> 1;
-    let string = `${_string(node)}\n`;
+    let string = `${this.tree._string(node)}\n`;
     if (right !== null) {
       string += `${prefix + blank(halfLength)}${
         left === null ? "└" : "├"

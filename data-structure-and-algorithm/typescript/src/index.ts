@@ -9,7 +9,6 @@ import Queue from "./core/queue/Queue";
 import Deque from "./core/queue/Deque";
 import CircleQueue from "./core/queue/CircleQueue";
 import CircleDeque from "./core/queue/CircleDeque";
-import BinaryTreesPrinter from "./core/tree/BinaryTreesPrinter";
 import BinarySearchTree from "./core/tree/BinarySearchTree";
 import AVLTree from "./core/tree/AVLTree";
 import RedBlackTree from "./core/tree/RedBlackTree";
@@ -20,6 +19,9 @@ import TreeMap from "./core/map/TreeMap";
 import HashMap from "./core/hash/HashMap";
 import HashSet from "./core/hash/HashSet";
 import LinkedHashMap from "./core/hash/LinkedHashMap";
+import LinkedHashSet from "./core/hash/LinkedHashSet";
+import BinaryHeap from "./core/heap/BinaryHeap";
+import BinaryTreesPrinter from "./utils/BinaryTreesPrinter";
 export {
   ArrayList,
   SingleLinkedList,
@@ -32,7 +34,6 @@ export {
   Deque,
   CircleQueue,
   CircleDeque,
-  BinaryTreesPrinter,
   BinarySearchTree,
   AVLTree,
   RedBlackTree,
@@ -42,6 +43,12 @@ export {
   TreeMap,
   HashMap,
   HashSet,
-  LinkedHashMap
+  LinkedHashMap,
+  LinkedHashSet,
+  BinaryHeap,
+  BinaryTreesPrinter
 };
 export * from "./types";
+// Test Scope Start
+
+// Test Scope End

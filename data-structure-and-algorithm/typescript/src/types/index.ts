@@ -5,12 +5,37 @@ import IStack from "../core/stack/IStack";
 import IBinaryTree from "../core/tree/IBinaryTree";
 import ISet from "../core/set/ISet";
 import IMap from "../core/map/IMap";
+import IHeap from "../core/heap/IHeap";
 interface IHash {
   hashCode(): number;
   equals(obj: any): boolean;
 }
 interface IComparable<T> {
   compareTo(obj: T): number;
+}
+interface IBinaryTreesPrinter {
+  /**
+   * 根节点
+   */
+  _root(): any;
+  /**
+   * 左节点
+   * @param {any} node
+   * @return {any | null}
+   */
+  _left(node: any): any;
+  /**
+   * 右节点
+   * @param {any} node
+   * @return {any | null}
+   */
+  _right(node: any): any;
+  /**
+   * 输出节点的方式
+   * @param {any} node
+   * @return {string}
+   */
+  _string(node: any): string;
 }
 export {
   IList,
@@ -20,8 +45,10 @@ export {
   ISet,
   IBinaryTree,
   IMap,
+  IHeap,
   IHash,
-  IComparable
+  IComparable,
+  IBinaryTreesPrinter
 };
 
 // /**

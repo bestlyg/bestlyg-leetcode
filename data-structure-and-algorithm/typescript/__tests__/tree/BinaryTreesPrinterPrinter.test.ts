@@ -1,7 +1,7 @@
 import AVLTree from "../../src/core/tree/AVLTree";
 import BinaryTreesPrinter, {
   BinaryTreesPrintStyle
-} from "../../src/core/tree/BinaryTreesPrinter";
+} from "../../src/utils/BinaryTreesPrinter";
 import BinarySearchTree from "../../src/core/tree/BinarySearchTree";
 describe("BinaryTreesPrinterPrinter", () => {
   const tree = new AVLTree<number>((num1, num2) => num1 - num2);

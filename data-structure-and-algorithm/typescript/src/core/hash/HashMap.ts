@@ -21,7 +21,7 @@ import { Visitor_KV, visitorMixin_KV } from "../../utils/visitor";
 import IMap from "../map/IMap";
 import { IHash } from "../../types";
 import Queue from "../queue/Queue";
-import BinaryTreesPrinter from "../tree/BinaryTreesPrinter";
+import BinaryTreesPrinter from "../../utils/BinaryTreesPrinter";
 export class Node<K, V> implements IColor {
   hash: number;
   key: K;

@@ -1,10 +1,10 @@
-import { IBinaryTreesPrinter } from "./BinaryTreesPrinter";
 import IBinaryTree from "./IBinaryTree";
 // import { heightMethodType } from "./../../types/index";
 import { toString } from "../../utils/index";
 import { Visitor_T, visitorMixin_T } from "../../utils/visitor";
 import Node from "./Node";
 import Queue from "../queue/Queue";
+import { IBinaryTreesPrinter } from "../../types";
 
 export default abstract class BinaryTree<T>
   implements IBinaryTree<T>, IBinaryTreesPrinter {
