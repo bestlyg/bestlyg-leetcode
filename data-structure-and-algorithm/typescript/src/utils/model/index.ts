@@ -6,6 +6,7 @@ import MyNumber from "./MyNumber";
 import MyString from "./MyString";
 import MyObject from "./MyObject";
 import Hash from "./Hash";
+import Patient from "./Patient";
 enum Model {
   Person,
   Key,
@@ -15,7 +16,8 @@ enum Model {
   MyNumber,
   String,
   MyObject,
-  Hash
+  Hash,
+  Patient
 }
 function getModelFactory(ObjectName: Model) {
   const obj: object = {};
@@ -47,6 +49,9 @@ function getModelFactory(ObjectName: Model) {
         case Model.Hash:
           newObj = new Hash(val);
           break;
+        case Model.Patient:
+          newObj = new Patient(val + "", val);
+          break;
       }
       obj[val] = newObj;
     }
@@ -67,6 +72,7 @@ const getMyObject = getModelFactory(Model.MyObject) as (
   num: number
 ) => MyObject;
 const getHash = getModelFactory(Model.Hash) as (num: number) => Hash;
+const getPatient = getModelFactory(Model.Patient) as (num: number) => Patient;
 
 export {
   Person,
@@ -84,5 +90,7 @@ export {
   MyObject,
   getMyObject,
   Hash,
-  getHash
+  getHash,
+  Patient,
+  getPatient
 };
