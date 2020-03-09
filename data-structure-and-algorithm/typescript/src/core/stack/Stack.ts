@@ -1,5 +1,3 @@
-import ArrayList from "../list/ArrayList";
-import IList from "../list/IList";
 import IStack from "./IStack";
 import { thorwEmptyError } from "../../utils";
 /**
@@ -7,33 +5,33 @@ import { thorwEmptyError } from "../../utils";
  * @type 栈
  */
 export default class Stack<T> implements IStack<T> {
-  private list: IList<T> = new ArrayList<T>();
+  private list: T[] = new Array<T>();
   /**
    * 清空栈
    */
   public clear(): void {
-    this.list.clear();
+    this.list.length = 0;
   }
   /**
    * 获取栈的大小
    * @return {number} 返回大小
    */
   public size(): number {
-    return this.list.size();
+    return this.list.length;
   }
   /**
    * 判断栈是否为空
    *@return {boolean} true|false
    */
   public isEmpty(): boolean {
-    return this.list.isEmpty();
+    return this.size() === 0;
   }
   /**
    * 压栈
    * @param {T} element 压栈的元素
    */
   public push(element: T): void {
-    this.list.add(element);
+    this.list.push(element);
   }
   /**
    * 出栈
@@ -41,14 +39,14 @@ export default class Stack<T> implements IStack<T> {
    */
   public pop(): T {
     this.thorwEmpty("pop");
-    return this.list.remove(this.list.size() - 1) as T;
+    return this.list.pop()!;
   }
   /**
    * 返回栈顶的元素
    * @return {T} 返回栈顶元素的值
    */
   public top(): T {
-    return this.list.get(this.list.size() - 1);
+    return this.list[this.size() - 1];
   }
   private thorwEmpty(method: string) {
     if (this.isEmpty()) {
