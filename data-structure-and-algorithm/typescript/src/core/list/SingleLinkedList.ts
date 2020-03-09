@@ -2,10 +2,11 @@
  * 单链表 无头结点
  */
 import AbstractList from "./AbstractList";
+import { ELEMENT_NOT_FOUND } from "../../types";
 class Node<T> {
   element: T;
-  next: Node<T> | null;
-  constructor(element: T, next: Node<T> | null) {
+  next: Node<T> | undefined;
+  constructor(element: T, next?: Node<T>) {
     this.element = element;
     this.next = next;
   }
@@ -14,7 +15,7 @@ class Node<T> {
   }
 }
 export default class SingleLinkedList<T> extends AbstractList<T> {
-  firstNode: Node<T> | null = null;
+  firstNode: Node<T> | undefined = undefined;
   public remove(element: number): T {
     this.rangeCheck(element);
     let el: T;
@@ -26,7 +27,7 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       const prev = this.node(element - 1);
       el = prev.next!.element!;
       prev.next = prev.next!.next;
-      this.length--;
+      this._size--;
     }
     return el;
   }
@@ -40,12 +41,12 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       const prev = this.node(index - 1);
       const newNode: Node<T> = new Node(element, prev.next);
       prev.next = newNode;
-      this.length++;
+      this._size++;
     }
   }
   public clear(): void {
-    this.firstNode = null;
-    this.length = 0;
+    this.firstNode = undefined;
+    this._size = 0;
   }
   public get(index: number): T {
     return this.node(index).element;
@@ -65,7 +66,7 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       }
       cur = cur!.next!;
     }
-    return this.ELEMENT_NOT_FOUND;
+    return ELEMENT_NOT_FOUND;
   }
   public first(): T {
     this.thorwEmpty("first");
@@ -76,9 +77,9 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       const newNode = new Node<T>(element, this.firstNode);
       this.firstNode = newNode;
     } else {
-      this.firstNode = new Node<T>(element, null);
+      this.firstNode = new Node<T>(element);
     }
-    this.length++;
+    this._size++;
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
@@ -87,7 +88,7 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       return this.delLastNode();
     }
     this.firstNode = this.firstNode!.next;
-    this.length--;
+    this._size--;
     return oldNode!.element!;
   }
   public last(): T {
@@ -96,23 +97,23 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
   }
   public addLast(element: T): void {
     if (this.firstNode) {
-      const newNode = new Node<T>(element, null);
+      const newNode = new Node<T>(element);
       const prev = this.node(this.size() - 1);
       prev.next = newNode;
     } else {
-      this.firstNode = new Node<T>(element, null);
+      this.firstNode = new Node<T>(element);
     }
-    this.length++;
+    this._size++;
   }
   public delLast(): T {
     this.thorwEmpty("delLast");
-    if (this.length === 1) {
+    if (this._size === 1) {
       return this.delLastNode();
     } else {
       const prev = this.node(this.size() - 2);
       const oldNode = prev.next;
-      prev.next = null;
-      this.length--;
+      prev.next = undefined;
+      this._size--;
       return oldNode!.element!;
     }
   }

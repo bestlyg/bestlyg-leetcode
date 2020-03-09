@@ -6,6 +6,7 @@ import SingleLinkedList2 from "../../src/core/list/SingleLinkedList2";
 import DuLinkList from "../../src/core/list/DuLinkedList";
 import IList from "../../src/core/list/IList";
 import DuCircleLinkedList from "../../src/core/list/DuCircleLinkedList";
+import { ELEMENT_NOT_FOUND } from "../../src/types";
 const run = (name: string, getNewList: () => IList<Person>) =>
   describe(name, () => {
     describe("add", () => {
@@ -95,11 +96,11 @@ const run = (name: string, getNewList: () => IList<Person>) =>
       const obj1 = getPerson(1);
       list.add(obj1);
       expect(list.indexOf(obj1)).toBe(0);
-      expect(list.indexOf(getPerson(2))).toBe(list.ELEMENT_NOT_FOUND);
+      expect(list.indexOf(getPerson(2))).toBe(ELEMENT_NOT_FOUND);
     });
     test("indexOf ELEMENT_NOT_FOUND", () => {
       const list = getNewList();
-      expect(list.indexOf(getPerson(1))).toBe(list.ELEMENT_NOT_FOUND);
+      expect(list.indexOf(getPerson(1))).toBe(ELEMENT_NOT_FOUND);
     });
     test("get", () => {
       const list = getNewList();

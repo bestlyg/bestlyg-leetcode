@@ -2,6 +2,7 @@
  * 双向循环链表
  */
 import AbstractList from "./AbstractList";
+import { ELEMENT_NOT_FOUND } from "../../types";
 class Node<T> {
   element: T;
   prev: Node<T>;
@@ -16,8 +17,8 @@ class Node<T> {
   }
 }
 export default class DuCircleLinkedList<T> extends AbstractList<T> {
-  firstNode: Node<T> | null = null;
-  lastNode: Node<T> | null = null;
+  firstNode: Node<T> | undefined = undefined;
+  lastNode: Node<T> | undefined = undefined;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {
@@ -30,7 +31,7 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
       const newNode: Node<T> = new Node(prev, element, next);
       prev!.next = newNode;
       next.prev = newNode;
-      this.length++;
+      this._size++;
     }
   }
   public remove(element: number): T {
@@ -44,14 +45,14 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
       const prev = this.node(element - 1);
       el = prev.next!.element!;
       prev.next = prev.next!.next;
-      this.length--;
+      this._size--;
     }
     return el;
   }
   public clear(): void {
-    this.firstNode = null;
-    this.lastNode = null;
-    this.length = 0;
+    this.firstNode = undefined;
+    this.lastNode = undefined;
+    this._size = 0;
   }
   public get(index: number): T {
     return this.node(index).element;
@@ -71,7 +72,7 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
       }
       cur = cur!.next;
     }
-    return this.ELEMENT_NOT_FOUND;
+    return ELEMENT_NOT_FOUND;
   }
   public first(): T {
     this.thorwEmpty("first");
@@ -90,16 +91,16 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
       newNode.prev = newNode;
       newNode.next = newNode;
     }
-    this.length++;
+    this._size++;
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
-    if (this.length === 1) {
+    if (this._size === 1) {
       return this.delLastNode();
     }
     const oldNode = this.firstNode;
     this.firstNode = this.firstNode!.next;
-    this.length--;
+    this._size--;
     return oldNode!.element!;
   }
   public last(): T {
@@ -112,21 +113,21 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
       this.lastNode.next = newNode;
       this.lastNode = newNode;
       this.firstNode!.prev = newNode;
-      this.length++;
+      this._size++;
     } else {
       this.addFirst(element);
     }
   }
   public delLast(): T {
     this.thorwEmpty("delLast");
-    if (this.length === 1) {
+    if (this._size === 1) {
       return this.delLastNode();
     } else {
       const oldNode = this.node(this.size() - 1);
       const prev = oldNode.prev;
       prev.next = this.firstNode!;
       this.lastNode = prev;
-      this.length--;
+      this._size--;
       return oldNode!.element!;
     }
   }
@@ -141,8 +142,8 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
    */
   private node(index: number): Node<T> {
     this.rangeCheck(index);
-    const length = this.size();
-    if (index <= length >> 1) {
+    const _size = this.size();
+    if (index <= _size >> 1) {
       let cur = this.firstNode!;
       for (let i = 0; i < index; i++) {
         cur = cur.next!;

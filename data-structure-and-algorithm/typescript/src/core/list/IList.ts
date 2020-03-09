@@ -2,7 +2,6 @@
  * @type 列表接口
  */
 export default interface IList<T> {
-  readonly ELEMENT_NOT_FOUND: number;
   /**
    * 清除所有元素
    */

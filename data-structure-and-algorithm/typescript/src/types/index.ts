@@ -7,6 +7,7 @@ import ISet from "../core/set/ISet";
 import IMap from "../core/map/IMap";
 import IHeap from "../core/heap/IHeap";
 import ITrie from "../core/trie/ITrie";
+const ELEMENT_NOT_FOUND = -1;
 interface IHash {
   hashCode(): number;
   equals(obj: any): boolean;
@@ -50,5 +51,6 @@ export {
   ITrie,
   IHash,
   IComparable,
-  IBinaryTreesPrinter
+  IBinaryTreesPrinter,
+  ELEMENT_NOT_FOUND
 };

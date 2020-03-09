@@ -1,6 +1,7 @@
 import IList from "../list/IList";
 import DuLinkedList from "../list/DuLinkedList";
 import ISet from "./ISet";
+import { ELEMENT_NOT_FOUND } from "../../types";
 export default class ListSet<T> implements ISet<T> {
   private list: IList<T> = new DuLinkedList<T>();
   size(): number {
@@ -18,7 +19,7 @@ export default class ListSet<T> implements ISet<T> {
   add(element: T): void {
     const list = this.list;
     const index = list.indexOf(element);
-    if (index != list.ELEMENT_NOT_FOUND) {
+    if (index !== ELEMENT_NOT_FOUND) {
       list.set(index, element);
     } else {
       this.list.add(element);
@@ -27,7 +28,7 @@ export default class ListSet<T> implements ISet<T> {
   remove(element: T): void {
     const list = this.list;
     const index = list.indexOf(element);
-    if (index != list.ELEMENT_NOT_FOUND) {
+    if (index != ELEMENT_NOT_FOUND) {
       list.remove(index);
     }
   }

@@ -1,4 +1,5 @@
 import AbstractList from "./AbstractList";
+import { ELEMENT_NOT_FOUND } from "../../types";
 export default class ArrayList<T> extends AbstractList<T> {
   private elements: Array<T> = []; //所有元素储存
   /**
@@ -32,7 +33,7 @@ export default class ArrayList<T> extends AbstractList<T> {
         return i;
       }
     }
-    return this.ELEMENT_NOT_FOUND;
+    return ELEMENT_NOT_FOUND;
   }
   /**
    * 获取index位置的元素
@@ -59,7 +60,7 @@ export default class ArrayList<T> extends AbstractList<T> {
    * @return
    */
   public contains(element: T): boolean {
-    return this.indexOf(element) !== this.ELEMENT_NOT_FOUND;
+    return this.indexOf(element) !== ELEMENT_NOT_FOUND;
   }
   add(element: T, index: number = this.size()): void {
     this.elements.splice(index, 0, element);

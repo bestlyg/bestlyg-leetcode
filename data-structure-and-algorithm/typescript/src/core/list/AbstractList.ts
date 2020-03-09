@@ -1,16 +1,16 @@
 import { thorwEmptyError } from "../../utils";
 import IList from "./IList";
+import { ELEMENT_NOT_FOUND } from "../../types";
 export default abstract class AbstractList<T> implements IList<T> {
-  ELEMENT_NOT_FOUND: number = -1;
-  protected length: number = 0;
+  protected _size: number = 0;
   public size(): number {
-    return this.length;
+    return this._size;
   }
   public isEmpty(): boolean {
-    return this.length === 0;
+    return this._size === 0;
   }
   public contains(element: T): boolean {
-    return this.indexOf(element) !== this.ELEMENT_NOT_FOUND;
+    return this.indexOf(element) !== ELEMENT_NOT_FOUND;
   }
   protected rangeCheck(index: number): void {
     if (index < 0 || index >= this.size()) {
