@@ -21,6 +21,7 @@ import HashSet from "./core/hash/HashSet";
 import LinkedHashMap from "./core/hash/LinkedHashMap";
 import LinkedHashSet from "./core/hash/LinkedHashSet";
 import BinaryHeap from "./core/heap/BinaryHeap";
+import Trie from "./core/trie/Trie";
 import BinaryTreesPrinter from "./utils/BinaryTreesPrinter";
 export {
   ArrayList,
@@ -46,9 +47,9 @@ export {
   LinkedHashMap,
   LinkedHashSet,
   BinaryHeap,
+  Trie,
   BinaryTreesPrinter
 };
 export * from "./types";
 // Test Scope Start
-
 // Test Scope End

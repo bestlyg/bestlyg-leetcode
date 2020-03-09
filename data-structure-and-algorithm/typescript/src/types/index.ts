@@ -6,6 +6,7 @@ import IBinaryTree from "../core/tree/IBinaryTree";
 import ISet from "../core/set/ISet";
 import IMap from "../core/map/IMap";
 import IHeap from "../core/heap/IHeap";
+import ITrie from "../core/trie/ITrie";
 interface IHash {
   hashCode(): number;
   equals(obj: any): boolean;
@@ -46,18 +47,8 @@ export {
   IBinaryTree,
   IMap,
   IHeap,
+  ITrie,
   IHash,
   IComparable,
   IBinaryTreesPrinter
 };
-
-// /**
-//  * @type ergodic 遍历
-//  * @type recursion 递归
-//  */
-// export type heightMethodType = "ergodic" | "recursion";
-// /**
-//  * @type unified 统一
-//  * @type common 普通
-//  */
-// export type rebalanceMethodType = "unified" | "common";
