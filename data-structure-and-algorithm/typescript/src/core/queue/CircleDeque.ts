@@ -24,7 +24,7 @@ export default class CircleDeque<T> extends CircleQueue<T>
     this.thorwEmpty("deQueueRear");
     const index = this.index(this.size() - 1);
     const el = this.elements[index] as T;
-    this.elements[index] = null;
+    Reflect.deleteProperty(this.elements, index);
     this.length--;
     return el;
   }

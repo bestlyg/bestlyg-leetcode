@@ -4,11 +4,11 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
   protected head: number = 0;
   protected length: number = 0;
   private capacity = 10;
-  protected elements: (T | null)[];
+  protected elements: T[];
   constructor(capacity: number) {
     super();
     this.capacity = capacity <= this.capacity ? this.capacity : capacity;
-    this.elements = new Array<T | null>(this.capacity).fill(null);
+    this.elements = new Array<T>(this.capacity);
   }
   size(): number {
     return this.length;
@@ -17,9 +17,7 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
     return this.size() === 0;
   }
   clear(): void {
-    for (let i = 0, len = this.capacity; i < len; i++) {
-      this.elements[i] = null;
-    }
+    this.elements.length = 0;
     this.head = 0;
     this.length = 0;
   }
@@ -36,7 +34,7 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
     this.thorwEmpty("deQueue");
     const index = this.index(0);
     const el = this.elements[index];
-    this.elements[index] = null;
+    Reflect.deleteProperty(this.elements, index);
     this.head = this.index(1);
     this.length--;
     return el!;
@@ -45,7 +43,7 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
     const capacity = this.capacity;
     if (capacity !== this.size()) return;
     this.capacity = capacity + (capacity >> 1);
-    const newEl = new Array<T | null>(this.capacity).fill(null);
+    const newEl = new Array<T>(this.capacity);
     for (let i = 0, len = this.capacity; i < len; i++) {
       newEl[i] = this.elements[this.index(i)];
     }

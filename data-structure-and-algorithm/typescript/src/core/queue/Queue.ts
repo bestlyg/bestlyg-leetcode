@@ -1,26 +1,25 @@
-import DuLinkedList from "../list/DuLinkedList";
-import IList from "../list/IList";
 import AbstractQueue from "./AbstractQueue";
 export default class Queue<T> extends AbstractQueue<T> {
-  protected list: IList<T> = new DuLinkedList<T>();
+  protected list: T[] = new Array<T>();
   size(): number {
-    return this.list.size();
+    return this.list.length;
   }
   isEmpty(): boolean {
-    return this.list.isEmpty();
+    return this.size() === 0;
   }
   clear(): void {
-    this.list.clear();
+    this.list.length = 0;
   }
   enQueue(element: T): void {
-    this.list.addLast(element);
+    this.list.push(element);
   }
   deQueue(): T {
-    return this.list.delFirst();
+    this.thorwEmpty("deQueue");
+    return this.list.shift()!;
   }
   front(): T {
     this.thorwEmpty("front");
-    return this.list.first();
+    return this.list[0];
   }
   toString(): string {
     let string: string = `size:${this.size()},front->[`;
@@ -28,7 +27,7 @@ export default class Queue<T> extends AbstractQueue<T> {
       if (i != 0) {
         string += ",";
       }
-      string += this.list.get(i);
+      string += this.list[i];
     }
     string += "]<-rear";
     return string;
