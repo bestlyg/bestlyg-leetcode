@@ -6,12 +6,12 @@ class LinkedNode<K, V> extends Node<K, V> {
   next: LinkedNode<K, V> | undefined = undefined;
 }
 export default class LinkedHashMap<K extends IHash, V> extends HashMap<K, V> {
-  private first: LinkedNode<K, V> | undefined = undefined;
-  private last: LinkedNode<K, V> | undefined = undefined;
+  private _first: LinkedNode<K, V> | undefined = undefined;
+  private _last: LinkedNode<K, V> | undefined = undefined;
   clear(): void {
     super.clear();
-    this.first = undefined;
-    this.last = undefined;
+    this._first = undefined;
+    this._last = undefined;
   }
   protected createNode(
     key: K,
@@ -19,17 +19,17 @@ export default class LinkedHashMap<K extends IHash, V> extends HashMap<K, V> {
     parent: Node<K, V> | undefined = undefined
   ) {
     const node = new LinkedNode(key, value, parent);
-    if (this.last === undefined) {
-      this.first = this.last = node;
+    if (this._last === undefined) {
+      this._first = this._last = node;
     } else {
-      this.last.next = node;
-      node.prev = this.last;
-      this.last = node;
+      this._last.next = node;
+      node.prev = this._last;
+      this._last = node;
     }
     return node;
   }
   containsValue(value: V): boolean {
-    let node = this.first;
+    let node = this._first;
     while (node !== undefined) {
       if (equals(value, node.value)) return true;
       node = node.next;
@@ -37,7 +37,7 @@ export default class LinkedHashMap<K extends IHash, V> extends HashMap<K, V> {
     return false;
   }
   traversal(visitor: (key: K, value: V) => boolean): void {
-    let node = this.first;
+    let node = this._first;
     while (node !== undefined) {
       if (visitor(node.key, node.value)) return;
       node = node.next;
@@ -50,23 +50,23 @@ export default class LinkedHashMap<K extends IHash, V> extends HashMap<K, V> {
       let tmp = node1.prev;
       node1.prev = node2.prev;
       node2.prev = tmp;
-      if (node1.prev === undefined) this.first = node1;
+      if (node1.prev === undefined) this._first = node1;
       else node1.prev.next = node1;
-      if (node2.prev === undefined) this.first = node2;
+      if (node2.prev === undefined) this._first = node2;
       else node2.prev.next = node2;
       tmp = node1.next;
       node1.next = node2.next;
       node2.next = tmp;
-      if (node1.next === undefined) this.last = node1;
+      if (node1.next === undefined) this._last = node1;
       else node1.next.prev = node1;
-      if (node2.next === undefined) this.last = node2;
+      if (node2.next === undefined) this._last = node2;
       else node2.next.prev = node2;
     }
     const prev = node2.prev;
     const next = node2.next;
-    if (prev === undefined) this.first = next;
+    if (prev === undefined) this._first = next;
     else prev.next = next;
-    if (next === undefined) this.last = prev;
+    if (next === undefined) this._last = prev;
     else next.prev = prev;
   }
 }

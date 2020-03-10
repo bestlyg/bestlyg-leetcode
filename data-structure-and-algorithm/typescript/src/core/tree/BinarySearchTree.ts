@@ -3,26 +3,27 @@ import Node from "./Node";
 import { Comparator } from "../../types";
 export default class BinarySearchTree<T> extends BinaryTree<T> {
   private _comparator: Comparator<T>;
-  constructor(_comparator: Comparator<T>) {
+  constructor(comparator: Comparator<T>) {
     super();
-    this._comparator = _comparator;
+    this._comparator = comparator;
   }
   /**
    * 添加元素
    * @param {T} element 元素的值
    */
   public add(element: T): void {
-    if (this._root === undefined) {
+    const root = this._root;
+    if (root === undefined) {
       this._root = this.createNode(element, undefined);
       this._size++;
       this.afterAdd(this._root);
       return;
     }
-    let node: Node<T> | undefined = this._root;
+    let node: Node<T> | undefined = root;
     let parent: Node<T> = node;
     let cmp;
     do {
-      cmp = this.compare(element, node.element);
+      cmp = this._comparator(element, node.element);
       parent = node;
       if (cmp > 0) {
         node = node.right;
@@ -101,7 +102,7 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   private node(element: T): Node<T> | undefined {
     let node = this._root;
     while (node !== undefined) {
-      const cmp = this.compare(element, node.element);
+      const cmp = this._comparator(element, node.element);
       if (cmp === 0) return node;
       if (cmp > 0) {
         node = node.right;
@@ -110,8 +111,5 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
       }
     }
     return undefined;
-  }
-  private compare(t1: T, t2: T): number {
-    return this._comparator(t1, t2);
   }
 }

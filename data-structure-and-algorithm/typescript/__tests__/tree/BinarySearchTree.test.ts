@@ -142,6 +142,28 @@ describe("BinarySearchTree", () => {
     expect(bst.get(getPerson(10))?.element).toBeUndefined();
     expect(bst.get(getPerson(12))).toBeUndefined();
   });
+  test("order with empty tree", () => {
+    const bst = getNewBST();
+    let string = "";
+    bst.preorder((person: Person) => {
+      string += person.Age + " ";
+      return false;
+    });
+    bst.inorder((person: Person) => {
+      string += person.Age + " ";
+      if (person.Age === 5) return true;
+      return false;
+    });
+    bst.postorder((person: Person) => {
+      string += person.Age + " ";
+      return false;
+    });
+    bst.levelOrder((person: Person) => {
+      string += person.Age + " ";
+      return false;
+    });
+    expect(string).toBe("");
+  });
   test("inorder", () => {
     const bst = getBST();
     expect(inorderToString(bst)).toBe("1 2 3 4 5 6 7 8 9 ");

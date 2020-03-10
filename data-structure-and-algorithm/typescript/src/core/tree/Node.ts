@@ -195,9 +195,6 @@ export function postorder<T>(visitor: Visitor<T>, node: Node<T>) {
  * @param node
  */
 export function levelOrder<T>(visitor: Visitor<T>, node: Node<T>): void {
-  _levelOrder(visitor, node);
-}
-function _levelOrder<T>(visitor: Visitor<T>, node: Node<T>): void {
   const queue = new Queue<Node<T>>();
   queue.enQueue(node);
   while (!queue.isEmpty()) {

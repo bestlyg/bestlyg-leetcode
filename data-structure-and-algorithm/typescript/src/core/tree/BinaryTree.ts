@@ -44,21 +44,27 @@ export default abstract class BinaryTree<T>
    * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
   public preorder(visitor: Visitor<T>): void {
-    preorder(visitor, this._root);
+    const root = this._root;
+    if (root === undefined) return;
+    preorder(visitor, root);
   }
   /**
    * 中序遍历
    * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
   public inorder(visitor: Visitor<T>): void {
-    inorder(visitor, this._root);
+    const root = this._root;
+    if (root === undefined) return;
+    inorder(visitor, root);
   }
   /**
    * 后序遍历
    * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
   public postorder(visitor: Visitor<T>): void {
-    postorder(visitor, this._root);
+    const root = this._root;
+    if (root === undefined) return;
+    postorder(visitor, root);
   }
   /**
    * 层序遍历

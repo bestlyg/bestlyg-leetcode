@@ -1,33 +1,34 @@
 import ISet from "./ISet";
 import IMap from "../map/IMap";
 import TreeMap from "../map/TreeMap";
+import { Comparator } from "../../types";
 /**
  * 内置TreeMap
  */
 export default class TreeSet<T> implements ISet<T> {
-  private map: IMap<T, null>;
-  constructor(comparator: (t1: T, t2: T) => number) {
-    this.map = new TreeMap<T, null>(comparator);
+  private _map: IMap<T, null>;
+  constructor(comparator: Comparator<T>) {
+    this._map = new TreeMap<T, null>(comparator);
   }
   size(): number {
-    return this.map.size();
+    return this._map.size();
   }
   isEmpty(): boolean {
-    return this.map.isEmpty();
+    return this._map.isEmpty();
   }
   clear(): void {
-    this.map.clear();
+    this._map.clear();
   }
   contains(element: T): boolean {
-    return this.map.containsKey(element);
+    return this._map.containsKey(element);
   }
   add(element: T): void {
-    this.map.put(element, null);
+    this._map.put(element, null);
   }
   remove(element: T): void {
-    this.map.remove(element);
+    this._map.remove(element);
   }
   traversal(visitor: (element: T) => boolean): void {
-    this.map.traversal(visitor);
+    this._map.traversal(visitor);
   }
 }

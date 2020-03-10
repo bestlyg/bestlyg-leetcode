@@ -6,26 +6,26 @@ import { IHash } from "../../types";
  * 内置HashMap
  */
 export default class HashSet<T extends IHash> implements ISet<T> {
-  private map: IMap<T, undefined> = new HashMap<T, undefined>();
+  private _map: IMap<T, undefined> = new HashMap<T, undefined>();
   size(): number {
-    return this.map.size();
+    return this._map.size();
   }
   isEmpty(): boolean {
-    return this.map.isEmpty();
+    return this._map.isEmpty();
   }
   clear(): void {
-    this.map.clear();
+    this._map.clear();
   }
   contains(element: T): boolean {
-    return this.map.containsKey(element);
+    return this._map.containsKey(element);
   }
   add(element: T): void {
-    this.map.put(element, undefined);
+    this._map.put(element, undefined);
   }
   remove(element: T): void {
-    this.map.remove(element);
+    this._map.remove(element);
   }
   traversal(visitor: (element: T) => boolean): void {
-    this.map.traversal(visitor);
+    this._map.traversal(visitor);
   }
 }

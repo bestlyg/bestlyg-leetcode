@@ -1,32 +1,33 @@
 import RedBlackTree from "../tree/RedBlackTree";
 import ISet from "./ISet";
+import { Comparator } from "../../types";
 /**
  * 内置红黑树
  */
 export default class TreeSet2<T> implements ISet<T> {
-  private tree: RedBlackTree<T>;
-  constructor(comparator: (t1: T, t2: T) => number) {
-    this.tree = new RedBlackTree<T>(comparator);
+  private _tree: RedBlackTree<T>;
+  constructor(comparator: Comparator<T>) {
+    this._tree = new RedBlackTree<T>(comparator);
   }
   size(): number {
-    return this.tree.size();
+    return this._tree.size();
   }
   isEmpty(): boolean {
-    return this.tree.isEmpty();
+    return this._tree.isEmpty();
   }
   clear(): void {
-    this.tree.clear();
+    this._tree.clear();
   }
   contains(element: T): boolean {
-    return this.tree.contains(element);
+    return this._tree.contains(element);
   }
   add(element: T): void {
-    this.tree.add(element);
+    this._tree.add(element);
   }
   remove(element: T): void {
-    this.tree.remove(element);
+    this._tree.remove(element);
   }
   traversal(visitor: (element: T) => boolean) {
-    this.tree.inorder(visitor);
+    this._tree.inorder(visitor);
   }
 }

@@ -30,7 +30,7 @@ export class Node<K, V> implements IColor {
   left: Node<K, V> | undefined = undefined;
   right: Node<K, V> | undefined = undefined;
   parent: Node<K, V> | undefined;
-  constructor(key: K, value: V, parent: Node<K, V> | undefined = undefined) {
+  constructor(key: K, value: V, parent?: Node<K, V>) {
     this.key = key;
     this.value = value;
     this.parent = parent;
@@ -58,9 +58,6 @@ export class Node<K, V> implements IColor {
   }
 }
 function levelOrder<K, V>(visitor: Visitor<K, V>, node: Node<K, V>): void {
-  _levelOrder(visitor, node);
-}
-function _levelOrder<K, V>(visitor: Visitor<K, V>, node: Node<K, V>): void {
   const queue = new Queue<Node<K, V>>();
   queue.enQueue(node);
   while (!queue.isEmpty()) {
@@ -78,8 +75,8 @@ const DEFAULT_CAPACITY: number = 1 << 4;
 const DEFAULT_LOAD_FACTOR: number = 0.75;
 export default class HashMap<K extends IHash, V> implements IMap<K, V> {
   private _size: number = 0;
-  private table: Node<K, V>[] = [];
-  private capacity: number = DEFAULT_CAPACITY;
+  private _table: Node<K, V>[] = [];
+  private _capacity: number = DEFAULT_CAPACITY;
   size(): number {
     return this._size;
   }
@@ -89,7 +86,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
   clear(): void {
     if (this._size === 0) return;
     this._size = 0;
-    this.table.length = 0;
+    this._table.length = 0;
   }
   get(key: K): V | undefined {
     const node = this.node(key);
@@ -101,8 +98,8 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
   containsValue(value: V): boolean {
     if (this._size === 0) return false;
     const queue = new Queue<Node<K, V>>();
-    for (let i = 0, len = this.table.length; i < len; i++) {
-      const root = this.table[i];
+    for (let i = 0, len = this._table.length; i < len; i++) {
+      const root = this._table[i];
       if (root === undefined) continue;
       queue.enQueue(root);
       while (!queue.isEmpty()) {
@@ -116,17 +113,17 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
   }
   traversal(visitor: (key: K, value: V) => boolean): void {
     if (this._size === 0) return;
-    for (let i = 0, len = this.capacity; i < len; i++) {
-      const root = this.table[i];
+    for (let i = 0, len = this._capacity; i < len; i++) {
+      const root = this._table[i];
       if (root === undefined) continue;
       levelOrder(visitor, root);
     }
   }
   print(): void {
     if (this._size == 0) return;
-    const table = this.table;
-    for (let i = 0, len = this.capacity; i < len; i++) {
-      const root: Node<K, V> = table[i];
+    const _table = this._table;
+    for (let i = 0, len = this._capacity; i < len; i++) {
+      const root: Node<K, V> = _table[i];
       if (root === undefined) continue;
       console.log("【index = " + i + "】");
       BinaryTreesPrinter.print({
@@ -153,10 +150,10 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
   put(key: K, value: V): V | undefined {
     this.resize();
     const index = this.index(key);
-    let root = this.table[index];
+    let root = this._table[index];
     if (root === undefined) {
       root = this.createNode(key, value);
-      this.table[index] = root;
+      this._table[index] = root;
       this._size++;
       this.fixAfterPut(root);
       return undefined;
@@ -227,13 +224,13 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     return this._remove(this.node(key));
   }
   private resize(): void {
-    const capacity = this.capacity;
-    if (this._size / capacity <= DEFAULT_LOAD_FACTOR) return;
-    const oldTable = this.table;
-    this.table = [];
-    this.capacity = capacity << 1;
+    const _capacity = this._capacity;
+    if (this._size / _capacity <= DEFAULT_LOAD_FACTOR) return;
+    const oldTable = this._table;
+    this._table = [];
+    this._capacity = _capacity << 1;
     const queue = new Queue<Node<K, V>>();
-    for (let i = 0; i < capacity; i++) {
+    for (let i = 0; i < _capacity; i++) {
       if (oldTable[i] === undefined) return;
       queue.enQueue(oldTable[i] as Node<K, V>);
       while (!queue.isEmpty()) {
@@ -250,10 +247,10 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     newNode.right = undefined;
     newNode.color = Color.RED;
     const index = this.index(newNode);
-    let root = this.table[index];
+    let root = this._table[index];
     if (root === undefined) {
       root = newNode;
-      this.table[index] = newNode;
+      this._table[index] = newNode;
       this.fixAfterPut(root);
       return;
     }
@@ -345,7 +342,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     if (replacement !== undefined) {
       replacement.parent = node.parent;
       if (node.parent === undefined) {
-        this.table[index] = replacement;
+        this._table[index] = replacement;
       } else if (node.isLeftChild()) {
         node.parent.left = replacement;
       } else {
@@ -353,7 +350,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
       }
       this.fixAfterRemove(replacement);
     } else if (node.parent === undefined) {
-      Reflect.deleteProperty(this.table, index);
+      Reflect.deleteProperty(this._table, index);
     } else {
       if (node.isLeftChild()) {
         node.parent.left = undefined;
@@ -433,7 +430,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     node: Node<K, V> | undefined = undefined
   ): Node<K, V> | undefined {
     if (node === undefined) {
-      const root = this.table[this.index(k1)];
+      const root = this._table[this.index(k1)];
       if (root == undefined) return undefined;
       else return this.node(k1, root);
     }
@@ -471,8 +468,8 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
   private index(key: K): number;
   private index(node: Node<K, V>): number;
   private index(key: K | Node<K, V>): number {
-    if (isIHash(key)) return hashCode(key) & (this.capacity - 1);
-    return key.hash & (this.capacity - 1);
+    if (isIHash(key)) return hashCode(key) & (this._capacity - 1);
+    return key.hash & (this._capacity - 1);
   }
   private rotateLeft(grand: Node<K, V>): void {
     const parent: Node<K, V> = grand.right!;
@@ -499,7 +496,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     } else if (grand.isRightChild()) {
       grand.parent!.right = parent;
     } else {
-      this.table[this.index(grand)] = parent;
+      this._table[this.index(grand)] = parent;
     }
     if (child !== undefined) child.parent = grand;
     grand.parent = parent;
