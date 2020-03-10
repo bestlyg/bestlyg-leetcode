@@ -1,42 +1,37 @@
-import IList from "../list/IList";
-import DuLinkedList from "../list/DuLinkedList";
 import ISet from "./ISet";
 import { ELEMENT_NOT_FOUND } from "../../types";
+import { Visitor } from "../../utils/visitor_T";
 export default class ListSet<T> implements ISet<T> {
-  private list: IList<T> = new DuLinkedList<T>();
+  private list: T[] = [];
   size(): number {
-    return this.list.size();
+    return this.list.length;
   }
   isEmpty(): boolean {
-    return this.list.isEmpty();
+    return this.size() === 0;
   }
   clear(): void {
-    this.list.clear();
+    this.list.length = 0;
   }
   contains(element: T): boolean {
-    return this.list.contains(element);
+    return this.list.includes(element);
   }
   add(element: T): void {
     const list = this.list;
     const index = list.indexOf(element);
     if (index !== ELEMENT_NOT_FOUND) {
-      list.set(index, element);
+      list[index] = element;
     } else {
-      this.list.add(element);
+      list.push(element);
     }
   }
   remove(element: T): void {
     const list = this.list;
     const index = list.indexOf(element);
     if (index != ELEMENT_NOT_FOUND) {
-      list.remove(index);
+      list.splice(index, 1);
     }
   }
-  traversal(visitor: (element: T) => boolean) {
-    const list = this.list;
-    const size = list.size();
-    for (let i = 0; i < size; i++) {
-      if (visitor(list.get(i))) return;
-    }
+  traversal(visitor: Visitor<T>) {
+    for (let el of this.list) if (visitor(el)) return;
   }
 }

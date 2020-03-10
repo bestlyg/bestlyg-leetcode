@@ -1,6 +1,5 @@
-import { toString } from "../../utils";
 import Queue from "../queue/Queue";
-import { Visitor, IVisitor, visitorMixin } from "../../utils/visitor_T";
+import { Visitor } from "../../utils/visitor_T";
 import Stack from "../stack/Stack";
 export default class Node<T> {
   element: T;

@@ -63,6 +63,7 @@ describe("TreeMap", () => {
   });
   test("containsValue", () => {
     const map = getNewMap();
+    expect(map.containsValue(getPerson(2))).toBe(false);
     map.put(1, getPerson(1));
     expect(map.containsValue(getPerson(1))).toBe(true);
     expect(map.containsValue(getPerson(2))).toBe(false);
