@@ -31,7 +31,7 @@ export default interface Heap<T> {
   /**
    * 移除对顶元素并向堆顶元素添加新元素element
    * @param element
-   * @return {T|null} 堆顶元素 若堆为空则返回null
+   * @return {T|undefined} 堆顶元素 若堆为空则返回undefined
    */
-  replace(element: T): T | null;
+  replace(element: T): T | undefined;
 }

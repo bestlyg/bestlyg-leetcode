@@ -30,9 +30,9 @@ export default interface IBinaryTree<T> {
   /**
    * 获取值所在的节点
    * @param {T} element 值
-   * @return {Node<T>|null} 返回节点或null
+   * @return {Node<T>|undefined} 返回节点或undefined
    */
-  get(element: T): Node<T> | null;
+  get(element: T): Node<T> | undefined;
   /**
    * 前序遍历
    * @param {(Element:T)=>boolean} visitor 遍历监视器 函数返回false时停止遍历
@@ -75,13 +75,13 @@ export default interface IBinaryTree<T> {
   /**
    * 获取前驱节点
    * @param {Node<T>} node 节点
-   * @return {Node<T>|null} 返回前驱节点或null
+   * @return {Node<T>|undefined} 返回前驱节点或undefined
    */
-  predecessor(node: Node<T>): Node<T> | null;
+  predecessor(node: Node<T>): Node<T> | undefined;
   /**
    * 获取后继结点
    * @param {Node<T>} node 节点
-   * @return {Node<T>|null} 返回前驱节点或null
+   * @return {Node<T>|undefined} 返回前驱节点或undefined
    */
-  successor(node: Node<T>): Node<T> | null;
+  successor(node: Node<T>): Node<T> | undefined;
 }

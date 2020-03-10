@@ -17,21 +17,21 @@ export default interface IMap<K, V> {
    * 设置元素的key和value
    * @param {K} key 元素的键
    * @param {V} value 元素的值
-   * @return {V| null} 若元素已存在则返回原值，若不存在则返回null
+   * @return {V| undefined} 若元素已存在则返回原值，若不存在则返回undefined
    */
-  put(key: K, value: V): V | null;
+  put(key: K, value: V): V | undefined;
   /**
    * 根据元素的key获取元素的值
    * @param {K} key 元素的键
-   * @return {V|null} 元素的值，若不存在则返回null
+   * @return {V|undefined} 元素的值，若不存在则返回undefined
    */
-  get(key: K): V | null;
+  get(key: K): V | undefined;
   /**
    * 根据元素的key删除元素
    * @param {K} key 元素的键
    * @return {V} 删除元素的值
    */
-  remove(key: K): V | null;
+  remove(key: K): V | undefined;
   /**
    * 判断元素的键是否存在
    * @param {K} key 元素的键

@@ -140,7 +140,7 @@ describe("BinarySearchTree", () => {
     expect(bst.get(getPerson(8))?.element).toBe(getPerson(8));
     expect(bst.get(getPerson(9))?.element).toBe(getPerson(9));
     expect(bst.get(getPerson(10))?.element).toBeUndefined();
-    expect(bst.get(getPerson(12))).toBeNull();
+    expect(bst.get(getPerson(12))).toBeUndefined();
   });
   test("inorder", () => {
     const bst = getBST();
@@ -261,17 +261,22 @@ describe("BinarySearchTree", () => {
   test("predecessor", () => {
     const bst = getBST();
     let node = bst.get(getPerson(5));
-    node !== null && expect(bst.predecessor(node)?.element).toBe(getPerson(4));
+    node !== undefined &&
+      expect(bst.predecessor(node)?.element).toBe(getPerson(4));
     node = bst.get(getPerson(6));
-    node !== null && expect(bst.predecessor(node)?.element).toBe(getPerson(5));
+    node !== undefined &&
+      expect(bst.predecessor(node)?.element).toBe(getPerson(5));
     node = bst.get(getPerson(7));
-    node !== null && expect(bst.predecessor(node)?.element).toBe(getPerson(6));
+    node !== undefined &&
+      expect(bst.predecessor(node)?.element).toBe(getPerson(6));
   });
   test("successor", () => {
     const bst = getBST();
     let node = bst.get(getPerson(5));
-    node !== null && expect(bst.successor(node)?.element).toBe(getPerson(6));
+    node !== undefined &&
+      expect(bst.successor(node)?.element).toBe(getPerson(6));
     node = bst.get(getPerson(6));
-    node !== null && expect(bst.successor(node)?.element).toBe(getPerson(7));
+    node !== undefined &&
+      expect(bst.successor(node)?.element).toBe(getPerson(7));
   });
 });

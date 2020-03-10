@@ -43,7 +43,7 @@ describe("Heap", () => {
   });
   test("replace", () => {
     let heap = getNewHeap();
-    expect(heap.replace(getPerson(1))).toBeNull();
+    expect(heap.replace(getPerson(1))).toBeUndefined();
     expect(heap.get()).toBe(getPerson(1));
     expect(heap.replace(getPerson(2))).toBe(getPerson(1));
     expect(heap.get()).toBe(getPerson(2));

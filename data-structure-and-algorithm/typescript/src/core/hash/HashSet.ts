@@ -6,7 +6,7 @@ import { IHash } from "../../types";
  * 内置HashMap
  */
 export default class HashSet<T extends IHash> implements ISet<T> {
-  private map: IMap<T, null> = new HashMap<T, null>();
+  private map: IMap<T, undefined> = new HashMap<T, undefined>();
   size(): number {
     return this.map.size();
   }
@@ -20,7 +20,7 @@ export default class HashSet<T extends IHash> implements ISet<T> {
     return this.map.containsKey(element);
   }
   add(element: T): void {
-    this.map.put(element, null);
+    this.map.put(element, undefined);
   }
   remove(element: T): void {
     this.map.remove(element);

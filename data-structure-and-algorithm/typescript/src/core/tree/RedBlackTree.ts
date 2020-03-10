@@ -3,13 +3,13 @@ import Node from "./Node";
 import RedBlackNode from "./RedBlackNode";
 import { black, isBlack, isRed, red, colorOf, color } from "../../utils/color";
 export default class RedBlackTree<T> extends BalanceBinarySearchTree<T> {
-  protected createNode(element: T, parent: Node<T> | null) {
+  protected createNode(element: T, parent: Node<T> | undefined) {
     return new RedBlackNode<T>(element, parent);
   }
   protected afterAdd(parentNode: Node<T>): void {
     const node = <RedBlackNode<T>>parentNode;
     const parent = <RedBlackNode<T>>node.parent;
-    if (parent === null) {
+    if (parent === undefined) {
       black(<RedBlackNode<T>>node);
       return;
     }
@@ -47,8 +47,8 @@ export default class RedBlackTree<T> extends BalanceBinarySearchTree<T> {
       return;
     }
     const parent = node.parent as RedBlackNode<T>;
-    if (parent === null) return;
-    const left = parent.left === null || node.isLeftChild();
+    if (parent === undefined) return;
+    const left = parent.left === undefined || node.isLeftChild();
     let sibling: RedBlackNode<T> = (left
       ? parent.right
       : parent.left) as RedBlackNode<T>;

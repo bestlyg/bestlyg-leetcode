@@ -9,15 +9,15 @@ import {
   color
 } from "../../utils/color";
 import IMap from "./IMap";
-import { Visitor_KV, visitorMixin_KV } from "../../utils/visitor";
+import { visitorMixin, Visitor, IVisitor } from "../../utils/visitor_KV";
 function inorder<K, V>(
-  visitor: (key: K, value: V) => boolean,
-  node: Node<K, V> | null
+  visitor: Visitor<K, V>,
+  node: Node<K, V> | undefined
 ): void {
-  _inorder(visitorMixin_KV(visitor), node);
+  _inorder(visitorMixin(visitor), node);
 }
-function _inorder<K, V>(visitor: Visitor_KV<K, V>, node: Node<K, V> | null) {
-  if (node === null || visitor.stop) return;
+function _inorder<K, V>(visitor: IVisitor<K, V>, node: Node<K, V> | undefined) {
+  if (node === undefined || visitor.stop) return;
   _inorder(visitor, node.left);
   if (visitor.stop) return;
   visitor.stop = visitor(node.key, node.value);
@@ -27,27 +27,27 @@ export class Node<K, V> implements IColor {
   key: K;
   value: V;
   color: Color = Color.RED;
-  left: Node<K, V> | null = null;
-  right: Node<K, V> | null = null;
-  parent: Node<K, V> | null = null;
-  constructor(key: K, value: V, parent: Node<K, V> | null = null) {
+  left: Node<K, V> | undefined = undefined;
+  right: Node<K, V> | undefined = undefined;
+  parent: Node<K, V> | undefined = undefined;
+  constructor(key: K, value: V, parent: Node<K, V> | undefined = undefined) {
     this.key = key;
     this.value = value;
     this.parent = parent;
   }
   hasTwoChildren(): boolean {
-    return this.left !== null && this.right !== null;
+    return this.left !== undefined && this.right !== undefined;
   }
   isLeftChild(): boolean {
-    return this.parent !== null && this === this.parent.left;
+    return this.parent !== undefined && this === this.parent.left;
   }
   isRightChild(): boolean {
-    return this.parent !== null && this === this.parent.right;
+    return this.parent !== undefined && this === this.parent.right;
   }
-  sibling(): Node<K, V> | null {
+  sibling(): Node<K, V> | undefined {
     if (this.isLeftChild()) return this.parent!.right;
     if (this.isRightChild()) return this.parent!.left;
-    return null;
+    return undefined;
   }
   toString(): string {
     return `${this.color === Color.RED ? "R" : "B"}_Key:${this.key},Value:${
@@ -58,7 +58,7 @@ export class Node<K, V> implements IColor {
 
 export default class TreeMap<K, V> implements IMap<K, V> {
   private _size: number = 0;
-  private root: Node<K, V> | null = null;
+  private root: Node<K, V> | undefined = undefined;
   private comparator: (k1: K, k2: K) => number;
   constructor(comparator: (k1: K, k2: K) => number) {
     this.comparator = comparator;
@@ -70,15 +70,15 @@ export default class TreeMap<K, V> implements IMap<K, V> {
     return this._size === 0;
   }
   clear(): void {
-    this.root = null;
+    this.root = undefined;
     this._size = 0;
   }
-  get(key: K): V | null {
+  get(key: K): V | undefined {
     const node = this.node(key);
-    return node !== null ? node.value : null;
+    return node !== undefined ? node.value : undefined;
   }
   containsKey(key: K): boolean {
-    return this.node(key) !== null;
+    return this.node(key) !== undefined;
   }
   containsValue(value: V): boolean {
     let result = false;
@@ -94,12 +94,12 @@ export default class TreeMap<K, V> implements IMap<K, V> {
   traversal(visitor: (key: K, value: V) => boolean): void {
     inorder(visitor, this.root);
   }
-  put(key: K, value: V): V | null {
-    if (this.root === null) {
+  put(key: K, value: V): V | undefined {
+    if (this.root === undefined) {
       this.root = new Node<K, V>(key, value);
       this._size++;
       this.afterPut(this.root!);
-      return null;
+      return undefined;
     }
     let parent = this.root;
     let node = this.root;
@@ -117,7 +117,7 @@ export default class TreeMap<K, V> implements IMap<K, V> {
         node.value = value;
         return oldValue;
       }
-    } while (node !== null);
+    } while (node !== undefined);
     const newNode = new Node<K, V>(key, value, parent);
     if (cmp > 0) {
       parent.right = newNode;
@@ -126,11 +126,11 @@ export default class TreeMap<K, V> implements IMap<K, V> {
     }
     this._size++;
     this.afterPut(newNode);
-    return null;
+    return undefined;
   }
   private afterPut(node: Node<K, V>): void {
-    const parent: Node<K, V> | null = node.parent;
-    if (parent === null) {
+    const parent: Node<K, V> | undefined = node.parent;
+    if (parent === undefined) {
       black(node);
       return;
     }
@@ -161,11 +161,11 @@ export default class TreeMap<K, V> implements IMap<K, V> {
       this.rotateLeft(grand!);
     }
   }
-  remove(key: K): V | null {
+  remove(key: K): V | undefined {
     return this._remove(this.node(key));
   }
-  private _remove(node: Node<K, V> | null): V | null {
-    if (node === null) return null;
+  private _remove(node: Node<K, V> | undefined): V | undefined {
+    if (node === undefined) return undefined;
     this._size--;
     const oldValue = node.value;
     if (node.hasTwoChildren()) {
@@ -174,10 +174,10 @@ export default class TreeMap<K, V> implements IMap<K, V> {
       node.value = s.value;
       node = s;
     }
-    const replacement = node.left !== null ? node.left : node.right;
-    if (replacement !== null) {
+    const replacement = node.left !== undefined ? node.left : node.right;
+    if (replacement !== undefined) {
       replacement.parent = node.parent;
-      if (node.parent === null) {
+      if (node.parent === undefined) {
         this.root = replacement;
       } else if (node.isLeftChild()) {
         node.parent.left = replacement;
@@ -185,13 +185,13 @@ export default class TreeMap<K, V> implements IMap<K, V> {
         node.parent.right = replacement;
       }
       this.afterRemove(replacement);
-    } else if (node.parent === null) {
-      this.root = null;
+    } else if (node.parent === undefined) {
+      this.root = undefined;
     } else {
       if (node.isLeftChild()) {
-        node.parent.left = null;
+        node.parent.left = undefined;
       } else {
-        node.parent.right = null;
+        node.parent.right = undefined;
       }
       this.afterRemove(node);
     }
@@ -203,8 +203,8 @@ export default class TreeMap<K, V> implements IMap<K, V> {
       return;
     }
     const parent = node.parent;
-    if (parent === null) return;
-    const left = parent.left === null || node.isLeftChild();
+    if (parent === undefined) return;
+    const left = parent.left === undefined || node.isLeftChild();
     let sibling = left ? parent.right : parent.left;
     if (left) {
     } else {
@@ -234,21 +234,21 @@ export default class TreeMap<K, V> implements IMap<K, V> {
   private compare(k1: K, k2: K): number {
     return this.comparator(k1, k2);
   }
-  public getNode(key: K): Node<K, V> | null {
+  public getNode(key: K): Node<K, V> | undefined {
     return this.node(key);
   }
   public successor(node: Node<K, V>): Node<K, V> {
     let p = node.right;
-    if (p !== null) {
-      while (p.left != null) p = p.left;
+    if (p !== undefined) {
+      while (p.left != undefined) p = p.left;
       return p;
     }
     while (node.isRightChild()) node = node.parent!;
     return node.parent!;
   }
-  private node(key: K): Node<K, V> | null {
+  private node(key: K): Node<K, V> | undefined {
     let node = this.root;
-    while (node !== null) {
+    while (node !== undefined) {
       let cmp = this.compare(key, node.key);
       if (cmp === 0) return node;
       if (cmp > 0) {
@@ -257,18 +257,18 @@ export default class TreeMap<K, V> implements IMap<K, V> {
         node = node.left;
       }
     }
-    return null;
+    return undefined;
   }
   private rotateLeft(grand: Node<K, V>): void {
     const parent: Node<K, V> = grand.right!;
-    const child: Node<K, V> | null = parent.left;
+    const child: Node<K, V> | undefined = parent.left;
     grand.right = child;
     parent.left = grand;
     this.afterRotate(grand, parent, child);
   }
   private rotateRight(grand: Node<K, V>): void {
     const parent: Node<K, V> = grand.left!;
-    const child: Node<K, V> | null = parent.right;
+    const child: Node<K, V> | undefined = parent.right;
     grand.left = child;
     parent.right = grand;
     this.afterRotate(grand, parent, child);
@@ -276,7 +276,7 @@ export default class TreeMap<K, V> implements IMap<K, V> {
   private afterRotate(
     grand: Node<K, V>,
     parent: Node<K, V>,
-    child: Node<K, V> | null
+    child: Node<K, V> | undefined
   ) {
     parent.parent = grand.parent;
     if (grand.isLeftChild()) {
@@ -286,7 +286,7 @@ export default class TreeMap<K, V> implements IMap<K, V> {
     } else {
       this.root = parent;
     }
-    if (child !== null) child.parent = grand;
+    if (child !== undefined) child.parent = grand;
     grand.parent = parent;
   }
 }

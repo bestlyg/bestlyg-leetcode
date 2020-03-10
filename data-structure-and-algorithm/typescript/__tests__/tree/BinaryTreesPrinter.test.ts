@@ -11,13 +11,15 @@ describe("BinaryTreesPrinterPrinter", () => {
   }
   test("default", () => {
     expect(BinaryTreesPrinter.printString(tree)).toBe(
-      `56_P(null)\n     ├───── R 74_P(56)\n     └───── L 14_P(56)\n`
+      `56_P(undefined)\n       ├─────── R 74_P(56)\n       └─────── L 14_P(56)\n`
     );
   });
   test("preorder", () => {
     expect(
       BinaryTreesPrinter.printString(tree, BinaryTreesPrintStyle.PREORDER)
-    ).toBe(`56_P(null)\n     ├───── R 74_P(56)\n     └───── L 14_P(56)\n`);
+    ).toBe(
+      `56_P(undefined)\n       ├─────── R 74_P(56)\n       └─────── L 14_P(56)\n`
+    );
   });
   test("inorder", () => {
     expect(
@@ -50,7 +52,7 @@ describe("BinaryTreesPrinterPrinter", () => {
     tree.add(10);
     tree.add(5);
     expect(BinaryTreesPrinter.printString(tree)).toBe(
-      "10_P(null)\n     └───── L 5_P(10)\n"
+      "10_P(undefined)\n       └─────── L 5_P(10)\n"
     );
   });
   test("only right", () => {
@@ -58,11 +60,16 @@ describe("BinaryTreesPrinterPrinter", () => {
     tree.add(10);
     tree.add(15);
     expect(BinaryTreesPrinter.printString(tree)).toBe(
-      "10_P(null)\n     └───── R 15_P(10)\n"
+      "10_P(undefined)\n       └─────── R 15_P(10)\n"
     );
   });
   describe("print", () => {
     test("common", () => {
+      // const tree = new AVLTree<number>((num1, num2) => num1 - num2);
+      // const nums = [74, 56, 14];
+      // for (const num of nums) {
+      //   tree.add(num);
+      // }
       let err = "";
       try {
         BinaryTreesPrinter.print(tree);

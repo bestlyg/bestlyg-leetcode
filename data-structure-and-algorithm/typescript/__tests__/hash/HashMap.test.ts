@@ -28,7 +28,7 @@ describe("HashMap", () => {
   describe("Node", () => {
     test("sibling", () => {
       const node = new Node<number, number>(1, 1);
-      expect(node.sibling()).toBeNull();
+      expect(node.sibling()).toBeUndefined();
     });
   });
   describe("common test", () => {
@@ -82,9 +82,9 @@ describe("HashMap", () => {
       expect(map.get(new Key(2))).toBe(7);
       expect(map.get(new Key(3))).toBe(8);
       expect(map.get(new Key(4))).toBe(4);
-      expect(map.get(new Key(5))).toBeNull();
-      expect(map.get(new Key(6))).toBeNull();
-      expect(map.get(new Key(7))).toBeNull();
+      expect(map.get(new Key(5))).toBeUndefined();
+      expect(map.get(new Key(6))).toBeUndefined();
+      expect(map.get(new Key(7))).toBeUndefined();
       expect(map.get(new Key(8))).toBe(8);
     });
     test("4", () => {
@@ -153,7 +153,7 @@ describe("HashMap", () => {
     test("no key", () => {
       const map = getNewMap();
       map.put(getKey(1), 1);
-      expect(map.get(getKey(3))).toBeNull();
+      expect(map.get(getKey(3))).toBeUndefined();
     });
     test("has key", () => {
       const map = getNewMap();

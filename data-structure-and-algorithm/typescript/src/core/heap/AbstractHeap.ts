@@ -15,5 +15,5 @@ export default abstract class AbstractHeap<T> implements IHeap<T> {
   abstract add(element: T);
   abstract get(): T;
   abstract remove(): T;
-  abstract replace(element: T): T | null;
+  abstract replace(element: T): T | undefined;
 }

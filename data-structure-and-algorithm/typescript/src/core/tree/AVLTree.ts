@@ -1,10 +1,9 @@
 import BalanceBinarySearchTree from "./BalanceBinarySearchTree";
 import Node from "./Node";
 import AVLNode from "./AVLNode";
-// import { rebalanceMethodType } from "../../types";
 export default class AVLTree<T> extends BalanceBinarySearchTree<T> {
   protected afterAdd(node: Node<T>): void {
-    while (node.parent !== null) {
+    while (node.parent !== undefined) {
       node = node.parent;
       if (this.isBalanced(node)) {
         this.updateHeight(node);
@@ -15,7 +14,7 @@ export default class AVLTree<T> extends BalanceBinarySearchTree<T> {
     }
   }
   protected afterRemove(node: Node<T>): void {
-    while (node.parent !== null) {
+    while (node.parent !== undefined) {
       node = node.parent;
       if (this.isBalanced(node)) {
         this.updateHeight(node);
@@ -24,7 +23,7 @@ export default class AVLTree<T> extends BalanceBinarySearchTree<T> {
       }
     }
   }
-  protected createNode(element: T, parent: Node<T> | null): Node<T> {
+  protected createNode(element: T, parent: Node<T> | undefined): Node<T> {
     return new AVLNode<T>(element, parent);
   }
   private isBalanced(node: Node<T>): boolean {
@@ -53,7 +52,7 @@ export default class AVLTree<T> extends BalanceBinarySearchTree<T> {
   // protected afterRotate(
   //   grand: Node<T>,
   //   parent: Node<T>,
-  //   child: Node<T> | null
+  //   child: Node<T> | undefined
   // ) {
   //   super.afterRotate(grand, parent, child);
   //   this.updateHeight(grand);
@@ -62,9 +61,9 @@ export default class AVLTree<T> extends BalanceBinarySearchTree<T> {
   protected rotate(
     r: Node<T>,
     b: Node<T>,
-    c: Node<T> | null,
+    c: Node<T> | undefined,
     d: Node<T>,
-    e: Node<T> | null,
+    e: Node<T> | undefined,
     f: Node<T>
   ): void {
     super.rotate(r, b, c, d, e, f);

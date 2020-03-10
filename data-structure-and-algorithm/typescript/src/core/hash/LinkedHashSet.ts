@@ -6,7 +6,7 @@ import { IHash } from "../../types";
  * 内置LinkedHashMap
  */
 export default class LinkedHashSet<T extends IHash> implements ISet<T> {
-  private map: IMap<T, null> = new LinkedHashMap<T, null>();
+  private map: IMap<T, undefined> = new LinkedHashMap<T, undefined>();
   size(): number {
     return this.map.size();
   }
@@ -20,7 +20,7 @@ export default class LinkedHashSet<T extends IHash> implements ISet<T> {
     return this.map.containsKey(element);
   }
   add(element: T): void {
-    this.map.put(element, null);
+    this.map.put(element, undefined);
   }
   remove(element: T): void {
     this.map.remove(element);

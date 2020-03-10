@@ -51,17 +51,17 @@ describe("LinkedHashMap", () => {
       }
       expect(map.isEmpty()).toBeTruthy();
     });
-    test("node2.prev !== null", () => {
+    test("node2.prev !== undefined", () => {
       const map = getMap();
       map.remove(getKey(70));
       expect(map.size()).toBe(12);
     });
-    test("node1.prev === null", () => {
+    test("node1.prev === undefined", () => {
       const map = getMap([55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90]);
       map.remove(getKey(22));
       expect(map.size()).toBe(10);
     });
-    test("node2.next === null", () => {
+    test("node2.next === undefined", () => {
       const map = getMap([28, 46, 13, 22, 15, 99, 50]);
       map.remove(getKey(50));
       expect(map.size()).toBe(6);

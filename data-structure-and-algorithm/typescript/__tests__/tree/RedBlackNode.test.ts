@@ -31,10 +31,10 @@ describe("RedBlackNode", () => {
       expect(isRed(node2)).toBe(false);
       expect(isRed(node)).toBe(true);
     });
-    test("null", () => {
-      const node3 = null;
+    test("undefined", () => {
+      const node3 = undefined;
       expect(colorOf(node3)).toBe(Color.BLACK);
-      expect(color(node3, Color.BLACK)).toBeNull();
+      expect(color(node3, Color.BLACK)).toBeUndefined();
     });
   });
   test("toString", () => {

@@ -1,23 +1,24 @@
 import BinaryTree from "./BinaryTree";
 import Node from "./Node";
+import { Comparator } from "../../types";
 export default class BinarySearchTree<T> extends BinaryTree<T> {
-  private _compare: (t1: T, t2: T) => number;
-  constructor(_compare: (t1: T, t2: T) => number) {
+  private _comparator: Comparator<T>;
+  constructor(_comparator: Comparator<T>) {
     super();
-    this._compare = _compare;
+    this._comparator = _comparator;
   }
   /**
    * 添加元素
    * @param {T} element 元素的值
    */
   public add(element: T): void {
-    if (this.root === null) {
-      this.root = this.createNode(element, null);
+    if (this._root === undefined) {
+      this._root = this.createNode(element, undefined);
       this._size++;
-      this.afterAdd(this.root);
+      this.afterAdd(this._root);
       return;
     }
-    let node: Node<T> | null = this.root;
+    let node: Node<T> | undefined = this._root;
     let parent: Node<T> = node;
     let cmp;
     do {
@@ -31,7 +32,7 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
         node.element = element;
         return;
       }
-    } while (node != null);
+    } while (node != undefined);
     const newNode = this.createNode(element, parent);
     if (cmp > 0) {
       parent.right = newNode;
@@ -48,33 +49,33 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   public remove(element: T): void {
     this._remove(this.node(element));
   }
-  private _remove(node: Node<T> | null): void {
-    if (node === null) return;
+  private _remove(node: Node<T> | undefined): void {
+    if (node === undefined) return;
     this._size--;
     if (node.hasTwoChildren()) {
       const s = this.successor(node);
       node.element = s!.element;
       node = s!;
     }
-    const replacement = node.left !== null ? node.left : node.right;
-    if (replacement !== null) {
+    const replacement = node.left !== undefined ? node.left : node.right;
+    if (replacement !== undefined) {
       replacement.parent = node.parent;
-      if (node.parent === null) {
-        this.root = replacement;
+      if (node.parent === undefined) {
+        this._root = replacement;
       } else if (node === node.parent.left) {
         node.parent.left = replacement;
       } else {
         node.parent.right = replacement;
       }
       this.afterRemove(replacement);
-    } else if (node.parent === null) {
-      this.root = null;
+    } else if (node.parent === undefined) {
+      this._root = undefined;
       this.afterRemove(node);
     } else {
       if (node === node.parent.left) {
-        node.parent.left = null;
+        node.parent.left = undefined;
       } else {
-        node.parent.right = null;
+        node.parent.right = undefined;
       }
       this.afterRemove(node);
     }
@@ -85,21 +86,21 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
    * @return {boolean} true|false
    */
   public contains(element: T): boolean {
-    return this.node(element) !== null;
+    return this.node(element) !== undefined;
   }
   /**
    * 获取值所在的节点
    * @param {T} element 值
-   * @return {Node<T>|null} 返回节点或null
+   * @return {Node<T>|undefined} 返回节点或undefined
    */
-  public get(element: T): Node<T> | null {
+  public get(element: T): Node<T> | undefined {
     return this.node(element);
   }
   protected afterAdd(node: Node<T>): void {}
   protected afterRemove(node: Node<T>): void {}
-  private node(element: T): Node<T> | null {
-    let node = this.root;
-    while (node !== null) {
+  private node(element: T): Node<T> | undefined {
+    let node = this._root;
+    while (node !== undefined) {
       const cmp = this.compare(element, node.element);
       if (cmp === 0) return node;
       if (cmp > 0) {
@@ -108,9 +109,9 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
         node = node.left;
       }
     }
-    return null;
+    return undefined;
   }
   private compare(t1: T, t2: T): number {
-    return this._compare(t1, t2);
+    return this._comparator(t1, t2);
   }
 }

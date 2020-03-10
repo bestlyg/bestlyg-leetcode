@@ -1,7 +1,7 @@
 import Node from "./Node";
 export default class AVLNode<T> extends Node<T> {
   private height: number = 1;
-  constructor(element: T, parent: Node<T> | null = null) {
+  constructor(element: T, parent?: Node<T>) {
     super(element, parent);
   }
   public balanceFactor(): number {
@@ -24,9 +24,9 @@ export default class AVLNode<T> extends Node<T> {
     }
   }
   private leftHeight(): number {
-    return this.left === null ? 0 : (this.left as AVLNode<T>).height;
+    return this.left === undefined ? 0 : (this.left as AVLNode<T>).height;
   }
   private rightHeight(): number {
-    return this.right === null ? 0 : (this.right as AVLNode<T>).height;
+    return this.right === undefined ? 0 : (this.right as AVLNode<T>).height;
   }
 }

@@ -4,9 +4,9 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
   protected rotate(
     r: Node<T>,
     b: Node<T>,
-    c: Node<T> | null,
+    c: Node<T> | undefined,
     d: Node<T>,
-    e: Node<T> | null,
+    e: Node<T> | undefined,
     f: Node<T>
   ): void {
     d.parent = r.parent;
@@ -15,14 +15,14 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
     } else if (r.isRightChild()) {
       r.parent!.right = d;
     } else {
-      this.root = d;
+      this._root = d;
     }
     b.right = c;
-    if (c != null) {
+    if (c != undefined) {
       c.parent = b;
     }
     f.left = e;
-    if (e != null) {
+    if (e != undefined) {
       e.parent = f;
     }
     d.left = b;
@@ -32,14 +32,14 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
   }
   protected rotateLeft(grand: Node<T>): void {
     const parent: Node<T> = grand.right!;
-    const child: Node<T> | null = parent.left;
+    const child: Node<T> | undefined = parent.left;
     grand.right = child;
     parent.left = grand;
     this.afterRotate(grand, parent, child);
   }
   protected rotateRight(grand: Node<T>): void {
     const parent: Node<T> = grand.left!;
-    const child: Node<T> | null = parent.right;
+    const child: Node<T> | undefined = parent.right;
     grand.left = child;
     parent.right = grand;
     this.afterRotate(grand, parent, child);
@@ -47,7 +47,7 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
   protected afterRotate(
     grand: Node<T>,
     parent: Node<T>,
-    child: Node<T> | null
+    child: Node<T> | undefined
   ) {
     parent.parent = grand.parent;
     if (grand.isLeftChild()) {
@@ -55,9 +55,9 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
     } else if (grand.isRightChild()) {
       grand.parent!.right = parent;
     } else {
-      this.root = parent;
+      this._root = parent;
     }
-    if (child !== null) {
+    if (child !== undefined) {
       child.parent = grand;
     }
     grand.parent = parent;

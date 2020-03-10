@@ -45,7 +45,7 @@ describe("TreeMap", () => {
     test("no key", () => {
       const map = getNewMap();
       map.put(1, getPerson(1));
-      expect(map.get(3)).toBeNull();
+      expect(map.get(3)).toBeUndefined();
     });
     test("has key", () => {
       const map = getNewMap();
@@ -202,8 +202,8 @@ describe("TreeMap", () => {
   });
   describe("node", () => {
     const node = new Node<number, number>(1, 1);
-    test("sibling null", () => {
-      expect(node.sibling()).toBeNull();
+    test("sibling undefined", () => {
+      expect(node.sibling()).toBeUndefined();
     });
     test("toString", () => {
       const map = getMap([1, 100, 69]);

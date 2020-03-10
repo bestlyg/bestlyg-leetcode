@@ -44,7 +44,7 @@ describe("Node", () => {
     expect(node2.sibling()).toBe(node3);
     expect(node3.sibling()).toBe(node2);
     const node4 = new Node<number>(4);
-    expect(node4.sibling()).toBeNull();
+    expect(node4.sibling()).toBeUndefined();
   });
   test("toString", () => {
     const node = new Node<number>(1);

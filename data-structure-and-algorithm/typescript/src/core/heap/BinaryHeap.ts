@@ -33,8 +33,8 @@ export default class BinaryHeap<T> extends AbstractHeap<T>
     this.siftDown(0);
     return root;
   }
-  replace(element: T): T | null {
-    let root: T | null = null;
+  replace(element: T): T | undefined {
+    let root: T | undefined = undefined;
     if (this._size === 0) {
       this.elements[0] = element;
       this._size++;
@@ -83,18 +83,18 @@ export default class BinaryHeap<T> extends AbstractHeap<T>
   private emptyCheck(string: string): void {
     if (this.isEmpty()) thorwEmptyError("BinaryHeap")(string);
   }
-  _root(): any {
+  _printerRoot(): any {
     return 0;
   }
-  _left(node: any): any {
+  _printerLeft(node: any): any {
     const index = ((<number>node) << 1) + 1;
-    return index >= this._size ? null : index;
+    return index >= this._size ? undefined : index;
   }
-  _right(node: any): any {
+  _printerRight(node: any): any {
     const index = ((<number>node) << 1) + 2;
-    return index >= this._size ? null : index;
+    return index >= this._size ? undefined : index;
   }
-  _string(node: any): string {
+  _printerString(node: any): string {
     return toString(this.elements[node as number]);
   }
 }

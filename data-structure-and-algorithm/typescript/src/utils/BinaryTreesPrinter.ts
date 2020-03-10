@@ -14,7 +14,7 @@ export default class BinaryTreesPrinter {
     tree: IBinaryTreesPrinter,
     style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
   ): void {
-    if (tree === null || tree._root() === null) return;
+    if (tree === undefined || tree._printerRoot() === undefined) return;
     this.printer(tree, style).print();
   }
   public static printString(
@@ -57,32 +57,37 @@ class PreorderPrinter extends Printer {
   }
   //├│─└┌
   public printString(): string {
-    const root = this.tree._root();
-    if (root === null) return "";
+    const root = this.tree._printerRoot();
+    if (root === undefined) return "";
     return this._printString(root, "");
   }
   private _printString(node: object, prefix: string): string {
-    const left = this.tree._left(node);
-    const right = this.tree._right(node);
-    const nodeString = this.tree._string(node);
+    const left = this.tree._printerLeft(node);
+    const right = this.tree._printerRight(node);
+    const nodeString = this.tree._printerString(node);
     const halfLength = nodeString.length >> 1;
-    let string = `${this.tree._string(node)}\n`;
-    if (right !== null) {
-      string += `${prefix + blank(halfLength)}${
-        left === null ? "└" : "├"
-      }${repeat("─", halfLength) + " R "}`;
+    let string: string = `${this.tree._printerString(node)}\n`;
+    if (right !== undefined) {
+      string +=
+        prefix +
+        blank(halfLength) +
+        (left === undefined ? "└" : "├") +
+        repeat("─", halfLength) +
+        " R ";
       string += this._printString(
         right,
         prefix +
-          `${blank(halfLength)}${left === null ? " " : "│"}${blank(halfLength)}`
+          blank(halfLength) +
+          (left === undefined ? " " : "│") +
+          blank(halfLength)
       );
     }
-    if (left !== null) {
-      string += `${prefix + blank(halfLength)}└${repeat("─", halfLength) +
-        " L "}`;
+    if (left !== undefined) {
+      string +=
+        prefix + blank(halfLength) + "└" + repeat("─", halfLength) + " L ";
       string += this._printString(
         left,
-        prefix + `${blank(halfLength)}${blank(halfLength + 1)}`
+        prefix + blank(halfLength) + blank(halfLength + 1)
       );
     }
     return string;
