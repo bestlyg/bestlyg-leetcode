@@ -1,4 +1,4 @@
-package com.bestlyg.Trie;
+package com.bestlyg.trie;
 
 import java.util.HashMap;
 

@@ -17,8 +17,8 @@ class Node<T> {
   }
 }
 export default class DuCircleLinkedList<T> extends AbstractList<T> {
-  firstNode: Node<T> | undefined = undefined;
-  lastNode: Node<T> | undefined = undefined;
+  _firstNode: Node<T> | undefined = undefined;
+  _lastNode: Node<T> | undefined = undefined;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {
@@ -50,8 +50,8 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     return el;
   }
   public clear(): void {
-    this.firstNode = undefined;
-    this.lastNode = undefined;
+    this._firstNode = undefined;
+    this._lastNode = undefined;
     this._size = 0;
   }
   public get(index: number): T {
@@ -65,7 +65,7 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     return oldElement;
   }
   public indexOf(element: T): number {
-    let cur = this.firstNode;
+    let cur = this._firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (cur!.element === element) {
         return i;
@@ -76,18 +76,18 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
   }
   public first(): T {
     this.thorwEmpty("first");
-    return this.firstNode!.element;
+    return this._firstNode!.element;
   }
   public addFirst(element: T): void {
-    if (this.firstNode) {
-      const oldNode = this.firstNode;
-      this.firstNode = new Node<T>(this.lastNode!, element, this.firstNode);
-      this.lastNode!.next = this.firstNode;
-      oldNode.prev = this.firstNode;
+    if (this._firstNode) {
+      const oldNode = this._firstNode;
+      this._firstNode = new Node<T>(this._lastNode!, element, this._firstNode);
+      this._lastNode!.next = this._firstNode;
+      oldNode.prev = this._firstNode;
     } else {
       const newNode = new Node<T>({} as Node<T>, element, {} as Node<T>);
-      this.firstNode = newNode;
-      this.lastNode = newNode;
+      this._firstNode = newNode;
+      this._lastNode = newNode;
       newNode.prev = newNode;
       newNode.next = newNode;
     }
@@ -98,21 +98,21 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     if (this._size === 1) {
       return this.delLastNode();
     }
-    const oldNode = this.firstNode;
-    this.firstNode = this.firstNode!.next;
+    const oldNode = this._firstNode;
+    this._firstNode = this._firstNode!.next;
     this._size--;
     return oldNode!.element!;
   }
   public last(): T {
     this.thorwEmpty("last");
-    return this.lastNode!.element;
+    return this._lastNode!.element;
   }
   public addLast(element: T): void {
-    if (this.lastNode) {
-      const newNode = new Node<T>(this.lastNode, element, this.firstNode!);
-      this.lastNode.next = newNode;
-      this.lastNode = newNode;
-      this.firstNode!.prev = newNode;
+    if (this._lastNode) {
+      const newNode = new Node<T>(this._lastNode, element, this._firstNode!);
+      this._lastNode.next = newNode;
+      this._lastNode = newNode;
+      this._firstNode!.prev = newNode;
       this._size++;
     } else {
       this.addFirst(element);
@@ -125,14 +125,14 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     } else {
       const oldNode = this.node(this.size() - 1);
       const prev = oldNode.prev;
-      prev.next = this.firstNode!;
-      this.lastNode = prev;
+      prev.next = this._firstNode!;
+      this._lastNode = prev;
       this._size--;
       return oldNode!.element!;
     }
   }
   private delLastNode(): T {
-    const el = this.firstNode!.element;
+    const el = this._firstNode!.element;
     this.clear();
     return el;
   }
@@ -144,13 +144,13 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
     this.rangeCheck(index);
     const _size = this.size();
     if (index <= _size >> 1) {
-      let cur = this.firstNode!;
+      let cur = this._firstNode!;
       for (let i = 0; i < index; i++) {
         cur = cur.next!;
       }
       return cur;
     } else {
-      let cur = this.lastNode!;
+      let cur = this._lastNode!;
       for (let i = this.size() - 1; i > index; i--) {
         cur = cur.prev!;
       }
@@ -159,7 +159,7 @@ export default class DuCircleLinkedList<T> extends AbstractList<T> {
   }
   toString(): string {
     let string = `size:${this.size()},elements:[`;
-    let cur = this.firstNode;
+    let cur = this._firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (i !== 0) {
         string += ",";

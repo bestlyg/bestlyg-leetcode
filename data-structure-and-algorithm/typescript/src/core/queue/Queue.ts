@@ -1,25 +1,25 @@
 import AbstractQueue from "./AbstractQueue";
 export default class Queue<T> extends AbstractQueue<T> {
-  protected list: T[] = new Array<T>();
+  protected _list: T[] = new Array<T>();
   size(): number {
-    return this.list.length;
+    return this._list.length;
   }
   isEmpty(): boolean {
     return this.size() === 0;
   }
   clear(): void {
-    this.list.length = 0;
+    this._list.length = 0;
   }
   enQueue(element: T): void {
-    this.list.push(element);
+    this._list.push(element);
   }
   deQueue(): T {
     this.thorwEmpty("deQueue");
-    return this.list.shift()!;
+    return this._list.shift()!;
   }
   front(): T {
     this.thorwEmpty("front");
-    return this.list[0];
+    return this._list[0];
   }
   toString(): string {
     let string: string = `size:${this.size()},front->[`;
@@ -27,7 +27,7 @@ export default class Queue<T> extends AbstractQueue<T> {
       if (i != 0) {
         string += ",";
       }
-      string += this.list[i];
+      string += this._list[i];
     }
     string += "]<-rear";
     return string;

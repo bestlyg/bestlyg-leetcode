@@ -3,20 +3,20 @@ import IDeque from "./IDeque";
 
 export default class Deque<T> extends Queue<T> implements IDeque<T> {
   enQueueRear(element: T): void {
-    this.list.push(element);
+    this._list.push(element);
   }
   enQueueFront(element: T): void {
-    this.list.unshift(element);
+    this._list.unshift(element);
   }
   deQueueRear(): T {
     this.thorwEmpty("deQueueRear");
-    return this.list.pop()!;
+    return this._list.pop()!;
   }
   deQueueFront(): T {
     this.thorwEmpty("deQueueFront");
-    return this.list.shift()!;
+    return this._list.shift()!;
   }
   rear(): T {
-    return this.list[this.size() - 1];
+    return this._list[this.size() - 1];
   }
 }

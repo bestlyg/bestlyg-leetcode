@@ -5,16 +5,16 @@ export default class CircleDeque<T> extends CircleQueue<T>
   implements IDeque<T> {
   rear(): T {
     this.thorwEmpty("rear");
-    return this.elements[this.index(this.size() - 1)] as T;
+    return this._elements[this.index(this.size() - 1)] as T;
   }
   enQueueRear(element: T): void {
     this.enQueue(element);
   }
   enQueueFront(element: T): void {
     this.ensureCapacity();
-    this.head = this.index(-1);
-    this.elements[this.head] = element;
-    this.length++;
+    this._head = this.index(-1);
+    this._elements[this._head] = element;
+    this._size++;
   }
   deQueueFront(): T {
     this.thorwEmpty("deQueueFront");
@@ -23,9 +23,9 @@ export default class CircleDeque<T> extends CircleQueue<T>
   deQueueRear(): T {
     this.thorwEmpty("deQueueRear");
     const index = this.index(this.size() - 1);
-    const el = this.elements[index] as T;
-    Reflect.deleteProperty(this.elements, index);
-    this.length--;
+    const el = this._elements[index] as T;
+    Reflect.deleteProperty(this._elements, index);
+    this._size--;
     return el;
   }
 }

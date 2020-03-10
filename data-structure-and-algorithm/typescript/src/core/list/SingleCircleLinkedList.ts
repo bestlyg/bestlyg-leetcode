@@ -15,7 +15,7 @@ class Node<T> {
   }
 }
 export default class SingleCircleLinkedList<T> extends AbstractList<T> {
-  firstNode: Node<T> | undefined = undefined;
+  _firstNode: Node<T> | undefined = undefined;
   public add(element: T, index: number = this.size()): void {
     this.rangeCheckForAdd(index);
     if (index === 0) {
@@ -45,7 +45,7 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
     return el;
   }
   public clear(): void {
-    this.firstNode = undefined;
+    this._firstNode = undefined;
     this._size = 0;
   }
   public get(index: number): T {
@@ -59,7 +59,7 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
     return oldElement;
   }
   public indexOf(element: T): number {
-    let cur = this.firstNode;
+    let cur = this._firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (cur!.element === element) {
         return i;
@@ -70,13 +70,13 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
   }
   public first(): T {
     this.thorwEmpty("first");
-    return this.firstNode!.element!;
+    return this._firstNode!.element!;
   }
   public addFirst(element: T): void {
     const newNode = new Node<T>(element, {} as Node<T>);
     const lastNode = this.size() === 0 ? newNode : this.node(this.size() - 1);
     lastNode.next = newNode;
-    this.firstNode = newNode;
+    this._firstNode = newNode;
     this._size++;
   }
   public delFirst(): T {
@@ -84,8 +84,8 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
     if (this._size === 1) {
       return this.delLastNode();
     }
-    const oldNode = this.firstNode;
-    this.firstNode = this.firstNode!.next;
+    const oldNode = this._firstNode;
+    this._firstNode = this._firstNode!.next;
     this._size--;
     return oldNode!.element;
   }
@@ -98,9 +98,9 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
     const lastNode = this.size() === 0 ? newNode : this.node(this.size() - 1);
     lastNode.next = newNode;
     if (this.size() === 0) {
-      this.firstNode = newNode;
+      this._firstNode = newNode;
     }
-    newNode.next = this.firstNode!;
+    newNode.next = this._firstNode!;
     this._size++;
   }
   public delLast(): T {
@@ -110,12 +110,12 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
     }
     const prev = this.node(this.size() - 2);
     const oldNode = prev.next;
-    prev.next = this.firstNode!;
+    prev.next = this._firstNode!;
     this._size--;
     return oldNode.element;
   }
   private delLastNode(): T {
-    const el = this.firstNode!.element;
+    const el = this._firstNode!.element;
     this.clear();
     return el;
   }
@@ -125,7 +125,7 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
    */
   private node(index: number): Node<T> {
     this.rangeCheck(index);
-    let cur = this.firstNode as Node<T>;
+    let cur = this._firstNode as Node<T>;
     for (let i = 0; i < index; i++) {
       cur = cur.next!;
     }
@@ -133,7 +133,7 @@ export default class SingleCircleLinkedList<T> extends AbstractList<T> {
   }
   toString(): string {
     let string = `size:${this.size()},elements:[`;
-    let cur = this.firstNode;
+    let cur = this._firstNode;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (i !== 0) {
         string += ",";

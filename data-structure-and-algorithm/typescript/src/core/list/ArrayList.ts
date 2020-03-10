@@ -1,19 +1,19 @@
 import AbstractList from "./AbstractList";
 import { ELEMENT_NOT_FOUND } from "../../types";
 export default class ArrayList<T> extends AbstractList<T> {
-  private elements: Array<T> = []; //所有元素储存
+  private _elements: Array<T> = []; //所有元素储存
   /**
    * 清除所有元素
    */
   public clear(): void {
-    this.elements.length = 0;
+    this._elements.length = 0;
   }
   /**
    * 元素的数量
    * @return
    */
   public size(): number {
-    return this.elements.length;
+    return this._elements.length;
   }
   /**
    * 是否为空
@@ -29,7 +29,7 @@ export default class ArrayList<T> extends AbstractList<T> {
    */
   public indexOf(element: T): number {
     for (let i = 0, len = this.size(); i < len; i++) {
-      if (this.elements[i] === element) {
+      if (this._elements[i] === element) {
         return i;
       }
     }
@@ -42,7 +42,7 @@ export default class ArrayList<T> extends AbstractList<T> {
    */
   public get(index: number): T {
     this.rangeCheck(index);
-    return this.elements[index];
+    return this._elements[index];
   }
   /**
    * 设置index位置的元素
@@ -52,7 +52,7 @@ export default class ArrayList<T> extends AbstractList<T> {
    */
   public set(index: number, element: T): T {
     this.rangeCheck(index);
-    return this.elements.splice(index, 1, element)[0];
+    return this._elements.splice(index, 1, element)[0];
   }
   /**
    * 是否包含某个元素
@@ -63,11 +63,11 @@ export default class ArrayList<T> extends AbstractList<T> {
     return this.indexOf(element) !== ELEMENT_NOT_FOUND;
   }
   add(element: T, index: number = this.size()): void {
-    this.elements.splice(index, 0, element);
+    this._elements.splice(index, 0, element);
   }
   public remove(index: number): T {
     this.rangeCheck(index);
-    return this.elements.splice(index, 1)[0];
+    return this._elements.splice(index, 1)[0];
   }
   public toString(): string {
     let string = `size:${this.size()},elements:[`;
@@ -75,7 +75,7 @@ export default class ArrayList<T> extends AbstractList<T> {
       if (i !== 0) {
         string += ",";
       }
-      string += `${this.elements[i]}`;
+      string += `${this._elements[i]}`;
     }
     string += "]";
     return string;
@@ -83,24 +83,24 @@ export default class ArrayList<T> extends AbstractList<T> {
 
   public first(): T {
     this.thorwEmpty("first");
-    return this.elements[0];
+    return this._elements[0];
   }
   public addFirst(element: T): void {
-    this.elements.unshift(element);
+    this._elements.unshift(element);
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
-    return this.elements.shift()!;
+    return this._elements.shift()!;
   }
   public last(): T {
     this.thorwEmpty("last");
-    return this.elements[this.size() - 1];
+    return this._elements[this.size() - 1];
   }
   public addLast(element: T): void {
-    this.elements.push(element);
+    this._elements.push(element);
   }
   public delLast(): T {
     this.thorwEmpty("delLast");
-    return this.elements.pop()!;
+    return this._elements.pop()!;
   }
 }
