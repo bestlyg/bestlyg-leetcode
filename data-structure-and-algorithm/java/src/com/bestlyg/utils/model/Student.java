@@ -1,10 +1,16 @@
 package com.bestlyg.utils.model;
 
-public class Student extends Person {
-
-	public Student(int age, float height, String name) {
-		super(age, height, name);
-		// TODO Auto-generated constructor stub
+public class Student implements Comparable<Student> {
+	public int score;
+	public int age;
+	
+	public Student(int score, int age) {
+		this.score = score;
+		this.age = age;
 	}
-
+	
+	@Override
+	public int compareTo(Student o) {
+		return age - o.age;
+	}
 }
