@@ -29,7 +29,6 @@ export default class Trie<V> implements ITrie<V> {
   }
   contains(key: string): boolean {
     const node = this.node(key);
-    console.log(node);
     return node !== undefined && node.word;
   }
   add(key: string, value: V): V | undefined {

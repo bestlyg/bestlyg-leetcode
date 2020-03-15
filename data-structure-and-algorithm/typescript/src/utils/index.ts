@@ -1,9 +1,14 @@
 import { IHash, IComparable } from "../types";
-function time(fn: Function, name: string = "Function") {
+function timePrint(fn: Function, name: string = "Function"): void {
   const timeTag: string = "Time -> " + name;
   console.time(timeTag);
   fn();
   console.timeEnd(timeTag);
+}
+function timeString(fn: Function): number {
+  const start = new Date().getTime();
+  fn();
+  return new Date().getTime() - start;
 }
 function error(string: string): void {
   throw new Error(string);
@@ -44,12 +49,26 @@ function extend<T, U>(to: T, from: U): T & U {
   }
   return to as T & U;
 }
+type padType = "Start" | "End";
+function padCompletion(
+  string: string,
+  count: number,
+  padString: string,
+  type: padType = "Start"
+): string {
+  return string["pad" + type](count, padString);
+}
 function repeat(string: string, count: number): string {
   if (count <= 0) return "";
-  return "".padStart(count, string);
+  return padCompletion("", count, string);
 }
 function blank(count: number): string {
   return repeat(" ", count);
+}
+function numberString(number: number): string {
+  if (number < 10000) return (number / 1.0).toFixed(2) + "次";
+  if (number < 100000000) return (number / 10000).toFixed(2) + "万";
+  return (number / 100000000).toFixed(2) + "亿";
 }
 function toString(val) {
   return String(val);
@@ -72,12 +91,6 @@ function hashCode(obj: any): number {
   if (isBoolean(obj)) return obj ? 1231 : 1237;
   if (isIHash(obj)) return obj.hashCode();
   return toUint32(obj);
-  // return hashCode(obj.toString(2));
-  // if (obj === null) return 0;
-  // if (isNumber(obj)) {
-  //   obj = toUint32(obj);
-  //   return obj ^ (obj >>> 16);
-  // }
 }
 function getClassName(obj: any): string {
   if (!isObject(obj)) return "";
@@ -86,6 +99,9 @@ function getClassName(obj: any): string {
 function equals(a: any, b: any): boolean {
   if (isIHash(a)) return a.equals(b);
   return a === b;
+}
+function random(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 export {
   //Type protection
@@ -97,8 +113,11 @@ export {
   isIHash,
   //other
   extend,
-  time,
+  timePrint,
+  timeString,
   toString,
+  numberString,
+  padCompletion,
   repeat,
   blank,
   hashCode,
@@ -107,5 +126,6 @@ export {
   thorwEmptyError,
   toUint32,
   getClassName,
-  equals
+  equals,
+  random
 };

@@ -9,6 +9,15 @@ import IHeap from "../core/heap/IHeap";
 import ITrie from "../core/trie/ITrie";
 const ELEMENT_NOT_FOUND = -1;
 type Comparator<T> = (el1: T, el2: T) => number;
+interface ISort {
+  name: string;
+  swapCount: number;
+  compareCount: number;
+  time: number;
+  array: number[];
+  string: string;
+  toString: Function;
+}
 interface IHash {
   hashCode(): number;
   equals(obj: any): boolean;
@@ -54,5 +63,6 @@ export {
   IComparable,
   IBinaryTreesPrinter,
   ELEMENT_NOT_FOUND,
-  Comparator
+  Comparator,
+  ISort
 };

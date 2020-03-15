@@ -33,7 +33,8 @@ describe("LinkedHashMap", () => {
     let err = "";
     try {
       map.traversal((k: IHash, v: any) => {
-        console.log(k, v);
+        const k1 = k,
+          v1 = v;
         if (v === 99) return true;
         return false;
       });

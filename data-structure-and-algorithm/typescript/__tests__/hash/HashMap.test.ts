@@ -128,14 +128,16 @@ describe("HashMap", () => {
     let err = "";
     try {
       map.traversal((k: IHash, v: number) => {
-        console.log(k, v);
+        const k1 = k;
+        const v1 = v;
         return false;
       });
       for (let i = 0; i < 10; i++) {
         map.put(getKey(i), i);
       }
       map.traversal((k: IHash, v: number) => {
-        console.log(k, v);
+        const k1 = k;
+        const v1 = v;
         if (k === getKey(9)) return true;
         return false;
       });

@@ -75,7 +75,6 @@ public abstract class Sort<T extends Comparable<T>> implements Comparable<Sort<T
 	
 	private String numberString(int number) {
 		if (number < 10000) return "" + number;
-		
 		if (number < 100000000) return fmt.format(number / 10000.0) + "万";
 		return fmt.format(number / 100000000.0) + "亿";
 	}

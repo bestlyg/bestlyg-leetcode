@@ -23,6 +23,8 @@ import LinkedHashSet from "./core/hash/LinkedHashSet";
 import BinaryHeap from "./core/heap/BinaryHeap";
 import Trie from "./core/trie/Trie";
 import BinaryTreesPrinter from "./utils/BinaryTreesPrinter";
+import * as algorithms from "./core/algorithms";
+import * as types from "./types";
 export {
   ArrayList,
   SingleLinkedList,
@@ -48,8 +50,17 @@ export {
   LinkedHashSet,
   BinaryHeap,
   Trie,
-  BinaryTreesPrinter
+  BinaryTreesPrinter,
+  algorithms,
+  types
 };
-export * from "./types";
-// Test Scope Start
-// Test Scope End
+
+//
+import { random, print, isAscOrder } from "../src/utils/Arrays";
+const a = random(10, 1, 100);
+print(a);
+const result = algorithms.RadixSort(a);
+console.log(isAscOrder(result.array));
+print(result.array);
+console.log(result.array === a);
+//

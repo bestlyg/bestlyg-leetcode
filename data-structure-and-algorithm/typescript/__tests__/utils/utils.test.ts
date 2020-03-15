@@ -1,5 +1,4 @@
 import {
-  time,
   isNumber,
   extend,
   repeat,
@@ -13,23 +12,43 @@ import {
   hashCode,
   getClassName,
   equals,
-  isObject
+  isObject,
+  random,
+  timePrint,
+  timeString,
+  numberString,
+  padCompletion
 } from "../../src/utils";
 import { getPerson, getKey, getMyObject } from "../../src/utils/model";
 describe("Utils Test", () => {
   test("time", () => {
     let err = "";
     try {
-      time(() => {
-        console.log("test Time");
+      timePrint(() => {
+        const string = "test time";
       });
-      time(() => {
-        console.log("test Time");
+      timePrint(() => {
+        const string = "test time";
       }, "test");
     } catch (error) {
       err = error;
     }
     expect(err).toBe("");
+  });
+  test("timeString", () => {
+    let time = timeString(() => {
+      for (let i = 0; i < 10; i++) {
+        let time = "timeString" + i;
+        time += "";
+      }
+    });
+    time = timeString(() => {
+      for (let i = 0; i < 10; i++) {
+        let time = "timeString" + i;
+        time += "";
+      }
+    });
+    expect(time).toBeLessThan(1000);
   });
   test("warn", () => {
     let err = "";
@@ -63,6 +82,12 @@ describe("Utils Test", () => {
     expect(boolean).toBe(true);
     if (!isIHash({})) boolean = false;
     expect(boolean).toBe(false);
+  });
+  test("padCompletion", () => {
+    const demo = padCompletion("11", 3, "-");
+    expect(demo).toBe("-11");
+    const demo2 = padCompletion("11", 3, "-", "End");
+    expect(demo2).toBe("11-");
   });
   test("isIComparable", () => {
     let boolean = false;
@@ -116,5 +141,19 @@ describe("Utils Test", () => {
     expect(equals(getPerson(1), getPerson(1))).toBe(true);
     expect(equals(1, 1)).toBe(true);
     expect(equals("1", 1)).toBe(false);
+  });
+  test("random", () => {
+    const num = random(2, 10);
+    expect(num).toBeLessThanOrEqual(10);
+    expect(num).toBeGreaterThanOrEqual(2);
+  });
+  test("numberString", () => {
+    expect(numberString(1)).toBe("1.00次");
+    expect(numberString(10000)).toBe("1.00万");
+    expect(numberString(11200.123)).toBe("1.12万");
+    expect(numberString(11300.125)).toBe("1.13万");
+    expect(numberString(100000000)).toBe("1.00亿");
+    expect(numberString(112000000.123)).toBe("1.12亿");
+    expect(numberString(113000000.125)).toBe("1.13亿");
   });
 });
