@@ -22,6 +22,13 @@ import LinkedHashMap from "./core/hash/LinkedHashMap";
 import LinkedHashSet from "./core/hash/LinkedHashSet";
 import BinaryHeap from "./core/heap/BinaryHeap";
 import Trie from "./core/trie/Trie";
+import UnionFind_QF from "./core/unionfind/UnionFind_QF";
+import UnionFind_QU from "./core/unionfind/UnionFind_QU";
+import UnionFind_QU_S from "./core/unionfind/UnionFind_QU_S";
+import UnionFind_QU_R from "./core/unionfind/UnionFind_QU_R";
+import UnionFind_QU_R_PC from "./core/unionfind/UnionFind_QU_R_PC";
+import UnionFind_QU_R_PH from "./core/unionfind/UnionFind_QU_R_PH";
+import UnionFind_QU_R_PS from "./core/unionfind/UnionFind_QU_R_PS";
 import BinaryTreesPrinter from "./utils/BinaryTreesPrinter";
 import * as algorithms from "./core/algorithms";
 import * as types from "./types";
@@ -50,17 +57,19 @@ export {
   LinkedHashSet,
   BinaryHeap,
   Trie,
+  UnionFind_QF,
+  UnionFind_QU,
+  UnionFind_QU_S,
+  UnionFind_QU_R,
+  UnionFind_QU_R_PC,
+  UnionFind_QU_R_PH,
+  UnionFind_QU_R_PS,
   BinaryTreesPrinter,
   algorithms,
   types
 };
 
 //
-import { random, print, isAscOrder } from "../src/utils/Arrays";
-const a = random(10, 1, 100);
-print(a);
-const result = algorithms.RadixSort(a);
-console.log(isAscOrder(result.array));
-print(result.array);
-console.log(result.array === a);
+const uf = new UnionFind_QU_R(12);
+uf.union(0, 1);
 //

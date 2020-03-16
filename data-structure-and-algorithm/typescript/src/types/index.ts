@@ -7,6 +7,7 @@ import ISet from "../core/set/ISet";
 import IMap from "../core/map/IMap";
 import IHeap from "../core/heap/IHeap";
 import ITrie from "../core/trie/ITrie";
+import IUnionFind from "../core/unionfind/IUnionFind";
 const ELEMENT_NOT_FOUND = -1;
 type Comparator<T> = (el1: T, el2: T) => number;
 interface ISort {
@@ -60,6 +61,7 @@ export {
   IHeap,
   ITrie,
   IHash,
+  IUnionFind,
   IComparable,
   IBinaryTreesPrinter,
   ELEMENT_NOT_FOUND,
