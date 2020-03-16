@@ -10,13 +10,13 @@ import ITrie from "../core/trie/ITrie";
 const ELEMENT_NOT_FOUND = -1;
 type Comparator<T> = (el1: T, el2: T) => number;
 interface ISort {
-  name: string;
-  swapCount: number;
-  compareCount: number;
-  time: number;
-  array: number[];
-  string: string;
-  toString: Function;
+  readonly name: string;
+  readonly swapCount: number;
+  readonly compareCount: number;
+  readonly time: number;
+  readonly array: number[];
+  readonly string: string;
+  readonly toString: Function;
 }
 interface IHash {
   hashCode(): number;
