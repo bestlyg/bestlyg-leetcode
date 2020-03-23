@@ -1,6 +1,6 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 export default mixinSort(
-  class InsertionSort2 extends Sort {
+  class InsertionSort2 extends AbstractSort {
     protected sort(): void {
       for (let begin = 1; begin < this.array.length; begin++) {
         let cur = begin;

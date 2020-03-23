@@ -7,11 +7,11 @@ import {
   SubKey1,
   SubKey2,
   getKey,
-  Hash,
-  getHash,
+  MyHash,
+  getMyHash,
   getPerson
 } from "../../src/utils/model";
-import { IHash } from "../../src/types";
+import { Hash as IHash } from "../../src/types";
 function getNewMap(): HashMap<IHash, any> {
   return new HashMap<IHash, any>();
 }
@@ -19,7 +19,7 @@ function getMap(
   nums: number[] = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99]
 ): HashMap<IHash, any> {
   const map = getNewMap();
-  for (let num of nums) {
+  for (const num of nums) {
     map.put(getKey(num), num);
   }
   return map;
@@ -128,16 +128,14 @@ describe("HashMap", () => {
     let err = "";
     try {
       map.traversal((k: IHash, v: number) => {
-        const k1 = k;
-        const v1 = v;
+        console.log(k, v);
         return false;
       });
       for (let i = 0; i < 10; i++) {
         map.put(getKey(i), i);
       }
       map.traversal((k: IHash, v: number) => {
-        const k1 = k;
-        const v1 = v;
+        console.log(k, v);
         if (k === getKey(9)) return true;
         return false;
       });
@@ -148,8 +146,8 @@ describe("HashMap", () => {
   });
   test("successor", () => {
     const map = getMap([1, 100, 69, 65, 84, 83, 54, 10]);
-    const node = map.getNode(getKey(65));
-    expect(map.successor(node!).key).toBe(getKey(69));
+    const node = map.getNode(getKey(65)) as Node<IHash, any>;
+    expect(map.successor(node).key).toBe(getKey(69));
   });
   describe("get", () => {
     test("no key", () => {
@@ -211,7 +209,7 @@ describe("HashMap", () => {
       40
     ];
     const map = getMap(nums);
-    for (let num of nums) map.remove(getKey(num));
+    for (const num of nums) map.remove(getKey(num));
     expect(map.size()).toBe(0);
   });
   test("print", () => {
@@ -231,12 +229,12 @@ describe("HashMap", () => {
   test("node", () => {
     const map = getNewMap();
     const nums = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99];
-    for (let num of nums) map.put(getPerson(num), num);
-    expect(map.getNode(getPerson(50))!.value).toBe(50);
-    expect(map.getNode(getPerson(99))!.value).toBe(99);
+    for (const num of nums) map.put(getPerson(num), num);
+    expect((map.getNode(getPerson(50)) as Node<IHash, any>).value).toBe(50);
+    expect((map.getNode(getPerson(99)) as Node<IHash, any>).value).toBe(99);
     map.clear();
-    for (let num of nums) map.put(getHash(num), num);
-    expect(map.getNode(getHash(99))!.value).toBe(99);
+    for (const num of nums) map.put(getMyHash(num), num);
+    expect((map.getNode(getMyHash(99)) as Node<IHash, any>).value).toBe(99);
   });
   test("moveNode", () => {
     const map = getNewMap();
@@ -245,8 +243,8 @@ describe("HashMap", () => {
   });
   describe("put", () => {
     test("can not compare", () => {
-      const map = new HashMap<Hash, number>();
-      for (let i = 0; i < 100; i++) map.put(getHash(i), i);
+      const map = new HashMap<MyHash, number>();
+      for (let i = 0; i < 100; i++) map.put(getMyHash(i), i);
       expect(map.size()).toBe(100);
     });
     test("root === undefined", () => {

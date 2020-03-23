@@ -1,30 +1,30 @@
-export enum Color {
+export enum ColorEnum {
   RED,
   BLACK
 }
-export interface IColor {
-  color: Color;
+export interface Color {
+  color: ColorEnum;
 }
-export function color<T>(
-  node: IColor | undefined,
-  color: Color
-): IColor | undefined {
+export function color(
+  node: Color | undefined,
+  color: ColorEnum
+): Color | undefined {
   if (node === undefined) return node;
   node.color = color;
   return node;
 }
-export function red<T>(node: IColor | undefined): IColor | undefined {
-  return color(node, Color.RED);
+export function red(node: Color | undefined): Color | undefined {
+  return color(node, ColorEnum.RED);
 }
-export function black<T>(node: IColor | undefined): IColor | undefined {
-  return color(node, Color.BLACK);
+export function black(node: Color | undefined): Color | undefined {
+  return color(node, ColorEnum.BLACK);
 }
-export function colorOf<T>(node: IColor | undefined): Color {
-  return node === undefined ? Color.BLACK : node.color;
+export function colorOf(node: Color | undefined): ColorEnum {
+  return node === undefined ? ColorEnum.BLACK : node.color;
 }
-export function isBlack<T>(node: IColor | undefined): boolean {
-  return colorOf(node) === Color.BLACK;
+export function isBlack(node: Color | undefined): boolean {
+  return colorOf(node) === ColorEnum.BLACK;
 }
-export function isRed<T>(node: IColor | undefined): boolean {
-  return colorOf(node) === Color.RED;
+export function isRed(node: Color | undefined): boolean {
+  return colorOf(node) === ColorEnum.RED;
 }

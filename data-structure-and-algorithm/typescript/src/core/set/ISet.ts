@@ -2,7 +2,7 @@
  * 集合 Set实现
  * Javascript中在es6中已新增Set
  */
-export default interface ISet<T> {
+export default interface Set<T> {
   /**
    * 返回集合元素数量
    * @return {number} 数量的值

@@ -2,17 +2,17 @@ import { Person, getPerson } from "../../src/utils/model";
 import RedBlackTree from "../../src/core/tree/RedBlackTree";
 
 function testCompare(p1: Person, p2: Person): number {
-  return p1.Age - p2.Age;
+  return p1.age - p2.age;
 }
 function getNewRBT(
   fn: (p1: Person, p2: Person) => number = testCompare
 ): RedBlackTree<Person> {
   return new RedBlackTree<Person>(fn);
 }
-function levelOrderToString(tree: RedBlackTree<Person>) {
+function levelOrderToString(tree: RedBlackTree<Person>): string {
   let string = "";
   tree.levelOrder((el: Person) => {
-    string += el.Age + " ";
+    string += el.age + " ";
     return false;
   });
   return string;
@@ -21,7 +21,7 @@ function getRBT(
   nums: number[] = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99]
 ): RedBlackTree<Person> {
   const tree = getNewRBT();
-  for (let num of nums) {
+  for (const num of nums) {
     tree.add(getPerson(num));
   }
   return tree;

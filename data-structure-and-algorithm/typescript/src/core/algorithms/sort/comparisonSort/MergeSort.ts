@@ -1,7 +1,7 @@
-import Sort, { mixinSort } from "../Sort";
-let leftArray: number[] = [];
+import AbstractSort, { mixinSort } from "../Sort";
+const leftArray: number[] = [];
 export default mixinSort(
-  class MergeSort extends Sort {
+  class MergeSort extends AbstractSort {
     protected sort(): void {
       this._sort(0, this.array.length);
     }
@@ -12,7 +12,7 @@ export default mixinSort(
       this._sort(mid, end);
       this.merge(begin, mid, end);
     }
-    private merge(begin: number, mid: number, end: number) {
+    private merge(begin: number, mid: number, end: number): void {
       let li = 0,
         ri = mid;
       const le = mid - begin,

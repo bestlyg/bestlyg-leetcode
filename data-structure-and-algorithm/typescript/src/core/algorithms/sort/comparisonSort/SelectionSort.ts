@@ -1,6 +1,6 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 export default mixinSort(
-  class SelectionSort extends Sort {
+  class SelectionSort extends AbstractSort {
     protected sort(): void {
       const array = this.array;
       for (let end = array.length - 1; end > 0; end--) {

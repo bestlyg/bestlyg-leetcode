@@ -10,6 +10,6 @@ export default class SubKey2 extends Key {
       (getClassName(obj) !== SubKey1.name && getClassName(obj) !== SubKey2.name)
     )
       return false;
-    return (<SubKey2>obj).value === this.value;
+    return (obj as SubKey2).value === this.value;
   }
 }

@@ -1,9 +1,9 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 export default mixinSort(
-  class ShellSort extends Sort {
+  class ShellSort extends AbstractSort {
     protected sort(): void {
       const stepSequence = this.shellStepSequence();
-      for (let step of stepSequence) {
+      for (const step of stepSequence) {
         this._sort(step);
       }
     }

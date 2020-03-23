@@ -1,5 +1,5 @@
-import { IHash, IComparable } from "../types";
-function timePrint(fn: Function, name: string = "Function"): void {
+import { Hash, Comparable } from "../types";
+function timePrint(fn: Function, name = "Function"): void {
   const timeTag: string = "Time -> " + name;
   console.time(timeTag);
   fn();
@@ -10,15 +10,17 @@ function timeString(fn: Function): number {
   fn();
   return new Date().getTime() - start;
 }
-function error(string: string): void {
+function error(string: string): never {
   throw new Error(string);
 }
 function warn(string: string): void {
   console.warn(`Here's a Warn : ${string}`);
 }
-const thorwEmptyError = (struct: string) => (method: string) => {
-  error(`${struct} is Empty can not use the Method: ${method}`);
-};
+function thorwEmptyError(struct: string) {
+  return function(method: string): never {
+    return error(`${struct} is Empty can not use the Method: ${method}`);
+  };
+}
 function isNumber(number: any): number is number {
   if (number === null) return false;
   return typeof number === "number";
@@ -35,11 +37,11 @@ function isObject(object: any): object is object {
   if (object === null) return false;
   return typeof object == "object";
 }
-function isIHash(obj: any): obj is IHash {
+function isIHash(obj: any): obj is Hash {
   if (obj === null) return false;
   return obj.hashCode && obj.equals;
 }
-function isIComparable<T>(obj: any): obj is IComparable<T> {
+function isIComparable<T>(obj: any): obj is Comparable<T> {
   if (obj === null) return false;
   return obj.compareTo;
 }
@@ -70,7 +72,7 @@ function numberString(number: number): string {
   if (number < 100000000) return (number / 10000).toFixed(2) + "万";
   return (number / 100000000).toFixed(2) + "亿";
 }
-function toString(val) {
+function toString(val): string {
   return String(val);
 }
 function toUint32(x: any): number {
@@ -100,7 +102,7 @@ function equals(a: any, b: any): boolean {
   if (isIHash(a)) return a.equals(b);
   return a === b;
 }
-function random(min: number, max: number) {
+function random(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 export {

@@ -5,10 +5,10 @@ export default class Patient {
     this._name = name;
     this._boneBreak = boneBreak;
   }
-  get name() {
+  get name(): string {
     return this._name;
   }
-  get boneBreak() {
+  get boneBreak(): number {
     return this._boneBreak;
   }
   toString(): string {

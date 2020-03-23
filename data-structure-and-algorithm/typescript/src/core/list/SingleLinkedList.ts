@@ -25,8 +25,8 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       el = this.delLast();
     } else {
       const prev = this.node(element - 1);
-      el = prev.next!.element!;
-      prev.next = prev.next!.next;
+      el = (prev.next as Node<T>).element;
+      prev.next = (prev.next as Node<T>).next;
       this._size--;
     }
     return el;
@@ -60,17 +60,18 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
   }
   public indexOf(element: T): number {
     let cur = this._firstNode;
+    if (cur === undefined) return ELEMENT_NOT_FOUND;
     for (let i = 0, len = this.size(); i < len; i++) {
-      if (cur!.element === element) {
+      if ((cur as Node<T>).element === element) {
         return i;
       }
-      cur = cur!.next!;
+      cur = (cur as Node<T>).next;
     }
     return ELEMENT_NOT_FOUND;
   }
   public first(): T {
     this.thorwEmpty("first");
-    return this._firstNode!.element!;
+    return (this._firstNode as Node<T>).element;
   }
   public addFirst(element: T): void {
     if (this._firstNode) {
@@ -87,9 +88,9 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
     if (this.size() == 1) {
       return this.delLastNode();
     }
-    this._firstNode = this._firstNode!.next;
+    this._firstNode = (this._firstNode as Node<T>).next;
     this._size--;
-    return oldNode!.element!;
+    return (oldNode as Node<T>).element;
   }
   public last(): T {
     this.thorwEmpty("last");
@@ -111,14 +112,14 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
       return this.delLastNode();
     } else {
       const prev = this.node(this.size() - 2);
-      const oldNode = prev.next;
+      const oldNode = prev.next as Node<T>;
       prev.next = undefined;
       this._size--;
-      return oldNode!.element!;
+      return oldNode.element;
     }
   }
   private delLastNode(): T {
-    const el = this._firstNode!.element;
+    const el = (this._firstNode as Node<T>).element;
     this.clear();
     return el;
   }
@@ -130,7 +131,7 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
     this.rangeCheck(index);
     let cur = this._firstNode as Node<T>;
     for (let i = 0; i < index; i++) {
-      cur = cur.next!;
+      cur = cur.next as Node<T>;
     }
     return cur;
   }
@@ -142,9 +143,7 @@ export default class SingleLinkedList<T> extends AbstractList<T> {
         string += ",";
       }
       string += cur;
-      if (i != len - 1) {
-        cur = cur!.next;
-      }
+      cur = (cur as Node<T>).next;
     }
     string += "]";
     return string;

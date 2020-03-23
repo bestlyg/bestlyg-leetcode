@@ -1,8 +1,8 @@
 import { thorwEmptyError } from "../../utils";
-import IList from "./IList";
+import List from "./IList";
 import { ELEMENT_NOT_FOUND } from "../../types";
-export default abstract class AbstractList<T> implements IList<T> {
-  protected _size: number = 0;
+export default abstract class AbstractList<T> implements List<T> {
+  protected _size = 0;
   public size(): number {
     return this._size;
   }
@@ -22,7 +22,7 @@ export default abstract class AbstractList<T> implements IList<T> {
       this.outOfBounds(index);
     }
   }
-  protected thorwEmpty(method: string) {
+  protected thorwEmpty(method: string): void {
     if (this.isEmpty()) {
       thorwEmptyError("List")(method);
     }

@@ -5,11 +5,11 @@ describe("Person", () => {
     const obj = getPerson(1);
     const obj2 = getPerson(1);
     expect(obj === obj2).toBe(true);
-    expect(obj.Age).toBe(1);
-    expect(obj.Name).toBe("1");
+    expect(obj.age).toBe(1);
+    expect(obj.name).toBe("1");
     const p = new Person("1", 1);
-    expect(obj.Age === p.Age).toBe(true);
-    expect(obj.Name === p.Name).toBe(true);
+    expect(obj.age === p.age).toBe(true);
+    expect(obj.name === p.name).toBe(true);
   });
   test("compareTo", () => {
     const p1 = getPerson(1);

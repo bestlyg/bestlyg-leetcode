@@ -6,10 +6,10 @@ export default class Fibonacci {
     return Fibonacci.fib1(n - 1) + Fibonacci.fib1(n - 2);
   }
   public static fib2(n: number): number {
-    interface INumber {
+    interface NumberObj {
       [num: number]: number;
     }
-    const obj: INumber = {
+    const obj: NumberObj = {
       0: 1,
       1: 1
     };

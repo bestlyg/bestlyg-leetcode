@@ -9,8 +9,8 @@ export default class UnionFind_QU_S extends UnionFind_QU {
     this._sizes = new Array<number>(capacity).fill(1);
   }
   union(v1: number, v2: number): void {
-    let p1 = this.find(v1);
-    let p2 = this.find(v2);
+    const p1 = this.find(v1);
+    const p2 = this.find(v2);
     if (p1 === p2) return;
     if (this._sizes[p1] < this._sizes[p2]) {
       this._parents[p1] = p2;

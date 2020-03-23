@@ -1,16 +1,16 @@
-import IList from "../core/list/IList";
-import IQueue from "../core/queue/IQueue";
-import IDeque from "../core/queue/IDeque";
-import IStack from "../core/stack/IStack";
-import IBinaryTree from "../core/tree/IBinaryTree";
-import ISet from "../core/set/ISet";
-import IMap from "../core/map/IMap";
-import IHeap from "../core/heap/IHeap";
-import ITrie from "../core/trie/ITrie";
-import IUnionFind from "../core/unionfind/IUnionFind";
+import List from "../core/list/IList";
+import Queue from "../core/queue/IQueue";
+import Deque from "../core/queue/IDeque";
+import Stack from "../core/stack/IStack";
+import BinaryTree from "../core/tree/IBinaryTree";
+import Set from "../core/set/ISet";
+import Map from "../core/map/IMap";
+import Heap from "../core/heap/IHeap";
+import Trie from "../core/trie/ITrie";
+import UnionFind from "../core/union/IUnionFind";
 const ELEMENT_NOT_FOUND = -1;
 type Comparator<T> = (el1: T, el2: T) => number;
-interface ISort {
+interface Sort {
   readonly name: string;
   readonly swapCount: number;
   readonly compareCount: number;
@@ -19,14 +19,14 @@ interface ISort {
   readonly string: string;
   readonly toString: Function;
 }
-interface IHash {
+interface Hash {
   hashCode(): number;
   equals(obj: any): boolean;
 }
-interface IComparable<T> {
+interface Comparable<T> {
   compareTo(obj: T): number;
 }
-interface IBinaryTreesPrinter {
+interface BinaryTreesPrinter {
   /**
    * 根节点
    */
@@ -51,20 +51,20 @@ interface IBinaryTreesPrinter {
   _printerString(node: any): string;
 }
 export {
-  IList,
-  IQueue,
-  IDeque,
-  IStack,
-  ISet,
-  IBinaryTree,
-  IMap,
-  IHeap,
-  ITrie,
-  IHash,
-  IUnionFind,
-  IComparable,
-  IBinaryTreesPrinter,
+  List,
+  Queue,
+  Deque,
+  Stack,
+  Set,
+  BinaryTree,
+  Map,
+  Heap,
+  Trie,
+  Hash,
+  UnionFind,
+  Comparable,
+  BinaryTreesPrinter,
   ELEMENT_NOT_FOUND,
   Comparator,
-  ISort
+  Sort
 };

@@ -1,6 +1,5 @@
 import TreeMap, { Node } from "../../src/core/map/TreeMap";
 import { Person, getPerson } from "../../src/utils/model";
-import { color, Color } from "../../src/utils/color";
 function testCompare(e1: number, e2: number): number {
   return e1 - e2;
 }
@@ -13,7 +12,7 @@ function getMap(
   nums: number[] = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99]
 ): TreeMap<number, Person> {
   const map = getNewMap();
-  for (let num of nums) {
+  for (const num of nums) {
     map.put(num, getPerson(num));
   }
   return map;
@@ -38,8 +37,8 @@ describe("TreeMap", () => {
   });
   test("successor", () => {
     const map = getMap([1, 100, 69, 65, 84, 83, 54, 10]);
-    const node = map.getNode(65);
-    expect(map.successor(node!).key).toBe(69);
+    const node = map.getNode(65) as Node<number, Person>;
+    expect(map.successor(node).key).toBe(69);
   });
   describe("get", () => {
     test("no key", () => {
@@ -101,7 +100,7 @@ describe("TreeMap", () => {
       40
     ];
     const map = getMap(nums);
-    for (let num of nums) map.remove(num);
+    for (const num of nums) map.remove(num);
     expect(map.size()).toBe(0);
   });
   describe("put", () => {

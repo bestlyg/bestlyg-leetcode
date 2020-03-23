@@ -1,6 +1,6 @@
 import Node from "./Node";
 export default class AVLNode<T> extends Node<T> {
-  private height: number = 1;
+  private height = 1;
   constructor(element: T, parent?: Node<T>) {
     super(element, parent);
   }

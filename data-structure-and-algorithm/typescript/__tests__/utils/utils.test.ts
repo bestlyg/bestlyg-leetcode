@@ -19,7 +19,7 @@ import {
   numberString,
   padCompletion
 } from "../../src/utils";
-import { getPerson, getKey, getMyObject } from "../../src/utils/model";
+import { getPerson, getKey } from "../../src/utils/model";
 describe("Utils Test", () => {
   test("time", () => {
     let err = "";

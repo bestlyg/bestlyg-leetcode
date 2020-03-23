@@ -1,14 +1,14 @@
 import { getClassName } from "../../src/utils";
-import IUnionFind from "../../src/core/unionfind/IUnionFind";
-import UnionFind_QF from "../../src/core/unionfind/UnionFind_QF";
-import UnionFind_QU from "../../src/core/unionfind/UnionFind_QU";
-import UnionFind_QU_S from "../../src/core/unionfind/UnionFind_QU_S";
-import UnionFind_QU_R from "../../src/core/unionfind/UnionFind_QU_R";
-import UnionFind_QU_R_PC from "../../src/core/unionfind/UnionFind_QU_R_PC";
-import UnionFind_QU_R_PH from "../../src/core/unionfind/UnionFind_QU_R_PH";
-import UnionFind_QU_R_PS from "../../src/core/unionfind/UnionFind_QU_R_PS";
+import IUnionFind from "../../src/core/union/IUnionFind";
+import UnionFind_QF from "../../src/core/union/UnionFind_QF";
+import UnionFind_QU from "../../src/core/union/UnionFind_QU";
+import UnionFind_QU_S from "../../src/core/union/UnionFind_QU_S";
+import UnionFind_QU_R from "../../src/core/union/UnionFind_QU_R";
+import UnionFind_QU_R_PC from "../../src/core/union/UnionFind_QU_R_PC";
+import UnionFind_QU_R_PH from "../../src/core/union/UnionFind_QU_R_PH";
+import UnionFind_QU_R_PS from "../../src/core/union/UnionFind_QU_R_PS";
 
-const run = (UnionFind: new (count: number) => IUnionFind) => {
+const run = (UnionFind: new (count: number) => IUnionFind): void => {
   const count = 10000;
   const uf = new UnionFind(count);
   const name = getClassName(uf);
@@ -42,6 +42,7 @@ const run = (UnionFind: new (count: number) => IUnionFind) => {
     test("capacity", () => {
       try {
         const uf = new UnionFind(-1);
+        uf.union(1, 2);
       } catch (error) {
         expect(error.toString()).toBe("Error: capacity must be >= 1");
       }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   hashCode,
   toUint32,
@@ -8,8 +10,8 @@ import {
   getClassName
 } from "./../../utils";
 import {
-  IColor,
   Color,
+  ColorEnum,
   black,
   isBlack,
   red,
@@ -17,16 +19,16 @@ import {
   color,
   colorOf
 } from "../../utils/color";
-import { Visitor } from "../../utils/visitor_KV";
+import { VisitorIterator } from "../../utils/visitor_KV";
 import IMap from "../map/IMap";
-import { IHash } from "../../types";
+import { Hash } from "../../types";
 import Queue from "../queue/Queue";
 import BinaryTreesPrinter from "../../utils/BinaryTreesPrinter";
-export class Node<K, V> implements IColor {
+export class Node<K, V> implements Color {
   hash: number;
   key: K;
   value: V;
-  color: Color = Color.RED;
+  color: ColorEnum = ColorEnum.RED;
   left: Node<K, V> | undefined = undefined;
   right: Node<K, V> | undefined = undefined;
   parent: Node<K, V> | undefined;
@@ -34,8 +36,7 @@ export class Node<K, V> implements IColor {
     this.key = key;
     this.value = value;
     this.parent = parent;
-    let hash = hashCode(key);
-    this.hash = toUint32(hash);
+    this.hash = toUint32(hashCode(key));
   }
   public hasTwoChildren(): boolean {
     return this.left !== undefined && this.right !== undefined;
@@ -47,17 +48,20 @@ export class Node<K, V> implements IColor {
     return this.parent !== undefined && this === this.parent.right;
   }
   public sibling(): Node<K, V> | undefined {
-    if (this.isLeftChild()) return this.parent!.right;
-    if (this.isRightChild()) return this.parent!.left;
+    if (this.isLeftChild()) return (this.parent as Node<K, V>).right;
+    if (this.isRightChild()) return (this.parent as Node<K, V>).left;
     return undefined;
   }
   public toString(): string {
-    return `${this.color === Color.RED ? "R" : "B"}_key:【${
+    return `${this.color === ColorEnum.RED ? "R" : "B"}_key:【${
       this.key
     }】_value:【${this.value}】`;
   }
 }
-function levelOrder<K, V>(visitor: Visitor<K, V>, node: Node<K, V>): void {
+function levelOrder<K, V>(
+  visitor: VisitorIterator<K, V>,
+  node: Node<K, V>
+): void {
   const queue = new Queue<Node<K, V>>();
   queue.enQueue(node);
   while (!queue.isEmpty()) {
@@ -72,9 +76,9 @@ function levelOrder<K, V>(visitor: Visitor<K, V>, node: Node<K, V>): void {
   }
 }
 const DEFAULT_CAPACITY: number = 1 << 4;
-const DEFAULT_LOAD_FACTOR: number = 0.75;
-export default class HashMap<K extends IHash, V> implements IMap<K, V> {
-  private _size: number = 0;
+const DEFAULT_LOAD_FACTOR = 0.75;
+export default class HashMap<K extends Hash, V> implements IMap<K, V> {
+  private _size = 0;
   private _table: Node<K, V>[] = [];
   private _capacity: number = DEFAULT_CAPACITY;
   size(): number {
@@ -131,10 +135,10 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
           return root;
         },
         _printerLeft(node: object): any {
-          return (<Node<K, V>>node).left;
+          return (node as Node<K, V>).left;
         },
         _printerRight(node: object): any {
-          return (<Node<K, V>>node).right;
+          return (node as Node<K, V>).right;
         },
         _printerString(node: object): string {
           const myNode = node as Node<K, V>;
@@ -161,8 +165,8 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     let parent = root;
     let node: Node<K, V> | undefined = root;
     let cmp = 0;
-    let k1 = key;
-    let h1 = hashCode(k1);
+    const k1 = key;
+    const h1 = hashCode(k1);
     let result: Node<K, V> | undefined;
     let searched = false;
     do {
@@ -245,7 +249,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     newNode.parent = undefined;
     newNode.left = undefined;
     newNode.right = undefined;
-    newNode.color = Color.RED;
+    newNode.color = ColorEnum.RED;
     const index = this.index(newNode);
     let root = this._table[index];
     if (root === undefined) {
@@ -257,8 +261,8 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     let parent = root;
     let node: Node<K, V> | undefined = root;
     let cmp = 0;
-    let k1 = newNode.key;
-    let h1 = newNode.hash;
+    const k1 = newNode.key;
+    const h1 = newNode.hash;
     do {
       parent = node;
       const k2 = node.key;
@@ -280,7 +284,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
       if (cmp > 0) {
         node = node.right;
       } else {
-        node = node!.left;
+        node = node.left;
       }
     } while (node !== undefined);
     newNode.parent = parent;
@@ -370,7 +374,9 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     const parent = node.parent;
     if (parent === undefined) return;
     const left = parent.left === undefined || node.isLeftChild();
-    let sibling: Node<K, V> = left ? parent.right! : parent.left!;
+    let sibling: Node<K, V> = left
+      ? (parent.right as Node<K, V>)
+      : (parent.left as Node<K, V>);
     if (left) {
       if (isRed(sibling)) {
         black(sibling);
@@ -386,7 +392,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
       } else {
         if (isBlack(sibling.right)) {
           this.rotateRight(sibling);
-          sibling = parent.right!;
+          sibling = parent.right as Node<K, V>;
         }
         color(sibling, colorOf(parent));
         black(sibling.right);
@@ -408,7 +414,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
       } else {
         if (isBlack(sibling.left)) {
           this.rotateLeft(sibling);
-          sibling = parent.left!;
+          sibling = parent.left as Node<K, V>;
         }
         color(sibling, colorOf(parent));
         black(sibling.left);
@@ -422,7 +428,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     key: K,
     value: V,
     parent: Node<K, V> | undefined = undefined
-  ) {
+  ): Node<K, V> {
     return new Node<K, V>(key, value, parent);
   }
   private node(
@@ -472,14 +478,14 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     return key.hash & (this._capacity - 1);
   }
   private rotateLeft(grand: Node<K, V>): void {
-    const parent: Node<K, V> = grand.right!;
+    const parent: Node<K, V> = grand.right as Node<K, V>;
     const child: Node<K, V> | undefined = parent.left;
     grand.right = child;
     parent.left = grand;
     this.afterRotate(grand, parent, child);
   }
   private rotateRight(grand: Node<K, V>): void {
-    const parent: Node<K, V> = grand.left!;
+    const parent: Node<K, V> = grand.left as Node<K, V>;
     const child: Node<K, V> | undefined = parent.right;
     grand.left = child;
     parent.right = grand;
@@ -489,12 +495,12 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
     grand: Node<K, V>,
     parent: Node<K, V>,
     child: Node<K, V> | undefined
-  ) {
+  ): void {
     parent.parent = grand.parent;
     if (grand.isLeftChild()) {
-      grand.parent!.left = parent;
+      (grand.parent as Node<K, V>).left = parent;
     } else if (grand.isRightChild()) {
-      grand.parent!.right = parent;
+      (grand.parent as Node<K, V>).right = parent;
     } else {
       this._table[this.index(grand)] = parent;
     }
@@ -510,7 +516,7 @@ export default class HashMap<K extends IHash, V> implements IMap<K, V> {
       while (p.left != undefined) p = p.left;
       return p;
     }
-    while (node.isRightChild()) node = node.parent!;
-    return node.parent!;
+    while (node.isRightChild()) node = node.parent as Node<K, V>;
+    return node.parent as Node<K, V>;
   }
 }

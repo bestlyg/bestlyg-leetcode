@@ -3,7 +3,7 @@ import Queue from "../../src/core/queue/Queue";
 import IQueue from "../../src/core/queue/IQueue";
 import Deque from "../../src/core/queue/Deque";
 
-const run = (name: string, getNewQueue: () => IQueue<Person>) =>
+const run = (name: string, getNewQueue: () => IQueue<Person>): void =>
   describe(name, () => {
     test("size", () => {
       const queue = getNewQueue();

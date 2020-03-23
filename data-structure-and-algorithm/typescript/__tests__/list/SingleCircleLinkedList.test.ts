@@ -1,6 +1,6 @@
 import { Person, getPerson } from "../../src/utils/model";
 import SingleCircleLinkedList from "../../src/core/list/SingleCircleLinkedList";
-function getNewList() {
+function getNewList(): SingleCircleLinkedList<Person> {
   return new SingleCircleLinkedList<Person>();
 }
 describe("SingleCircleLinkedList", () => {

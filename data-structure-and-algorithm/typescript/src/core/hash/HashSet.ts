@@ -1,11 +1,11 @@
 import ISet from "../set/ISet";
 import IMap from "../map/IMap";
 import HashMap from "./HashMap";
-import { IHash } from "../../types";
+import { Hash } from "../../types";
 /**
  * 内置HashMap
  */
-export default class HashSet<T extends IHash> implements ISet<T> {
+export default class HashSet<T extends Hash> implements ISet<T> {
   private _map: IMap<T, undefined> = new HashMap<T, undefined>();
   size(): number {
     return this._map.size();

@@ -1,7 +1,7 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 export default mixinSort(
-  class HeapSort extends Sort {
-    private heapSize: number = 0;
+  class HeapSort extends AbstractSort {
+    private heapSize = 0;
     protected sort(): void {
       const len = this.array.length;
       this.heapSize = len;

@@ -1,4 +1,4 @@
-import { Visitor } from "./../../utils/visitor_T";
+import { VisitorIterator } from "./../../utils/visitor_T";
 import IBinaryTree from "./IBinaryTree";
 // import { heightMethodType } from "./../../types/index";
 import { toString } from "../../utils/index";
@@ -11,15 +11,15 @@ import Node, {
   levelOrder,
   height
 } from "./Node";
-import { IBinaryTreesPrinter } from "../../types";
+import { BinaryTreesPrinter } from "../../types";
 
 export default abstract class BinaryTree<T>
-  implements IBinaryTree<T>, IBinaryTreesPrinter {
+  implements IBinaryTree<T>, BinaryTreesPrinter {
   abstract add(element: T): void;
   abstract remove(element: T): void;
   abstract contains(element: T): boolean;
   abstract get(element: T): Node<T> | undefined;
-  protected _size: number = 0;
+  protected _size = 0;
   protected _root: Node<T> | undefined = undefined;
   /**
    * 返回树的大小
@@ -41,36 +41,36 @@ export default abstract class BinaryTree<T>
   }
   /**
    * 前序遍历
-   * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
+   * @param {VisitorIterator<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
-  public preorder(visitor: Visitor<T>): void {
+  public preorder(visitor: VisitorIterator<T>): void {
     const root = this._root;
     if (root === undefined) return;
     preorder(visitor, root);
   }
   /**
    * 中序遍历
-   * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
+   * @param {VisitorIterator<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
-  public inorder(visitor: Visitor<T>): void {
+  public inorder(visitor: VisitorIterator<T>): void {
     const root = this._root;
     if (root === undefined) return;
     inorder(visitor, root);
   }
   /**
    * 后序遍历
-   * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
+   * @param {VisitorIterator<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
-  public postorder(visitor: Visitor<T>): void {
+  public postorder(visitor: VisitorIterator<T>): void {
     const root = this._root;
     if (root === undefined) return;
     postorder(visitor, root);
   }
   /**
    * 层序遍历
-   * @param {Visitor<T>} visitor 遍历监视器 函数返回false时停止遍历
+   * @param {VisitorIterator<T>} visitor 遍历监视器 函数返回false时停止遍历
    */
-  public levelOrder(visitor: Visitor<T>): void {
+  public levelOrder(visitor: VisitorIterator<T>): void {
     if (this._root === undefined) return;
     levelOrder(visitor, this._root);
   }
@@ -113,7 +113,7 @@ export default abstract class BinaryTree<T>
     let p = node.left;
     if (p != undefined) {
       while (p.right !== undefined) {
-        p = p!.right;
+        p = p.right;
       }
       return p;
     }
@@ -131,7 +131,7 @@ export default abstract class BinaryTree<T>
     let p = node.right;
     if (p !== undefined) {
       while (p.left !== undefined) {
-        p = p!.left;
+        p = p.left;
       }
       return p;
     }
@@ -148,16 +148,16 @@ export default abstract class BinaryTree<T>
   }
 
   public _printerLeft(node: object): any {
-    return (node as Node<T>)!.left;
+    return (node as Node<T>).left;
   }
 
   public _printerRight(node: object): any {
-    return (node as Node<T>)!.right;
+    return (node as Node<T>).right;
   }
 
   public _printerString(node: object): any {
     const myNode = node as Node<T>;
-    let parentString = toString(myNode!.parent?.element);
+    const parentString = toString(myNode.parent?.element);
     return toString(myNode) + "_P(" + parentString + ")";
   }
 }

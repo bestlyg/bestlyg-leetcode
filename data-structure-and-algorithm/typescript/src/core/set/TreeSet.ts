@@ -1,12 +1,12 @@
-import ISet from "./ISet";
-import IMap from "../map/IMap";
+import Set from "./ISet";
+import Map from "../map/IMap";
 import TreeMap from "../map/TreeMap";
 import { Comparator } from "../../types";
 /**
  * 内置TreeMap
  */
-export default class TreeSet<T> implements ISet<T> {
-  private _map: IMap<T, null>;
+export default class TreeSet<T> implements Set<T> {
+  private _map: Map<T, null>;
   constructor(comparator: Comparator<T>) {
     this._map = new TreeMap<T, null>(comparator);
   }

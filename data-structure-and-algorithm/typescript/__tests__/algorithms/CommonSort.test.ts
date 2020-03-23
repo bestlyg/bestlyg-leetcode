@@ -14,11 +14,11 @@ import {
   CountingSort,
   RadixSort
 } from "../../src/core/algorithms";
-import { ISort } from "../../src/types";
+import { Sort } from "../../src/types";
 import { toString } from "../../src/utils";
 const array = random(20000, 0, 20000);
-const sortInform: ISort[] = [];
-function commonTest(name: string, fn: Function) {
+const sortInform: Sort[] = [];
+function commonTest(name: string, fn: Function): void {
   test(name, () => {
     const result = fn(copy(array));
     sortInform.push(result);
@@ -42,7 +42,7 @@ describe("Sort", () => {
   test("sort", () => {
     sortInform.sort((a, b) => a.time - b.time);
     let string = "";
-    for (let el of sortInform) string += toString(el) + "\n";
+    for (const el of sortInform) string += toString(el) + "\n";
     console.log(string);
   });
 });

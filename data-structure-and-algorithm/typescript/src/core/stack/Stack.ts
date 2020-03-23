@@ -39,7 +39,7 @@ export default class Stack<T> implements IStack<T> {
    */
   public pop(): T {
     this.thorwEmpty("pop");
-    return this.list.pop()!;
+    return this.list.pop() as T;
   }
   /**
    * 返回栈顶的元素
@@ -48,7 +48,7 @@ export default class Stack<T> implements IStack<T> {
   public top(): T {
     return this.list[this.size() - 1];
   }
-  private thorwEmpty(method: string) {
+  private thorwEmpty(method: string): void {
     if (this.isEmpty()) {
       thorwEmptyError("Stack")(method);
     }

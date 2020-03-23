@@ -1,4 +1,4 @@
-import { MyString, getMyString } from "../../src/utils/model";
+import { getMyString } from "../../src/utils/model";
 
 describe("MyString", () => {
   test("get number", () => {

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import BinaryTree from "./BinaryTree";
 import Node from "./Node";
 import { Comparator } from "../../types";
@@ -55,8 +57,8 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
     this._size--;
     if (node.hasTwoChildren()) {
       const s = this.successor(node);
-      node.element = s!.element;
-      node = s!;
+      node.element = (s as Node<T>).element;
+      node = s as Node<T>;
     }
     const replacement = node.left !== undefined ? node.left : node.right;
     if (replacement !== undefined) {

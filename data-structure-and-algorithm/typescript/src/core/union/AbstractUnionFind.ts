@@ -12,7 +12,7 @@ export default abstract class AbstractUnionFind implements IUnionFind {
   public isSame(v1: number, v2: number): boolean {
     return this.find(v1) === this.find(v2);
   }
-  protected rangeCheck(v: number) {
+  protected rangeCheck(v: number): void {
     if (v < 0 || v >= this._parents.length) error("v is out of bounds");
   }
 }

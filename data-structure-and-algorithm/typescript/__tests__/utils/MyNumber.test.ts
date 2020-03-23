@@ -1,4 +1,4 @@
-import { MyNumber, getMyNumber } from "../../src/utils/model";
+import { getMyNumber } from "../../src/utils/model";
 
 describe("MyNumber", () => {
   test("get number", () => {

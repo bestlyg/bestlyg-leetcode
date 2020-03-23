@@ -1,11 +1,11 @@
 import ISet from "../set/ISet";
 import IMap from "../map/IMap";
 import LinkedHashMap from "./LinkedHashMap";
-import { IHash } from "../../types";
+import { Hash } from "../../types";
 /**
  * 内置LinkedHashMap
  */
-export default class LinkedHashSet<T extends IHash> implements ISet<T> {
+export default class LinkedHashSet<T extends Hash> implements ISet<T> {
   private _map: IMap<T, undefined> = new LinkedHashMap<T, undefined>();
   size(): number {
     return this._map.size();

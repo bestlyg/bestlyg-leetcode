@@ -1,5 +1,5 @@
 import Queue from "../queue/Queue";
-import { Visitor } from "../../utils/visitor_T";
+import { VisitorIterator } from "../../utils/visitor_T";
 import Stack from "../stack/Stack";
 export default class Node<T> {
   element: T;
@@ -31,8 +31,8 @@ export default class Node<T> {
     return this.parent !== undefined && this === this.parent.right;
   }
   public sibling(): Node<T> | undefined {
-    if (this.isLeftChild()) return this.parent!.right;
-    if (this.isRightChild()) return this.parent!.left;
+    if (this.isLeftChild()) return (this.parent as Node<T>).right;
+    if (this.isRightChild()) return (this.parent as Node<T>).left;
     return undefined;
   }
   public toString(): string {
@@ -74,8 +74,8 @@ export function isProper<T>(node: Node<T>): boolean {
     const node = queue.deQueue();
     if (node.hasOneChildren()) return false;
     if (node.hasTwoChildren()) {
-      queue.enQueue(node.left!);
-      queue.enQueue(node.right!);
+      queue.enQueue(node.left as Node<T>);
+      queue.enQueue(node.right as Node<T>);
     }
   }
   return true;
@@ -117,11 +117,11 @@ export function isProper<T>(node: Node<T>): boolean {
 // }
 
 //迭代前序遍历
-export function preorder<T>(visitor: Visitor<T>, node: Node<T>): void {
+export function preorder<T>(visitor: VisitorIterator<T>, node: Node<T>): void {
   const stack = new Stack<Node<T>>();
   stack.push(node);
   while (!stack.isEmpty()) {
-    let node = stack.pop();
+    const node = stack.pop();
     if (visitor(node.element)) return;
     if (node.right !== undefined) stack.push(node.right);
     if (node.left !== undefined) stack.push(node.left);
@@ -143,7 +143,7 @@ export function preorder<T>(visitor: Visitor<T>, node: Node<T>): void {
 //   visitor.stop = visitor(node.element);
 //   _inorder(visitor, node.right);
 // }
-export function inorder<T>(visitor: Visitor<T>, node: Node<T>) {
+export function inorder<T>(visitor: VisitorIterator<T>, node: Node<T>): void {
   const stack = new Stack<Node<T>>();
   let temp: Node<T> | undefined = node;
   while (true) {
@@ -174,7 +174,7 @@ export function inorder<T>(visitor: Visitor<T>, node: Node<T>) {
 //   if (visitor.stop) return;
 //   visitor.stop = visitor(node.element);
 // }
-export function postorder<T>(visitor: Visitor<T>, node: Node<T>) {
+export function postorder<T>(visitor: VisitorIterator<T>, node: Node<T>): void {
   let prev: Node<T> | undefined = undefined;
   const stack = new Stack<Node<T>>();
   stack.push(node);
@@ -194,7 +194,10 @@ export function postorder<T>(visitor: Visitor<T>, node: Node<T>) {
  * @param visitor
  * @param node
  */
-export function levelOrder<T>(visitor: Visitor<T>, node: Node<T>): void {
+export function levelOrder<T>(
+  visitor: VisitorIterator<T>,
+  node: Node<T>
+): void {
   const queue = new Queue<Node<T>>();
   queue.enQueue(node);
   while (!queue.isEmpty()) {
@@ -209,7 +212,7 @@ export function levelOrder<T>(visitor: Visitor<T>, node: Node<T>): void {
   }
 }
 //迭代
-export function height<T>(node?: Node<T>) {
+export function height<T>(node?: Node<T>): number {
   if (node === undefined) return 0;
   let height = 0;
   let levelSize = 1;

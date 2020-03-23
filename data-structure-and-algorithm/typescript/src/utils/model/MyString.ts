@@ -1,11 +1,11 @@
-import { IComparable, IHash } from "../../types";
+import { Comparable, Hash } from "../../types";
 import { hashCode as hash, getClassName } from "../index";
-export default class MyString implements IComparable<MyString>, IHash {
+export default class MyString implements Comparable<MyString>, Hash {
   private _string: string;
   constructor(string: string) {
     this._string = string;
   }
-  get string() {
+  get string(): string {
     return this._string;
   }
   hashCode(): number {
@@ -14,7 +14,7 @@ export default class MyString implements IComparable<MyString>, IHash {
   equals(obj: any): boolean {
     if (obj === this) return true;
     if (obj === null || getClassName(this) !== getClassName(obj)) return false;
-    return (<MyString>obj).string === this._string;
+    return (obj as MyString).string === this._string;
   }
   compareTo(obj: MyString): number {
     return this.hashCode() - hash(obj);

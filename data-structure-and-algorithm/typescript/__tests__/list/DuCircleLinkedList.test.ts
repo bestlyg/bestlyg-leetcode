@@ -1,6 +1,6 @@
 import { Person, getPerson } from "../../src/utils/model";
 import DuCircleLinkedList from "../../src/core/list/DuCircleLinkedList";
-function getNewList() {
+function getNewList(): DuCircleLinkedList<Person> {
   return new DuCircleLinkedList<Person>();
 }
 describe("DuCircleLinkedList", () => {

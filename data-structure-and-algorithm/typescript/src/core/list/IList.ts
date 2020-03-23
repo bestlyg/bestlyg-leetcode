@@ -1,7 +1,7 @@
 /**
  * @type 列表接口
  */
-export default interface IList<T> {
+export default interface List<T> {
   /**
    * 清除所有元素
    */

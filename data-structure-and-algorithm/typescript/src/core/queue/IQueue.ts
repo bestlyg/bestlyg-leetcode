@@ -1,7 +1,7 @@
 /**
  * @type 队列接口
  */
-export default interface IQueue<T> {
+export default interface Queue<T> {
   /**
    * 获取队列长度
    * @return {T} 队列的长度

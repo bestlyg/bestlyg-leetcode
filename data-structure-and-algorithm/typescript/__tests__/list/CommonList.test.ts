@@ -7,7 +7,7 @@ import DuLinkList from "../../src/core/list/DuLinkedList";
 import IList from "../../src/core/list/IList";
 import DuCircleLinkedList from "../../src/core/list/DuCircleLinkedList";
 import { ELEMENT_NOT_FOUND } from "../../src/types";
-const run = (name: string, getNewList: () => IList<Person>) =>
+const run = (name: string, getNewList: () => IList<Person>): void =>
   describe(name, () => {
     describe("add", () => {
       test("add last and del first", () => {
@@ -200,7 +200,6 @@ const run = (name: string, getNewList: () => IList<Person>) =>
       const obj1 = getPerson(1);
       list.add(obj1);
       expect(list.delFirst()).toBe(obj1);
-      const list2 = getNewList();
       const obj2 = getPerson(2);
       list.add(obj1);
       list.addFirst(obj2);

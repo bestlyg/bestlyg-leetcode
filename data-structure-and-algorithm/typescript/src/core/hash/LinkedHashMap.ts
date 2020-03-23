@@ -1,11 +1,11 @@
 import HashMap, { Node } from "./HashMap";
-import { IHash } from "../../types";
+import { Hash } from "../../types";
 import { equals } from "../../utils";
 class LinkedNode<K, V> extends Node<K, V> {
   prev: LinkedNode<K, V> | undefined = undefined;
   next: LinkedNode<K, V> | undefined = undefined;
 }
-export default class LinkedHashMap<K extends IHash, V> extends HashMap<K, V> {
+export default class LinkedHashMap<K extends Hash, V> extends HashMap<K, V> {
   private _first: LinkedNode<K, V> | undefined = undefined;
   private _last: LinkedNode<K, V> | undefined = undefined;
   clear(): void {
@@ -17,7 +17,7 @@ export default class LinkedHashMap<K extends IHash, V> extends HashMap<K, V> {
     key: K,
     value: V,
     parent: Node<K, V> | undefined = undefined
-  ) {
+  ): Node<K, V> {
     const node = new LinkedNode(key, value, parent);
     if (this._last === undefined) {
       this._first = this._last = node;

@@ -1,7 +1,7 @@
 import AbstractList from "./AbstractList";
 import { ELEMENT_NOT_FOUND } from "../../types";
 export default class ArrayList<T> extends AbstractList<T> {
-  private _elements: Array<T> = []; //所有元素储存
+  private _elements: T[] = []; //所有元素储存
   /**
    * 清除所有元素
    */
@@ -90,7 +90,7 @@ export default class ArrayList<T> extends AbstractList<T> {
   }
   public delFirst(): T {
     this.thorwEmpty("delFirst");
-    return this._elements.shift()!;
+    return this._elements.shift() as T;
   }
   public last(): T {
     this.thorwEmpty("last");
@@ -101,6 +101,6 @@ export default class ArrayList<T> extends AbstractList<T> {
   }
   public delLast(): T {
     this.thorwEmpty("delLast");
-    return this._elements.pop()!;
+    return this._elements.pop() as T;
   }
 }

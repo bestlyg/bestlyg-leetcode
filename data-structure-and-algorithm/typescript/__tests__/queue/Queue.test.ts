@@ -1,6 +1,6 @@
 import { Person, getPerson } from "../../src/utils/model";
 import Queue from "../../src/core/queue/Queue";
-function getNewQueue() {
+function getNewQueue(): Queue<Person> {
   return new Queue<Person>();
 }
 describe("queue", () => {

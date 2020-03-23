@@ -1,6 +1,6 @@
 import SingleLinkedList2 from "../../src/core/list/SingleLinkedList2";
 import { Person, getPerson } from "../../src/utils/model";
-function getNewList() {
+function getNewList(): SingleLinkedList2<Person> {
   return new SingleLinkedList2<Person>();
 }
 describe("SingleLinkedList2", () => {

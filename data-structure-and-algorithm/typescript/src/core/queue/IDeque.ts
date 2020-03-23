@@ -1,8 +1,8 @@
-import IQueue from "./IQueue";
+import Queue from "./IQueue";
 /**
  * @type 双端队列接口
  */
-export default interface IDeque<T> extends IQueue<T> {
+export default interface Deque<T> extends Queue<T> {
   /**
    * 尾部入队
    * @param {T} element 入队的值

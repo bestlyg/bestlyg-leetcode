@@ -1,7 +1,7 @@
 import IHeap from "./IHeap";
 import { Comparator } from "../../types";
 export default abstract class AbstractHeap<T> implements IHeap<T> {
-  protected _size: number = 0;
+  protected _size = 0;
   protected _comparator: Comparator<T>;
   constructor(comparator: Comparator<T>) {
     this._comparator = comparator;

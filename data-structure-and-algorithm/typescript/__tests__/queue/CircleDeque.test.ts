@@ -1,6 +1,6 @@
 import { Person, getPerson } from "../../src/utils/model";
 import CircleDeque from "../../src/core/queue/CircleDeque";
-function getNewQueue(capacity: number = 10) {
+function getNewQueue(capacity = 10): CircleDeque<Person> {
   return new CircleDeque<Person>(capacity);
 }
 describe("circledeque", () => {

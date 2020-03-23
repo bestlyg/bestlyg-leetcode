@@ -14,7 +14,7 @@ describe("Arrays", () => {
   describe("random", () => {
     test("common", () => {
       const arr = random(10, 0, 10);
-      for (let num of arr) {
+      for (const num of arr) {
         expect(num).toBeGreaterThanOrEqual(0);
         expect(num).toBeLessThanOrEqual(10);
       }

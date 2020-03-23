@@ -1,4 +1,4 @@
-export default interface IStack<T> {
+export default interface Stack<T> {
   /**
    * 清空栈
    */

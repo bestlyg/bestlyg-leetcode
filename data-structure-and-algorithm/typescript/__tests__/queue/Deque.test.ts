@@ -1,6 +1,6 @@
 import Deque from "./../../src/core/queue/Deque";
 import { Person, getPerson } from "../../src/utils/model";
-function getNewQueue() {
+function getNewQueue(): Deque<Person> {
   return new Deque<Person>();
 }
 describe("deque", () => {

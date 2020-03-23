@@ -1,6 +1,6 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 export default mixinSort(
-  class InsertionSort3 extends Sort {
+  class InsertionSort3 extends AbstractSort {
     protected sort(): void {
       for (let begin = 1; begin < this.array.length; begin++)
         this.insert(begin, this.search(begin));
@@ -14,7 +14,7 @@ export default mixinSort(
       let begin = 0,
         end = index;
       while (begin < end) {
-        let mid = (begin + end) >> 1;
+        const mid = (begin + end) >> 1;
         if (this.compareElement(this.array[index], this.array[mid]) < 0)
           end = mid;
         else begin = mid + 1;

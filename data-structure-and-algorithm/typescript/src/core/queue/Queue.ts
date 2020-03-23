@@ -15,14 +15,14 @@ export default class Queue<T> extends AbstractQueue<T> {
   }
   deQueue(): T {
     this.thorwEmpty("deQueue");
-    return this._list.shift()!;
+    return this._list.shift() as T;
   }
   front(): T {
     this.thorwEmpty("front");
     return this._list[0];
   }
   toString(): string {
-    let string: string = `size:${this.size()},front->[`;
+    let string = `size:${this.size()},front->[`;
     for (let i = 0, len = this.size(); i < len; i++) {
       if (i != 0) {
         string += ",";

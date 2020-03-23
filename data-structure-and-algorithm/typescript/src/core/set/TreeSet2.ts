@@ -1,10 +1,10 @@
 import RedBlackTree from "../tree/RedBlackTree";
-import ISet from "./ISet";
+import Set from "./ISet";
 import { Comparator } from "../../types";
 /**
  * 内置红黑树
  */
-export default class TreeSet2<T> implements ISet<T> {
+export default class TreeSet2<T> implements Set<T> {
   private _tree: RedBlackTree<T>;
   constructor(comparator: Comparator<T>) {
     this._tree = new RedBlackTree<T>(comparator);
@@ -27,7 +27,7 @@ export default class TreeSet2<T> implements ISet<T> {
   remove(element: T): void {
     this._tree.remove(element);
   }
-  traversal(visitor: (element: T) => boolean) {
+  traversal(visitor: (element: T) => boolean): void {
     this._tree.inorder(visitor);
   }
 }

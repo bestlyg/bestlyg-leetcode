@@ -11,9 +11,9 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
   ): void {
     d.parent = r.parent;
     if (r.isLeftChild()) {
-      r.parent!.left = d;
+      (r.parent as Node<T>).left = d;
     } else if (r.isRightChild()) {
-      r.parent!.right = d;
+      (r.parent as Node<T>).right = d;
     } else {
       this._root = d;
     }
@@ -31,14 +31,14 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
     f.parent = d;
   }
   protected rotateLeft(grand: Node<T>): void {
-    const parent: Node<T> = grand.right!;
+    const parent: Node<T> = grand.right as Node<T>;
     const child: Node<T> | undefined = parent.left;
     grand.right = child;
     parent.left = grand;
     this.afterRotate(grand, parent, child);
   }
   protected rotateRight(grand: Node<T>): void {
-    const parent: Node<T> = grand.left!;
+    const parent: Node<T> = grand.left as Node<T>;
     const child: Node<T> | undefined = parent.right;
     grand.left = child;
     parent.right = grand;
@@ -48,12 +48,12 @@ export default class BalanceBinarySearchTree<T> extends BinarySearchTree<T> {
     grand: Node<T>,
     parent: Node<T>,
     child: Node<T> | undefined
-  ) {
+  ): void {
     parent.parent = grand.parent;
     if (grand.isLeftChild()) {
-      grand.parent!.left = parent;
+      (grand.parent as Node<T>).left = parent;
     } else if (grand.isRightChild()) {
-      grand.parent!.right = parent;
+      (grand.parent as Node<T>).right = parent;
     } else {
       this._root = parent;
     }

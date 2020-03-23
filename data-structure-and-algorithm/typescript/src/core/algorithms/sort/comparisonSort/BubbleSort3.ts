@@ -1,6 +1,6 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 export default mixinSort(
-  class BubbleSort3 extends Sort {
+  class BubbleSort3 extends AbstractSort {
     protected sort(): void {
       for (let end = this.array.length - 1; end > 0; end--) {
         let sortedIndex = 1;

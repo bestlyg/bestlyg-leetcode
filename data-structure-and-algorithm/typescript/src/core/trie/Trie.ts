@@ -3,15 +3,15 @@ import ITrie from "./ITrie";
 class Node<V> {
   parent: Node<V> | undefined;
   children: Map<string, Node<V>> | undefined = undefined;
-  character: string = "";
+  character = "";
   value: V | undefined = undefined;
-  word: boolean = false;
+  word = false;
   constructor(parent?: Node<V>) {
     this.parent = parent;
   }
 }
 export default class Trie<V> implements ITrie<V> {
-  _size: number = 0;
+  _size = 0;
   _root: Node<V> | undefined = undefined;
   size(): number {
     return this._size;
@@ -35,7 +35,7 @@ export default class Trie<V> implements ITrie<V> {
     this.keyCheck(key);
     if (this._root === undefined) this._root = new Node<V>();
     let node = this._root;
-    for (let c of key) {
+    for (const c of key) {
       let childNode = node.children?.get(c);
       if (childNode === undefined) {
         childNode = new Node<V>(node);
@@ -43,12 +43,12 @@ export default class Trie<V> implements ITrie<V> {
         node.children = node.children
           ? node.children
           : new Map<string, Node<V>>();
-        node.children!.set(c, childNode);
+        node.children.set(c, childNode);
       }
       node = childNode;
     }
     if (node.word) {
-      let oldValue = node.value;
+      const oldValue = node.value;
       node.value = value;
       return oldValue;
     }
@@ -69,8 +69,12 @@ export default class Trie<V> implements ITrie<V> {
     }
     let parent: Node<V> | undefined;
     while ((parent = node.parent) !== undefined) {
-      parent.children!.delete(node.character);
-      if (parent.word || !(parent.children!.size === 0)) break;
+      (parent.children as Map<string, Node<V>>).delete(node.character);
+      if (
+        parent.word ||
+        !((parent.children as Map<string, Node<V>>).size === 0)
+      )
+        break;
       node = parent;
     }
     return oldValue;
@@ -81,7 +85,7 @@ export default class Trie<V> implements ITrie<V> {
   private node(key: string): Node<V> | undefined {
     this.keyCheck(key);
     let node = this._root;
-    for (let c of key) {
+    for (const c of key) {
       if (
         node === undefined ||
         node.children === undefined ||

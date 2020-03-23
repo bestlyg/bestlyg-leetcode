@@ -3,19 +3,22 @@ import Node from "./Node";
 import RedBlackNode from "./RedBlackNode";
 import { black, isBlack, isRed, red, colorOf, color } from "../../utils/color";
 export default class RedBlackTree<T> extends BalanceBinarySearchTree<T> {
-  protected createNode(element: T, parent: Node<T> | undefined) {
+  protected createNode(
+    element: T,
+    parent: Node<T> | undefined
+  ): RedBlackNode<T> {
     return new RedBlackNode<T>(element, parent);
   }
   protected afterAdd(parentNode: Node<T>): void {
-    const node = <RedBlackNode<T>>parentNode;
-    const parent = <RedBlackNode<T>>node.parent;
+    const node = parentNode as RedBlackNode<T>;
+    const parent = node.parent as RedBlackNode<T>;
     if (parent === undefined) {
-      black(<RedBlackNode<T>>node);
+      black(node as RedBlackNode<T>);
       return;
     }
     if (isBlack(parent)) return;
-    const uncle = <RedBlackNode<T>>parent.sibling();
-    const grand = <RedBlackNode<T>>red(<RedBlackNode<T>>parent.parent);
+    const uncle = parent.sibling() as RedBlackNode<T>;
+    const grand = red(parent.parent as RedBlackNode<T>) as RedBlackNode<T>;
     if (isRed(uncle)) {
       black(parent);
       black(uncle);
@@ -41,7 +44,7 @@ export default class RedBlackTree<T> extends BalanceBinarySearchTree<T> {
     }
   }
   protected afterRemove(parentNode: Node<T>): void {
-    const node = <RedBlackNode<T>>parentNode;
+    const node = parentNode as RedBlackNode<T>;
     if (isRed(node)) {
       black(node);
       return;

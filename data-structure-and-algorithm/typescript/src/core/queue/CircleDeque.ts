@@ -1,8 +1,7 @@
 import CircleQueue from "./CircleQueue";
-import IDeque from "./IDeque";
+import Deque from "./IDeque";
 
-export default class CircleDeque<T> extends CircleQueue<T>
-  implements IDeque<T> {
+export default class CircleDeque<T> extends CircleQueue<T> implements Deque<T> {
   rear(): T {
     this.thorwEmpty("rear");
     return this._elements[this.index(this.size() - 1)] as T;

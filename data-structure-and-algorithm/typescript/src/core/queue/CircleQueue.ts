@@ -1,8 +1,8 @@
 import AbstractQueue from "./AbstractQueue";
 
 export default class CircleQueue<T> extends AbstractQueue<T> {
-  protected _head: number = 0;
-  protected _size: number = 0;
+  protected _head = 0;
+  protected _size = 0;
   private _capacity = 10;
   protected _elements: T[];
   constructor(capacity: number) {
@@ -23,7 +23,7 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
   }
   front(): T {
     this.thorwEmpty("front");
-    return this._elements[this.index(0)]!;
+    return this._elements[this.index(0)] as T;
   }
   enQueue(element: T): void {
     this.ensureCapacity();
@@ -37,9 +37,9 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
     Reflect.deleteProperty(this._elements, index);
     this._head = this.index(1);
     this._size--;
-    return el!;
+    return el;
   }
-  protected ensureCapacity() {
+  protected ensureCapacity(): void {
     const _capacity = this._capacity;
     if (_capacity !== this.size()) return;
     this._capacity = _capacity + (_capacity >> 1);
@@ -58,7 +58,7 @@ export default class CircleQueue<T> extends AbstractQueue<T> {
     return index - (index >= this._capacity ? this._capacity : 0);
   }
   toString(): string {
-    let string: string = `size:${this.size()},head:${this._head},[`;
+    let string = `size:${this.size()},head:${this._head},[`;
     for (let i = 0, len = this._capacity; i < len; i++) {
       if (i != 0) {
         string += ",";

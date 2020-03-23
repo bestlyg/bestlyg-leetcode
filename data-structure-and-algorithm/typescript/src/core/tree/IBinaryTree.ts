@@ -1,5 +1,5 @@
 import Node from "./Node";
-export default interface IBinaryTree<T> {
+export default interface BinaryTree<T> {
   /**
    * 返回树的大小
    * @return {number} 返回树的大小

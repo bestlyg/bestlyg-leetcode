@@ -4,7 +4,7 @@ import ListSet from "../../src/core/set/ListSet";
 import TreeSet from "../../src/core/set/TreeSet";
 import TreeSet2 from "../../src/core/set/TreeSet2";
 
-const run = (name: string, getNewSet: () => ISet<Person>) => {
+const run = (name: string, getNewSet: () => ISet<Person>): void => {
   describe(name, () => {
     test("size", () => {
       const set = getNewSet();
@@ -71,8 +71,8 @@ const run = (name: string, getNewSet: () => ISet<Person>) => {
       }
       let string = "";
       set.traversal(p => {
-        string += p.Age + " ";
-        if (p.Age === 12) return true;
+        string += p.age + " ";
+        if (p.age === 12) return true;
         return false;
       });
       expect(string).toBe("0 1 2 3 4 5 6 7 8 9 10 11 12 ");
@@ -84,9 +84,9 @@ describe("All Set Test", () => {
     return new ListSet<Person>();
   });
   run("TreeSet", () => {
-    return new TreeSet<Person>((e1, e2) => e1.Age - e2.Age);
+    return new TreeSet<Person>((e1, e2) => e1.age - e2.age);
   });
   run("TreeSet2", () => {
-    return new TreeSet2<Person>((e1, e2) => e1.Age - e2.Age);
+    return new TreeSet2<Person>((e1, e2) => e1.age - e2.age);
   });
 });

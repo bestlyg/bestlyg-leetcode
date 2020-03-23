@@ -10,11 +10,11 @@ export default class Deque<T> extends Queue<T> implements IDeque<T> {
   }
   deQueueRear(): T {
     this.thorwEmpty("deQueueRear");
-    return this._list.pop()!;
+    return this._list.pop() as T;
   }
   deQueueFront(): T {
     this.thorwEmpty("deQueueFront");
-    return this._list.shift()!;
+    return this._list.shift() as T;
   }
   rear(): T {
     return this._list[this.size() - 1];

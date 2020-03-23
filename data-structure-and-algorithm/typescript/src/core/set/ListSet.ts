@@ -1,7 +1,7 @@
-import ISet from "./ISet";
+import Set from "./ISet";
 import { ELEMENT_NOT_FOUND } from "../../types";
-import { Visitor } from "../../utils/visitor_T";
-export default class ListSet<T> implements ISet<T> {
+import { VisitorIterator } from "../../utils/visitor_T";
+export default class ListSet<T> implements Set<T> {
   private _list: T[] = [];
   size(): number {
     return this._list.length;
@@ -31,7 +31,7 @@ export default class ListSet<T> implements ISet<T> {
       _list.splice(index, 1);
     }
   }
-  traversal(visitor: Visitor<T>) {
-    for (let el of this._list) if (visitor(el)) return;
+  traversal(visitor: VisitorIterator<T>): void {
+    for (const el of this._list) if (visitor(el)) return;
   }
 }

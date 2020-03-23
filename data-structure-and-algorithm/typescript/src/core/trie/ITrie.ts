@@ -1,4 +1,4 @@
-export default interface ITrie<V> {
+export default interface Trie<V> {
   /**
    * 返回前序树的节点数
    * @return {number} 节点数

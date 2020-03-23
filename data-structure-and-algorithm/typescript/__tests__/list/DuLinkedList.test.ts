@@ -1,6 +1,6 @@
 import { Person, getPerson } from "../../src/utils/model";
 import DuLinkList from "../../src/core/list/DuLinkedList";
-function getNewList() {
+function getNewList(): DuLinkList<Person> {
   return new DuLinkList<Person>();
 }
 describe("DuLinkedList", () => {

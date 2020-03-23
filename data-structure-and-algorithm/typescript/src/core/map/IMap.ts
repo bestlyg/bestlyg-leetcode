@@ -1,4 +1,4 @@
-export default interface IMap<K, V> {
+export default interface Map<K, V> {
   /**
    * 获取映射元素数量
    * @return {number} 返回数量的值

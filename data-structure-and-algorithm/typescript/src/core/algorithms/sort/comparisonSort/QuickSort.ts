@@ -1,11 +1,11 @@
-import Sort, { mixinSort } from "../Sort";
+import AbstractSort, { mixinSort } from "../Sort";
 import { random } from "../../../../utils";
 export default mixinSort(
-  class QuickSort extends Sort {
+  class QuickSort extends AbstractSort {
     protected sort(): void {
       this._sort(0, this.array.length);
     }
-    private _sort(begin: number, end: number) {
+    private _sort(begin: number, end: number): void {
       if (end - begin < 2) return;
       const mid = this.pivotIndex(begin, end);
       this._sort(begin, mid);

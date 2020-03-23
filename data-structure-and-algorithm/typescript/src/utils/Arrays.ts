@@ -18,7 +18,7 @@ export function random(count: number, min: number, max: number): number[] {
  * @param count
  * @param number
  */
-export function same(count: number, number: number = 0): number[] {
+export function same(count: number, number = 0): number[] {
   if (count <= 0) error("count > 0");
   return new Array(count).fill(number);
 }

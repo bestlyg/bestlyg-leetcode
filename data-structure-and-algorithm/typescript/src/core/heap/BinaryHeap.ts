@@ -1,8 +1,8 @@
 import AbstractHeap from "./AbstractHeap";
-import { IBinaryTreesPrinter, Comparator } from "../../types";
+import { BinaryTreesPrinter, Comparator } from "../../types";
 import { thorwEmptyError, toString } from "../../utils";
 export default class BinaryHeap<T> extends AbstractHeap<T>
-  implements IBinaryTreesPrinter {
+  implements BinaryTreesPrinter {
   private _elements: T[] = [];
   constructor(comparator: Comparator<T>, elements: T[] = []) {
     super(comparator);
@@ -17,7 +17,7 @@ export default class BinaryHeap<T> extends AbstractHeap<T>
     this._elements.length = 0;
     this._size = 0;
   }
-  add(element: T) {
+  add(element: T): void {
     this._elements.push(element);
     this.siftUp(this._size++);
   }
@@ -28,7 +28,7 @@ export default class BinaryHeap<T> extends AbstractHeap<T>
   remove(): T {
     this.emptyCheck("remove");
     const root = this._elements[0];
-    this._elements[0] = this._elements.pop()!;
+    this._elements[0] = this._elements.pop() as T;
     this._size--;
     this.siftDown(0);
     return root;
@@ -87,11 +87,11 @@ export default class BinaryHeap<T> extends AbstractHeap<T>
     return 0;
   }
   _printerLeft(node: any): any {
-    const index = ((<number>node) << 1) + 1;
+    const index = ((node as number) << 1) + 1;
     return index >= this._size ? undefined : index;
   }
   _printerRight(node: any): any {
-    const index = ((<number>node) << 1) + 2;
+    const index = ((node as number) << 1) + 2;
     return index >= this._size ? undefined : index;
   }
   _printerString(node: any): string {

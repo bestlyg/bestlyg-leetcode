@@ -1,17 +1,17 @@
 import { Person, getPerson } from "../../src/utils/model";
 import AVLTree from "../../src/core/tree/AVLTree";
 function testCompare(p1: Person, p2: Person): number {
-  return p1.Age - p2.Age;
+  return p1.age - p2.age;
 }
 function getNewAVLT(
   fn: (p1: Person, p2: Person) => number = testCompare
 ): AVLTree<Person> {
   return new AVLTree<Person>(fn);
 }
-function levelOrderToString(tree: AVLTree<Person>) {
+function levelOrderToString(tree: AVLTree<Person>): string {
   let string = "";
   tree.levelOrder((el: Person) => {
-    string += el.Age + " ";
+    string += el.age + " ";
     return false;
   });
   return string;
@@ -20,7 +20,7 @@ function getAVLT(
   nums: number[] = [79, 91, 14, 51, 10, 11, 95, 62, 84, 74, 19, 9, 18, 12]
 ): AVLTree<Person> {
   const tree = getNewAVLT();
-  for (let num of nums) {
+  for (const num of nums) {
     tree.add(getPerson(num));
   }
   return tree;

@@ -1,9 +1,9 @@
 export default class MyObject {
-  private _value: number = 0;
+  private _value = 0;
   constructor(value: number) {
     this._value = value;
   }
-  get value() {
+  get value(): number {
     return this._value;
   }
 }

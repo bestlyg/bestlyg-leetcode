@@ -2,17 +2,17 @@ import { Person, getPerson } from "./../../src/utils/model";
 import BinarySearchTree from "../../src/core/tree/BinarySearchTree";
 
 function testCompare(p1: Person, p2: Person): number {
-  return p1.Age - p2.Age;
+  return p1.age - p2.age;
 }
 function getNewBST(
   fn: (p1: Person, p2: Person) => number = testCompare
 ): BinarySearchTree<Person> {
   return new BinarySearchTree<Person>(fn);
 }
-function inorderToString(tree: BinarySearchTree<Person>) {
+function inorderToString(tree: BinarySearchTree<Person>): string {
   let string = "";
   tree.inorder((el: Person) => {
-    string += el.Age + " ";
+    string += el.age + " ";
     return false;
   });
   return string;
@@ -146,20 +146,20 @@ describe("BinarySearchTree", () => {
     const bst = getNewBST();
     let string = "";
     bst.preorder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     bst.inorder((person: Person) => {
-      string += person.Age + " ";
-      if (person.Age === 5) return true;
+      string += person.age + " ";
+      if (person.age === 5) return true;
       return false;
     });
     bst.postorder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     bst.levelOrder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     expect(string).toBe("");
@@ -172,8 +172,8 @@ describe("BinarySearchTree", () => {
     let string = "";
     const bst = getBST();
     bst.inorder((person: Person) => {
-      string += person.Age + " ";
-      if (person.Age === 5) return true;
+      string += person.age + " ";
+      if (person.age === 5) return true;
       return false;
     });
     expect(string).toBe("1 2 3 4 5 ");
@@ -182,7 +182,7 @@ describe("BinarySearchTree", () => {
     let string = "";
     const bst = getBST();
     bst.postorder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     expect(string).toBe("2 3 1 5 4 7 9 8 6 ");
@@ -191,8 +191,8 @@ describe("BinarySearchTree", () => {
     let string = "";
     const bst = getBST();
     bst.postorder((person: Person) => {
-      string += person.Age + " ";
-      if (person.Age === 9) return true;
+      string += person.age + " ";
+      if (person.age === 9) return true;
       return false;
     });
     expect(string).toBe("2 3 1 5 4 7 9 ");
@@ -201,7 +201,7 @@ describe("BinarySearchTree", () => {
     let string = "";
     const bst = getBST();
     bst.preorder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     expect(string).toBe("6 4 1 3 2 5 8 7 9 ");
@@ -210,8 +210,8 @@ describe("BinarySearchTree", () => {
     let string = "";
     const bst = getBST();
     bst.preorder((person: Person) => {
-      string += person.Age + " ";
-      if (person.Age === 5) return true;
+      string += person.age + " ";
+      if (person.age === 5) return true;
       return false;
     });
     expect(string).toBe("6 4 1 3 2 5 ");
@@ -220,14 +220,14 @@ describe("BinarySearchTree", () => {
     const bst = getBST();
     let string = "";
     bst.levelOrder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     expect(string).toBe("6 4 8 1 5 7 9 3 2 ");
     const bst2 = getNewBST();
     string = "";
     bst2.levelOrder((person: Person) => {
-      string += person.Age + " ";
+      string += person.age + " ";
       return false;
     });
     expect(string).toBe("");
@@ -236,8 +236,8 @@ describe("BinarySearchTree", () => {
     const bst = getBST();
     let string = "";
     bst.levelOrder((person: Person) => {
-      string += person.Age + " ";
-      if (person.Age === 7) return true;
+      string += person.age + " ";
+      if (person.age === 7) return true;
       return false;
     });
     expect(string).toBe("6 4 8 1 5 7 ");

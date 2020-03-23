@@ -6,7 +6,7 @@ import {
   red,
   colorOf,
   color,
-  Color
+  ColorEnum
 } from "../../src/utils/color";
 
 describe("RedBlackNode", () => {
@@ -15,13 +15,13 @@ describe("RedBlackNode", () => {
   describe("Color", () => {
     black(node2);
     test("red", () => {
-      expect(colorOf(node)).toBe(Color.RED);
+      expect(colorOf(node)).toBe(ColorEnum.RED);
       black(node);
       red(node);
-      expect(colorOf(node)).toBe(Color.RED);
+      expect(colorOf(node)).toBe(ColorEnum.RED);
     });
     test("black", () => {
-      expect(colorOf(node2)).toBe(Color.BLACK);
+      expect(colorOf(node2)).toBe(ColorEnum.BLACK);
     });
     test("isBlack", () => {
       expect(isBlack(node2)).toBe(true);
@@ -33,8 +33,8 @@ describe("RedBlackNode", () => {
     });
     test("undefined", () => {
       const node3 = undefined;
-      expect(colorOf(node3)).toBe(Color.BLACK);
-      expect(color(node3, Color.BLACK)).toBeUndefined();
+      expect(colorOf(node3)).toBe(ColorEnum.BLACK);
+      expect(color(node3, ColorEnum.BLACK)).toBeUndefined();
     });
   });
   test("toString", () => {

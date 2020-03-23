@@ -4,7 +4,7 @@ import UnionFind_QU from "./UnionFind_QU";
  */
 export default class UnionFind_QU_R extends UnionFind_QU {
   private ranks: number[];
-  constructor(capacity: number = 10) {
+  constructor(capacity: number) {
     super(capacity);
     this.ranks = new Array<number>(capacity).fill(1);
   }

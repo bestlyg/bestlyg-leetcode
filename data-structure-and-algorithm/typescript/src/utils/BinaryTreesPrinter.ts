@@ -1,5 +1,5 @@
 import { blank, repeat } from "../utils";
-import { IBinaryTreesPrinter } from "../types";
+import { BinaryTreesPrinter } from "../types";
 
 export enum BinaryTreesPrintStyle {
   PREORDER,
@@ -8,42 +8,9 @@ export enum BinaryTreesPrintStyle {
   LEVEL_ORDER_SLASHES,
   LEVEL_ORDER_LINES
 }
-
-export default class BinaryTreesPrinter {
-  public static print(
-    tree: IBinaryTreesPrinter,
-    style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
-  ): void {
-    if (tree === undefined || tree._printerRoot() === undefined) return;
-    this.printer(tree, style).print();
-  }
-  public static printString(
-    tree: IBinaryTreesPrinter,
-    style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
-  ): string {
-    return this.printer(tree, style).printString();
-  }
-  private static printer(
-    tree: IBinaryTreesPrinter,
-    style: BinaryTreesPrintStyle
-  ): Printer {
-    switch (style) {
-      case BinaryTreesPrintStyle.PREORDER:
-        return new PreorderPrinter(tree);
-      case BinaryTreesPrintStyle.INORDER:
-        return new InorderPrinter(tree);
-      case BinaryTreesPrintStyle.POSTORDER:
-        return new PostorderPrinter(tree);
-      case BinaryTreesPrintStyle.LEVEL_ORDER_LINES:
-        return new LevelOrderLines(tree);
-      case BinaryTreesPrintStyle.LEVEL_ORDER_SLASHES:
-        return new LevelOrderSlashes(tree);
-    }
-  }
-}
 abstract class Printer {
-  protected tree: IBinaryTreesPrinter;
-  constructor(tree: IBinaryTreesPrinter) {
+  protected tree: BinaryTreesPrinter;
+  constructor(tree: BinaryTreesPrinter) {
     this.tree = tree;
   }
   public abstract printString(): string;
@@ -52,7 +19,7 @@ abstract class Printer {
   }
 }
 class PreorderPrinter extends Printer {
-  constructor(tree: IBinaryTreesPrinter) {
+  constructor(tree: BinaryTreesPrinter) {
     super(tree);
   }
   //├│─└┌
@@ -66,7 +33,7 @@ class PreorderPrinter extends Printer {
     const right = this.tree._printerRight(node);
     const nodeString = this.tree._printerString(node);
     const halfLength = nodeString.length >> 1;
-    let string: string = `${this.tree._printerString(node)}\n`;
+    let string = `${this.tree._printerString(node)}\n`;
     if (right !== undefined) {
       string +=
         prefix +
@@ -94,7 +61,7 @@ class PreorderPrinter extends Printer {
   }
 }
 class InorderPrinter extends Printer {
-  constructor(tree: IBinaryTreesPrinter) {
+  constructor(tree: BinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
@@ -102,7 +69,7 @@ class InorderPrinter extends Printer {
   }
 }
 class PostorderPrinter extends Printer {
-  constructor(tree: IBinaryTreesPrinter) {
+  constructor(tree: BinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
@@ -110,7 +77,7 @@ class PostorderPrinter extends Printer {
   }
 }
 class LevelOrderSlashes extends Printer {
-  constructor(tree: IBinaryTreesPrinter) {
+  constructor(tree: BinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
@@ -118,10 +85,43 @@ class LevelOrderSlashes extends Printer {
   }
 }
 class LevelOrderLines extends Printer {
-  constructor(tree: IBinaryTreesPrinter) {
+  constructor(tree: BinaryTreesPrinter) {
     super(tree);
   }
   public printString(): string {
     return "";
+  }
+}
+
+export default class {
+  public static print(
+    tree: BinaryTreesPrinter,
+    style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
+  ): void {
+    if (tree === undefined || tree._printerRoot() === undefined) return;
+    this.printer(tree, style).print();
+  }
+  public static printString(
+    tree: BinaryTreesPrinter,
+    style: BinaryTreesPrintStyle = BinaryTreesPrintStyle.PREORDER
+  ): string {
+    return this.printer(tree, style).printString();
+  }
+  private static printer(
+    tree: BinaryTreesPrinter,
+    style: BinaryTreesPrintStyle
+  ): Printer {
+    switch (style) {
+      case BinaryTreesPrintStyle.PREORDER:
+        return new PreorderPrinter(tree);
+      case BinaryTreesPrintStyle.INORDER:
+        return new InorderPrinter(tree);
+      case BinaryTreesPrintStyle.POSTORDER:
+        return new PostorderPrinter(tree);
+      case BinaryTreesPrintStyle.LEVEL_ORDER_LINES:
+        return new LevelOrderLines(tree);
+      case BinaryTreesPrintStyle.LEVEL_ORDER_SLASHES:
+        return new LevelOrderSlashes(tree);
+    }
   }
 }

@@ -2,16 +2,16 @@ import BinaryTreesPrinter from "./../../src/utils/BinaryTreesPrinter";
 import BinaryHeap from "../../src/core/heap/BinaryHeap";
 import { Person, getPerson } from "../../src/utils/model";
 
-function getNewHeap(arr: Array<number> = []) {
-  let newArr: Array<Person> = [];
-  for (let num of arr) {
+function getNewHeap(arr: Array<number> = []): BinaryHeap<Person> {
+  const newArr: Array<Person> = [];
+  for (const num of arr) {
     newArr.push(getPerson(num));
   }
-  return new BinaryHeap<Person>((p1, p2) => p1.Age - p2.Age, newArr);
+  return new BinaryHeap<Person>((p1, p2) => p1.age - p2.age, newArr);
 }
 describe("Heap", () => {
   test("size", () => {
-    const heap = new BinaryHeap<Person>((p1, p2) => p1.Age - p2.Age);
+    const heap = new BinaryHeap<Person>((p1, p2) => p1.age - p2.age);
     expect(heap.size()).toBe(0);
     heap.add(getPerson(1));
     expect(heap.size()).toBe(1);
@@ -42,7 +42,7 @@ describe("Heap", () => {
     expect(heap.get()).toBe(getPerson(100));
   });
   test("replace", () => {
-    let heap = getNewHeap();
+    const heap = getNewHeap();
     expect(heap.replace(getPerson(1))).toBeUndefined();
     expect(heap.get()).toBe(getPerson(1));
     expect(heap.replace(getPerson(2))).toBe(getPerson(1));

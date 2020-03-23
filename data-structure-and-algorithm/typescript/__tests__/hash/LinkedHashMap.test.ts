@@ -1,5 +1,5 @@
 import LinkedHashMap from "../../src/core/hash/LinkedHashMap";
-import { IHash } from "../../src/types";
+import { Hash as IHash } from "../../src/types";
 import { getKey } from "../../src/utils/model";
 function getNewMap(): LinkedHashMap<IHash, any> {
   return new LinkedHashMap<IHash, any>();
@@ -8,7 +8,7 @@ function getMap(
   nums: number[] = [55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50, 99]
 ): LinkedHashMap<IHash, any> {
   const map = getNewMap();
-  for (let num of nums) {
+  for (const num of nums) {
     map.put(getKey(num), num);
   }
   return map;
@@ -33,8 +33,7 @@ describe("LinkedHashMap", () => {
     let err = "";
     try {
       map.traversal((k: IHash, v: any) => {
-        const k1 = k,
-          v1 = v;
+        console.log(k, v);
         if (v === 99) return true;
         return false;
       });

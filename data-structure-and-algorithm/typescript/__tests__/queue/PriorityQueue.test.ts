@@ -1,12 +1,12 @@
 import PriorityQueue from "../../src/core/queue/PriorityQueue";
 import { Patient, getPatient } from "../../src/utils/model/";
 
-function getNewQueue() {
+function getNewQueue(): PriorityQueue<Patient> {
   return new PriorityQueue<Patient>((p1, p2) => p1.boneBreak - p2.boneBreak);
 }
-function getQueue(arr: number[]) {
+function getQueue(arr: number[]): PriorityQueue<Patient> {
   const queue = getNewQueue();
-  for (let num of arr) {
+  for (const num of arr) {
     queue.enQueue(getPatient(num));
   }
   return queue;

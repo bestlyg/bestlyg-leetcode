@@ -1,6 +1,6 @@
-import Sort, { mixinSort } from "./Sort";
+import AbstractSort, { mixinSort } from "./Sort";
 export default mixinSort(
-  class RadixSort extends Sort {
+  class RadixSort extends AbstractSort {
     protected sort(): void {
       const array = this.array;
       const len = array.length;

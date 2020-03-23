@@ -4,7 +4,7 @@ import { toString } from "../../src/utils/";
 import HashSet from "../../src/core/hash/HashSet";
 import LinkedHashSet from "../../src/core/hash/LinkedHashSet";
 
-const run = (name: string, getNewSet: () => ISet<Person>) => {
+const run = (name: string, getNewSet: () => ISet<Person>): void => {
   describe(name, () => {
     test("size", () => {
       const set = getNewSet();
