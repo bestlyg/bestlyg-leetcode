@@ -8,6 +8,8 @@ import Map from "../core/map/IMap";
 import Heap from "../core/heap/IHeap";
 import Trie from "../core/trie/ITrie";
 import UnionFind from "../core/union/IUnionFind";
+import Graph from "../core/graph/IGraph";
+import WeightManager from "../core/graph/WeightManager";
 const ELEMENT_NOT_FOUND = -1;
 type Comparator<T> = (el1: T, el2: T) => number;
 interface Sort {
@@ -62,6 +64,8 @@ export {
   Trie,
   Hash,
   UnionFind,
+  Graph,
+  WeightManager,
   Comparable,
   BinaryTreesPrinter,
   ELEMENT_NOT_FOUND,

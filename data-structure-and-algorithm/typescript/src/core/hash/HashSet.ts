@@ -1,12 +1,12 @@
 import ISet from "../set/ISet";
-import IMap from "../map/IMap";
 import HashMap from "./HashMap";
 import { Hash } from "../../types";
+import { toString } from "../../utils";
 /**
  * 内置HashMap
  */
 export default class HashSet<T extends Hash> implements ISet<T> {
-  private _map: IMap<T, undefined> = new HashMap<T, undefined>();
+  private _map: HashMap<T, undefined> = new HashMap<T, undefined>();
   size(): number {
     return this._map.size();
   }
@@ -25,7 +25,19 @@ export default class HashSet<T extends Hash> implements ISet<T> {
   remove(element: T): void {
     this._map.remove(element);
   }
+  removeBoolean(element: T): boolean {
+    return this._map.removeBoolean(element);
+  }
   traversal(visitor: (element: T) => boolean): void {
     this._map.traversal(visitor);
+  }
+  toString(): string {
+    let string = "";
+    this._map.traversal(key => {
+      string += key + ",";
+      return false;
+    });
+    string = string.substring(0, string.length - 1);
+    return string;
   }
 }

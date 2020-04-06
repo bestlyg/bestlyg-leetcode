@@ -225,7 +225,10 @@ export default class HashMap<K extends Hash, V> implements IMap<K, V> {
     return undefined;
   }
   remove(key: K): V | undefined {
-    return this._remove(this.node(key));
+    return this._removeReturnValue(this.node(key));
+  }
+  removeBoolean(key: K): boolean {
+    return this._removeReturnBoolean(this.node(key));
   }
   private resize(): void {
     const _capacity = this._capacity;
@@ -365,6 +368,12 @@ export default class HashMap<K extends Hash, V> implements IMap<K, V> {
     }
     this.afterRemove(willNode, node);
     return oldValue;
+  }
+  private _removeReturnValue(node: Node<K, V> | undefined): V | undefined {
+    return this._remove(node);
+  }
+  private _removeReturnBoolean(node: Node<K, V> | undefined): boolean {
+    return this._remove(node) === undefined;
   }
   private fixAfterRemove(node: Node<K, V>): void {
     if (isRed(node)) {

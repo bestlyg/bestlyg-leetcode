@@ -29,6 +29,7 @@ import UnionFind_QU_R from "./core/union/UnionFind_QU_R";
 import UnionFind_QU_R_PC from "./core/union/UnionFind_QU_R_PC";
 import UnionFind_QU_R_PH from "./core/union/UnionFind_QU_R_PH";
 import UnionFind_QU_R_PS from "./core/union/UnionFind_QU_R_PS";
+import ListGraph from "./core/graph/ListGraph";
 import BinaryTreesPrinter from "./utils/BinaryTreesPrinter";
 import * as algorithms from "./core/algorithms";
 import * as types from "./types";
@@ -64,12 +65,38 @@ export {
   UnionFind_QU_R_PC,
   UnionFind_QU_R_PH,
   UnionFind_QU_R_PS,
+  ListGraph,
   BinaryTreesPrinter,
   algorithms,
   types
 };
 
 //
-const uf = new UnionFind_QU_R(12);
-uf.union(0, 1);
+import { Person, getPerson } from "./utils/model/";
+import WeightManager from "./core/graph/WeightManager";
+const manager: WeightManager<number> = {
+  compare(w1: number, w2: number): number {
+    return w1 - w2;
+  },
+  add(w1: number, w2: number): number {
+    return w1 + w2;
+  },
+  zero(): number {
+    return 0;
+  }
+};
+const graph = new ListGraph<Person, number>(manager);
+graph.addEdge(getPerson(1), getPerson(2), 0);
+graph.addEdge(getPerson(1), getPerson(3), 0);
+graph.addEdge(getPerson(2), getPerson(4), 0);
+graph.addEdge(getPerson(3), getPerson(5), 0);
+graph.addEdge(getPerson(3), getPerson(4), 0);
+graph.addEdge(getPerson(4), getPerson(1), 0);
+graph.addEdge(getPerson(4), getPerson(6), 0);
+graph.addEdge(getPerson(5), getPerson(6), 0);
+graph.removeVertex(getPerson(4));
+graph.removeEdge(getPerson(3), getPerson(4));
+graph.removeEdge(getPerson(2), getPerson(1));
+graph.removeEdge(getPerson(1), getPerson(2));
+graph.print();
 //
