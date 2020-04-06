@@ -308,7 +308,6 @@ describe("HashMap", () => {
         expect(map.size()).toBe(12);
       });
     });
-
     describe("map in left", () => {
       test("sibling is red", () => {
         const map = getMap([84, 23, 66, 52, 57, 79, 69, 72, 55, 58, 59]);

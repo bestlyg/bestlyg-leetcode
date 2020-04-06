@@ -52,6 +52,10 @@ interface BinaryTreesPrinter {
    */
   _printerString(node: any): string;
 }
+enum Mst {
+  prim,
+  kruskal
+}
 export {
   List,
   Queue,
@@ -70,5 +74,6 @@ export {
   BinaryTreesPrinter,
   ELEMENT_NOT_FOUND,
   Comparator,
-  Sort
+  Sort,
+  Mst
 };

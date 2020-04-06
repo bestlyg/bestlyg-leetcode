@@ -74,9 +74,11 @@ export {
 //
 import { Person, getPerson } from "./utils/model/";
 import WeightManager from "./core/graph/WeightManager";
+import { undirectedGraph } from "./utils/Graph";
+import MyString from "./utils/model/MyString";
 const manager: WeightManager<number> = {
   compare(w1: number, w2: number): number {
-    return w1 - w2;
+    return w2 - w1;
   },
   add(w1: number, w2: number): number {
     return w1 + w2;
@@ -85,11 +87,22 @@ const manager: WeightManager<number> = {
     return 0;
   }
 };
-const graph = new ListGraph<Person, number>(manager);
-graph.addEdge(getPerson(1), getPerson(2), 0);
-graph.addEdge(getPerson(2), getPerson(3), 0);
-graph.addEdge(getPerson(2), getPerson(4), 0);
-graph.addEdge(getPerson(2), getPerson(5), 0);
-graph.addEdge(getPerson(5), getPerson(6), 0);
-console.log(graph.topologicalSort());
+function getNewGraph(): ListGraph<Person, number> {
+  return new ListGraph<Person, number>(manager);
+}
+
+const graph = getNewGraph();
+graph.addEdge(getPerson(1), getPerson(2), manager.zero());
+graph.addEdge(getPerson(1), getPerson(3), manager.zero());
+graph.addEdge(getPerson(2), getPerson(4), manager.zero());
+graph.addEdge(getPerson(3), getPerson(5), manager.zero());
+graph.addEdge(getPerson(3), getPerson(4), manager.zero());
+graph.addEdge(getPerson(4), getPerson(1), manager.zero());
+graph.addEdge(getPerson(4), getPerson(6), manager.zero());
+graph.addEdge(getPerson(5), getPerson(6), manager.zero());
+graph.removeVertex(getPerson(4));
+graph.removeEdge(getPerson(3), getPerson(4));
+graph.removeEdge(getPerson(2), getPerson(1));
+graph.removeEdge(getPerson(1), getPerson(2));
+graph.print();
 //

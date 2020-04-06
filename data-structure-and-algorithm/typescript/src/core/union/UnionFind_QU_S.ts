@@ -4,6 +4,7 @@ import UnionFind_QU from "./UnionFind_QU";
  */
 export default class UnionFind_QU_S extends UnionFind_QU {
   private _sizes: number[];
+  /* istanbul ignore next */
   constructor(capacity: number) {
     super(capacity);
     this._sizes = new Array<number>(capacity).fill(1);

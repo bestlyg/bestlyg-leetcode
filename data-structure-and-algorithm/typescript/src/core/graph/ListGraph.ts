@@ -1,11 +1,13 @@
 import AbstractGraph from "./Graph";
 import EdgeInfo from "./EdgeInfo";
 import HashSet from "../hash/HashSet";
-import { Hash, Comparator } from "../../types";
+import { Hash, Comparator, Mst } from "../../types";
 import { equals, toString } from "../../utils";
 import HashMap from "../hash/HashMap";
 import Queue from "../queue/Queue";
 import Stack from "../stack/Stack";
+import BinaryHeap from "../heap/BinaryHeap";
+import GenericUnionFind from "../union/GenericUnionFind";
 class Vertex<V extends Hash, E> implements Hash {
   inEdges: HashSet<Edge<V, E>> = new HashSet<Edge<V, E>>();
   outEdges: HashSet<Edge<V, E>> = new HashSet<Edge<V, E>>();
@@ -54,7 +56,7 @@ export default class ListGraph<V extends Hash, E> extends AbstractGraph<V, E> {
   private _edgeComparator: Comparator<Edge<V, E>> = (
     e1: Edge<V, E>,
     e2: Edge<V, E>
-  ) => this.weightManager.compare(e1.weight, e2.weight);
+  ) => this._weightManager.compare(e1.weight, e2.weight);
   print(): void {
     console.log("【顶点】");
     this._vertices.traversal((key: V, value: Vertex<V, E>) => {
@@ -129,7 +131,7 @@ export default class ListGraph<V extends Hash, E> extends AbstractGraph<V, E> {
     const edge = new Edge<V, E>(
       fromVertex,
       toVertex,
-      this.weightManager.zero()
+      this._weightManager.zero()
     );
     if (fromVertex.outEdges.removeBoolean(edge)) {
       toVertex.inEdges.remove(edge);
@@ -168,7 +170,6 @@ export default class ListGraph<V extends Hash, E> extends AbstractGraph<V, E> {
       let f = false;
       vertex.outEdges.traversal(edge => {
         if (visitedVertices.contains(edge.to)) return false;
-        console.log(edge.to.value);
         stack.push(edge.from);
         stack.push(edge.to);
         visitedVertices.add(edge.to);
@@ -201,15 +202,58 @@ export default class ListGraph<V extends Hash, E> extends AbstractGraph<V, E> {
     }
     return list;
   }
-  mst(type = "prim"): Set<EdgeInfo<V, E>> {
-    return type === "prim" ? this.prim() : this.kruskal();
+  mst(type: Mst = Mst.prim): Set<EdgeInfo<V, E>> {
+    return type === Mst.prim ? this.prim() : this.kruskal();
   }
   private prim(): Set<EdgeInfo<V, E>> {
+    const it: Vertex<V, E>[] = [];
+    this._vertices.traversal((_, value: Vertex<V, E>) => {
+      it.push(value);
+      return false;
+    });
     const edgeInfos = new Set<EdgeInfo<V, E>>();
+    if (it.length === 0) return edgeInfos;
+    const vertex = it[0];
+    const heap = new BinaryHeap<Edge<V, E>>(this._edgeComparator);
+    vertex.outEdges.traversal(edge => {
+      heap.add(edge);
+      return false;
+    });
+    const addedVertices = new Set<Vertex<V, E>>();
+    addedVertices.add(vertex);
+    const verticesSize = this._vertices.size();
+    while (!heap.isEmpty() && addedVertices.size < verticesSize) {
+      const edge = heap.remove();
+      if (addedVertices.has(edge.to)) continue;
+      edgeInfos.add(edge.info());
+      addedVertices.add(edge.to);
+      edge.to.outEdges.traversal(edge => {
+        heap.add(edge);
+        return false;
+      });
+    }
     return edgeInfos;
   }
   private kruskal(): Set<EdgeInfo<V, E>> {
     const edgeInfos = new Set<EdgeInfo<V, E>>();
+    const edgeSize = this._vertices.size() - 1;
+    if (edgeSize === -1) return edgeInfos;
+    const heap = new BinaryHeap<Edge<V, E>>(this._edgeComparator);
+    this._edges.traversal(edge => {
+      heap.add(edge);
+      return false;
+    });
+    const uf = new GenericUnionFind();
+    this._vertices.traversal((_, vertex: Vertex<V, E>) => {
+      uf.makeSet(vertex);
+      return false;
+    });
+    while (!heap.isEmpty() && edgeInfos.size < edgeSize) {
+      const edge = heap.remove();
+      if (uf.isSame(edge.from, edge.to)) continue;
+      edgeInfos.add(edge.info());
+      uf.union(edge.from, edge.to);
+    }
     return edgeInfos;
   }
 }

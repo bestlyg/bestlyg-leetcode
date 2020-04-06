@@ -50,6 +50,7 @@ export default interface Graph<V extends Hash, E> {
   topologicalSort(): V[];
   /**
    * 最小生成树
+   * Minimum Spanning Tree
    */
   mst(): Set<EdgeInfo<V, E>>;
 }

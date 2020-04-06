@@ -238,7 +238,7 @@ export default class HashMap<K extends Hash, V> implements IMap<K, V> {
     this._capacity = _capacity << 1;
     const queue = new Queue<Node<K, V>>();
     for (let i = 0; i < _capacity; i++) {
-      if (oldTable[i] === undefined) return;
+      if (oldTable[i] === undefined) continue;
       queue.enQueue(oldTable[i] as Node<K, V>);
       while (!queue.isEmpty()) {
         const node = queue.deQueue();
@@ -331,12 +331,9 @@ export default class HashMap<K extends Hash, V> implements IMap<K, V> {
       this.rotateLeft(grand);
     }
   }
-
-  private _remove(node: Node<K, V> | undefined): V | undefined {
-    if (node === undefined) return undefined;
+  private _remove(node: Node<K, V>): void {
     const willNode = node;
     this._size--;
-    const oldValue = node.value;
     if (node.hasTwoChildren()) {
       const s = this.successor(node);
       node.key = s.key;
@@ -367,13 +364,17 @@ export default class HashMap<K extends Hash, V> implements IMap<K, V> {
       this.fixAfterRemove(node);
     }
     this.afterRemove(willNode, node);
-    return oldValue;
   }
   private _removeReturnValue(node: Node<K, V> | undefined): V | undefined {
-    return this._remove(node);
+    if (node === undefined) return undefined;
+    const oldValue = node.value;
+    this._remove(node);
+    return oldValue;
   }
   private _removeReturnBoolean(node: Node<K, V> | undefined): boolean {
-    return this._remove(node) === undefined;
+    if (node === undefined) return false;
+    this._remove(node);
+    return true;
   }
   private fixAfterRemove(node: Node<K, V>): void {
     if (isRed(node)) {
