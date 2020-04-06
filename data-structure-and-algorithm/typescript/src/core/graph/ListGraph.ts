@@ -4,6 +4,8 @@ import HashSet from "../hash/HashSet";
 import { Hash, Comparator } from "../../types";
 import { equals, toString } from "../../utils";
 import HashMap from "../hash/HashMap";
+import Queue from "../queue/Queue";
+import Stack from "../stack/Stack";
 class Vertex<V extends Hash, E> implements Hash {
   inEdges: HashSet<Edge<V, E>> = new HashSet<Edge<V, E>>();
   outEdges: HashSet<Edge<V, E>> = new HashSet<Edge<V, E>>();
@@ -135,10 +137,46 @@ export default class ListGraph<V extends Hash, E> extends AbstractGraph<V, E> {
     }
   }
   bfs(begin: V, visitor: (v: V) => boolean): void {
-    throw new Error("Method not implemented.");
+    const beginVertex = this._vertices.get(begin);
+    if (beginVertex === undefined) return;
+    const visitedVertices = new HashSet<Vertex<V, E>>();
+    const queue = new Queue<Vertex<V, E>>();
+    queue.enQueue(beginVertex);
+    visitedVertices.add(beginVertex);
+    while (!queue.isEmpty()) {
+      const vertex = queue.deQueue();
+      if (visitor(vertex.value)) return;
+      vertex.outEdges.traversal(edge => {
+        if (!visitedVertices.contains(edge.to)) {
+          queue.enQueue(edge.to);
+          visitedVertices.add(edge.to);
+        }
+        return false;
+      });
+    }
   }
   dfs(begin: V, visitor: (v: V) => boolean): void {
-    throw new Error("Method not implemented.");
+    const beginVertex = this._vertices.get(begin);
+    if (beginVertex === undefined) return;
+    const visitedVertices = new HashSet<Vertex<V, E>>();
+    const stack = new Stack<Vertex<V, E>>();
+    stack.push(beginVertex);
+    visitedVertices.add(beginVertex);
+    if (visitor(beginVertex.value)) return;
+    while (!stack.isEmpty()) {
+      const vertex = stack.pop();
+      let f = false;
+      vertex.outEdges.traversal(edge => {
+        if (visitedVertices.contains(edge.to)) return false;
+        console.log(edge.to.value);
+        stack.push(edge.from);
+        stack.push(edge.to);
+        visitedVertices.add(edge.to);
+        if (visitor(edge.to.value)) f = true;
+        return true;
+      });
+      if (f) return;
+    }
   }
   mst(): Set<EdgeInfo<V, E>> {
     throw new Error("Method not implemented.");

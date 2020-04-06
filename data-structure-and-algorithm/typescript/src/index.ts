@@ -94,9 +94,10 @@ graph.addEdge(getPerson(3), getPerson(4), 0);
 graph.addEdge(getPerson(4), getPerson(1), 0);
 graph.addEdge(getPerson(4), getPerson(6), 0);
 graph.addEdge(getPerson(5), getPerson(6), 0);
-graph.removeVertex(getPerson(4));
-graph.removeEdge(getPerson(3), getPerson(4));
-graph.removeEdge(getPerson(2), getPerson(1));
-graph.removeEdge(getPerson(1), getPerson(2));
-graph.print();
+let string = "";
+graph.dfs(getPerson(1), (p: Person) => {
+  string += p.age + " ";
+  return false;
+});
+console.log(string);
 //

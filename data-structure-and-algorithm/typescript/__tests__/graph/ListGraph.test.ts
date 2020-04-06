@@ -15,17 +15,27 @@ const manager: WeightManager<number> = {
 function getNewGraph(): ListGraph<Person, number> {
   return new ListGraph<Person, number>(manager);
 }
+/*
+1  →  3  →  5
+↓  ↖ ↓     ↓
+2  →  4  →  6
+
+*/
+function getGraph(): ListGraph<Person, number> {
+  const graph = getNewGraph();
+  graph.addEdge(getPerson(1), getPerson(2), 0);
+  graph.addEdge(getPerson(1), getPerson(3), 0);
+  graph.addEdge(getPerson(2), getPerson(4), 0);
+  graph.addEdge(getPerson(3), getPerson(5), 0);
+  graph.addEdge(getPerson(3), getPerson(4), 0);
+  graph.addEdge(getPerson(4), getPerson(1), 0);
+  graph.addEdge(getPerson(4), getPerson(6), 0);
+  graph.addEdge(getPerson(5), getPerson(6), 0);
+  return graph;
+}
 describe("Graph", () => {
   test("common test", () => {
-    const graph = getNewGraph();
-    graph.addEdge(getPerson(1), getPerson(2), 0);
-    graph.addEdge(getPerson(1), getPerson(3), 0);
-    graph.addEdge(getPerson(2), getPerson(4), 0);
-    graph.addEdge(getPerson(3), getPerson(5), 0);
-    graph.addEdge(getPerson(3), getPerson(4), 0);
-    graph.addEdge(getPerson(4), getPerson(1), 0);
-    graph.addEdge(getPerson(4), getPerson(6), 0);
-    graph.addEdge(getPerson(5), getPerson(6), 0);
+    const graph = getGraph();
     graph.print();
     expect(graph.verticesSize()).toBe(6);
     expect(graph.edgesSize()).toBe(8);
@@ -59,5 +69,24 @@ describe("Graph", () => {
     graph.addEdge(getPerson(1), new Person("3", 3), 0);
     expect(graph.verticesSize()).toBe(4);
     expect(graph.edgesSize()).toBe(3);
+  });
+  test("bfs", () => {
+    const graph = getGraph();
+    let string = "";
+    graph.bfs(getPerson(1), (p: Person) => {
+      string += p.age + " ";
+      return false;
+    });
+    expect(string).toBe("1 2 3 4 5 6 ");
+  });
+  test("dfs", () => {
+    const graph = getGraph();
+    let string = "";
+    graph.dfs(getPerson(1), (p: Person) => {
+      string += p.age + " ";
+      if (p.age === 3) return true;
+      return false;
+    });
+    expect(string).toBe("1 2 4 6 3 ");
   });
 });
