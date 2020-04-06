@@ -178,7 +178,38 @@ export default class ListGraph<V extends Hash, E> extends AbstractGraph<V, E> {
       if (f) return;
     }
   }
-  mst(): Set<EdgeInfo<V, E>> {
-    throw new Error("Method not implemented.");
+  topologicalSort(): V[] {
+    const list: V[] = [];
+    const queue: Queue<Vertex<V, E>> = new Queue<Vertex<V, E>>();
+    const ins: Map<Vertex<V, E>, number> = new Map<Vertex<V, E>, number>();
+    this._vertices.traversal((v: V, vertex: Vertex<V, E>) => {
+      const outIn = vertex.inEdges.size();
+      if (outIn === 0) queue.enQueue(vertex);
+      else ins.set(vertex, outIn);
+      return false;
+    });
+    while (!queue.isEmpty()) {
+      const vertex = queue.deQueue();
+      list.push(vertex.value);
+      vertex.outEdges.traversal(edge => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const toIn = ins.get(edge.to)! - 1;
+        if (toIn === 0) queue.enQueue(edge.to);
+        else ins.set(edge.to, toIn);
+        return false;
+      });
+    }
+    return list;
+  }
+  mst(type = "prim"): Set<EdgeInfo<V, E>> {
+    return type === "prim" ? this.prim() : this.kruskal();
+  }
+  private prim(): Set<EdgeInfo<V, E>> {
+    const edgeInfos = new Set<EdgeInfo<V, E>>();
+    return edgeInfos;
+  }
+  private kruskal(): Set<EdgeInfo<V, E>> {
+    const edgeInfos = new Set<EdgeInfo<V, E>>();
+    return edgeInfos;
   }
 }

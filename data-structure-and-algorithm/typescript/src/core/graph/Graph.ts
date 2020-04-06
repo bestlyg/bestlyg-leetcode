@@ -13,5 +13,6 @@ export default abstract class AbstractGraph<V extends Hash, E>
   abstract removeEdge(from: V, to: V): void;
   abstract bfs(begin: V, visitor: (v: V) => boolean): void;
   abstract dfs(begin: V, visitor: (v: V) => boolean): void;
+  abstract topologicalSort(): V[];
   abstract mst(): Set<EdgeInfo<V, E>>;
 }

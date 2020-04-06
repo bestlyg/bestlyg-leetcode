@@ -33,6 +33,21 @@ function getGraph(): ListGraph<Person, number> {
   graph.addEdge(getPerson(5), getPerson(6), 0);
   return graph;
 }
+/*
+       ↗ 3 ↘ 
+1  → 2 →  5 → 6
+       ↘ 4
+*/
+function getGraph2(): ListGraph<Person, number> {
+  const graph = getNewGraph();
+  graph.addEdge(getPerson(1), getPerson(2), 0);
+  graph.addEdge(getPerson(2), getPerson(3), 0);
+  graph.addEdge(getPerson(2), getPerson(4), 0);
+  graph.addEdge(getPerson(2), getPerson(5), 0);
+  graph.addEdge(getPerson(5), getPerson(6), 0);
+  graph.addEdge(getPerson(3), getPerson(6), 0);
+  return graph;
+}
 describe("Graph", () => {
   test("common test", () => {
     const graph = getGraph();
@@ -88,5 +103,15 @@ describe("Graph", () => {
       return false;
     });
     expect(string).toBe("1 2 4 6 3 ");
+  });
+  test("topologicalSort", () => {
+    const graph = getGraph2();
+    const [p1, p2, p3, p4, p5, p6] = graph.topologicalSort();
+    expect(p1).toBe(getPerson(1));
+    expect(p2).toBe(getPerson(2));
+    expect(p3).toBe(getPerson(4));
+    expect(p4).toBe(getPerson(3));
+    expect(p5).toBe(getPerson(5));
+    expect(p6).toBe(getPerson(6));
   });
 });

@@ -45,6 +45,10 @@ export default interface Graph<V extends Hash, E> {
    */
   dfs(begin: V, visitor: (v: V) => boolean): void;
   /**
+   * 生成当前图的拓扑排序
+   */
+  topologicalSort(): V[];
+  /**
    * 最小生成树
    */
   mst(): Set<EdgeInfo<V, E>>;
