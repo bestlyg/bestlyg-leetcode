@@ -32,7 +32,7 @@ public class Trie<V> {
 	public V add(String key, V value) {
 		keyCheck(key);
 		
-		// 创建根节点
+		// 创建根节�?
 		if (root == null) {
 			root = new Node<>(null);
 		}
@@ -58,7 +58,7 @@ public class Trie<V> {
 			return oldValue;
 		}
 		
-		// 新增一个单词
+		// 新增�?个单�?
 		node.word = true;
 		node.value = value;
 		size++;
@@ -66,21 +66,21 @@ public class Trie<V> {
 	}
 
 	public V remove(String key) {
-		// 找到最后一个节点
+		// 找到�?后一个节�?
 		Node<V> node = node(key);
 		// 如果不是单词结尾，不用作任何处理
 		if (node == null || !node.word) return null;
 		size--;
 		V oldValue = node.value;
 		
-		// 如果还有子节点
+		// 如果还有子节�?
 		if (node.children != null && !node.children.isEmpty()) {
 			node.word = false;
 			node.value = null;
 			return oldValue;
 		}
 		
-		// 如果没有子节点
+		// 如果没有子节�?
 		Node<V> parent = null;
 		while ((parent = node.parent) != null) {
 			parent.children.remove(node.character);
@@ -119,7 +119,7 @@ public class Trie<V> {
 		HashMap<Character, Node<V>> children;
 		Character character;
 		V value;
-		boolean word; // 是否为单词的结尾（是否为一个完整的单词）
+		boolean word; // 是否为单词的结尾（是否为�?个完整的单词�?
 		public Node(Node<V> parent) {
 			this.parent = parent;
 		}
