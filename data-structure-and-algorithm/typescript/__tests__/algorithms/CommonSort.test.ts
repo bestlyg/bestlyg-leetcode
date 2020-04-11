@@ -12,7 +12,7 @@ import {
   QuickSort,
   ShellSort,
   CountingSort,
-  RadixSort
+  RadixSort,
 } from "../../src/core/algorithms";
 import { Sort } from "../../src/types";
 import { toString } from "../../src/utils";

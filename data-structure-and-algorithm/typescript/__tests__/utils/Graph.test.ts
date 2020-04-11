@@ -10,7 +10,7 @@ const manager: WeightManager<number> = {
   },
   zero(): number {
     return 0;
-  }
+  },
 };
 describe("graph's utils", () => {
   test("undirectedGraph", () => {
@@ -18,12 +18,12 @@ describe("graph's utils", () => {
       [
         [new MyString("A")],
         [new MyString("A"), new MyString("H")],
-        [new MyString("B"), new MyString("H"), 11]
+        [new MyString("B"), new MyString("H"), 11],
       ],
       manager
     );
     let string = "";
-    graph.bfs(new MyString("A"), myString => {
+    graph.bfs(new MyString("A"), (myString) => {
       string += myString + " ";
       return false;
     });
@@ -34,12 +34,12 @@ describe("graph's utils", () => {
       [
         [new MyString("A")],
         [new MyString("A"), new MyString("H")],
-        [new MyString("B"), new MyString("H"), 11]
+        [new MyString("B"), new MyString("H"), 11],
       ],
       manager
     );
     let string = "";
-    graph.bfs(new MyString("A"), myString => {
+    graph.bfs(new MyString("A"), (myString) => {
       string += myString + " ";
       return false;
     });

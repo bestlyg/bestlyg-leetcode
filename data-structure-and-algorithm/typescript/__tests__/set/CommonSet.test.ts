@@ -70,7 +70,7 @@ const run = (name: string, getNewSet: () => ISet<Person>): void => {
         set.add(getPerson(i));
       }
       let string = "";
-      set.traversal(p => {
+      set.traversal((p) => {
         string += p.age + " ";
         if (p.age === 12) return true;
         return false;

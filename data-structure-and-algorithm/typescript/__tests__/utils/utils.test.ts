@@ -17,7 +17,7 @@ import {
   timePrint,
   timeString,
   numberString,
-  padCompletion
+  padCompletion,
 } from "../../src/utils";
 import { getPerson, getKey } from "../../src/utils/model";
 describe("Utils Test", () => {

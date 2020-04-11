@@ -12,7 +12,7 @@ const manager: WeightManager<number> = {
   },
   zero(): number {
     return 0;
-  }
+  },
 };
 function getNewGraph(): ListGraph<Person, number> {
   return new ListGraph<Person, number>(manager);
@@ -68,7 +68,7 @@ function getGraph3(): ListGraph<MyString, number> {
       [new MyString("G"), new MyString("F"), 2],
       [new MyString("D"), new MyString("F"), 14],
       [new MyString("D"), new MyString("E"), 9],
-      [new MyString("F"), new MyString("E"), 10]
+      [new MyString("F"), new MyString("E"), 10],
     ],
     manager
   );
@@ -119,7 +119,7 @@ describe("Graph", () => {
       graph.addEdge(getPerson(1), getPerson(2), 1);
       graph.addEdge(getPerson(1), getPerson(2), 2);
       let string = "";
-      graph.bfs(getPerson(1), p => {
+      graph.bfs(getPerson(1), (p) => {
         string += p + " ";
         return false;
       });
@@ -193,7 +193,7 @@ describe("Graph", () => {
       const graph = getGraph3();
       const prim: Set<EdgeInfo<MyString, number>> = graph.mst();
       let string = "";
-      prim.forEach(edgeInnfo => {
+      prim.forEach((edgeInnfo) => {
         string += edgeInnfo + " ";
       });
       expect(string).toBe(
@@ -218,7 +218,7 @@ describe("Graph", () => {
       const graph = getGraph3();
       const prim: Set<EdgeInfo<MyString, number>> = graph.mst(Mst.kruskal);
       let string = "";
-      prim.forEach(edgeInnfo => {
+      prim.forEach((edgeInnfo) => {
         string += edgeInnfo + " ";
       });
       expect(string).toBe(
