@@ -21,7 +21,7 @@ enum Model {
 }
 function getModelFactory(ObjectName: Model): object {
   const obj: object = {};
-  return function(val: number): object {
+  return function (val: number): object {
     if (!obj[val]) {
       let newObj;
       switch (ObjectName) {

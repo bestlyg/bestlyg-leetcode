@@ -33,7 +33,7 @@ export default class HashSet<T extends Hash> implements ISet<T> {
   }
   toString(): string {
     let string = "";
-    this._map.traversal(key => {
+    this._map.traversal((key) => {
       string += key + ",";
       return false;
     });

@@ -17,7 +17,7 @@ function warn(string: string): void {
   console.warn(`Here's a Warn : ${string}`);
 }
 function thorwEmptyError(struct: string) {
-  return function(method: string): never {
+  return function (method: string): never {
     return error(`${struct} is Empty can not use the Method: ${method}`);
   };
 }

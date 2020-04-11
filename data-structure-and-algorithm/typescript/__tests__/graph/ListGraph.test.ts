@@ -12,7 +12,7 @@ const manager: WeightManager<number> = {
   },
   zero(): number {
     return 0;
-  },
+  }
 };
 function getNewGraph(): ListGraph<Person, number> {
   return new ListGraph<Person, number>(manager);
@@ -68,7 +68,7 @@ function getGraph3(): ListGraph<MyString, number> {
       [new MyString("G"), new MyString("F"), 2],
       [new MyString("D"), new MyString("F"), 14],
       [new MyString("D"), new MyString("E"), 9],
-      [new MyString("F"), new MyString("E"), 10],
+      [new MyString("F"), new MyString("E"), 10]
     ],
     manager
   );

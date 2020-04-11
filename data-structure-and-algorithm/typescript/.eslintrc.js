@@ -21,6 +21,6 @@ module.exports = {
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/class-name-casing": 0,
-    "@typescript-eslint/no-non-null-assertion":0
+    "@typescript-eslint/no-non-null-assertion": 0
   }
 };

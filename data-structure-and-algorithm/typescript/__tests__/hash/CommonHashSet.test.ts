@@ -43,7 +43,7 @@ const run = (name: string, getNewSet: () => ISet<Person>): void => {
       const set = getNewSet();
       set.add(getPerson(1));
       let s = "";
-      set.traversal(el => {
+      set.traversal((el) => {
         s = toString(el);
         return false;
       });

@@ -48,7 +48,7 @@ export default abstract class AbstractSort {
 export function mixinSort(
   sort: new (array: number[]) => AbstractSort
 ): (array: number[]) => Sort {
-  return function(arr: number[]): Sort {
+  return function (arr: number[]): Sort {
     const result = new sort(arr);
     const { array, swapCount, compareCount, time } = result;
     const name = getClassName(result);
