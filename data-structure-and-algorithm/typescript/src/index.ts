@@ -72,13 +72,12 @@ export {
 };
 
 //
-import { Person, getPerson } from "./utils/model/";
+import { Person, getPerson, MyString } from "./utils/model/";
+import { toString } from "./utils";
 import WeightManager from "./core/graph/WeightManager";
-import { undirectedGraph } from "./utils/Graph";
-import MyString from "./utils/model/MyString";
 const manager: WeightManager<number> = {
   compare(w1: number, w2: number): number {
-    return w2 - w1;
+    return w1 - w2;
   },
   add(w1: number, w2: number): number {
     return w1 + w2;
@@ -87,22 +86,22 @@ const manager: WeightManager<number> = {
     return 0;
   }
 };
-function getNewGraph(): ListGraph<Person, number> {
-  return new ListGraph<Person, number>(manager);
+function getNewGraph(): ListGraph<MyString, number> {
+  return new ListGraph<MyString, number>(manager);
 }
 
 const graph = getNewGraph();
-graph.addEdge(getPerson(1), getPerson(2), manager.zero());
-graph.addEdge(getPerson(1), getPerson(3), manager.zero());
-graph.addEdge(getPerson(2), getPerson(4), manager.zero());
-graph.addEdge(getPerson(3), getPerson(5), manager.zero());
-graph.addEdge(getPerson(3), getPerson(4), manager.zero());
-graph.addEdge(getPerson(4), getPerson(1), manager.zero());
-graph.addEdge(getPerson(4), getPerson(6), manager.zero());
-graph.addEdge(getPerson(5), getPerson(6), manager.zero());
-graph.removeVertex(getPerson(4));
-graph.removeEdge(getPerson(3), getPerson(4));
-graph.removeEdge(getPerson(2), getPerson(1));
-graph.removeEdge(getPerson(1), getPerson(2));
-graph.print();
+graph.addEdge(new MyString("A"), new MyString("C"), 3);
+graph.addEdge(new MyString("A"), new MyString("B"), 1);
+graph.addEdge(new MyString("B"), new MyString("D"), 3);
+graph.addEdge(new MyString("D"), new MyString("C"), 3);
+const shortestMap = graph.shortestPathSingle(new MyString("A"));
+let string = "";
+if (shortestMap !== undefined)
+  shortestMap.traversal((vertex, pathInfo) => {
+    string += toString(vertex) + "," + toString(pathInfo) + "\n";
+    return false;
+  });
+string = string.substr(0, string.length - 1);
+console.log(string);
 //

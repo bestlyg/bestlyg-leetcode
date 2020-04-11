@@ -1,5 +1,7 @@
-import { Hash } from "../../types";
+import { Hash, SingleShortestPath } from "../../types";
 import EdgeInfo from "./EdgeInfo";
+import PathInfo from "./PathInfo";
+import HashMap from "../hash/HashMap";
 export default interface Graph<V extends Hash, E> {
   /**
    * 获取边的总数
@@ -53,4 +55,16 @@ export default interface Graph<V extends Hash, E> {
    * Minimum Spanning Tree
    */
   mst(): Set<EdgeInfo<V, E>>;
+  /**
+   * 单源最短路径
+   * @param begin 起始点
+   */
+  shortestPathSingle(
+    begin: V,
+    type?: SingleShortestPath
+  ): HashMap<V, PathInfo<V, E>> | undefined;
+  /**
+   * 多源最短路径
+   */
+  shortestPathMulti(): HashMap<V, HashMap<V, PathInfo<V, E>>> | undefined;
 }

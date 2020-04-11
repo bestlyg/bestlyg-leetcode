@@ -1,7 +1,8 @@
 import ListGraph from "../../src/core/graph/ListGraph";
 import { Person, getPerson, MyString } from "../../src/utils/model";
 import { undirectedGraph } from "../../src/utils/Graph";
-import { WeightManager, Mst } from "../../src/types";
+import { toString } from "../../src/utils";
+import { WeightManager, Mst, SingleShortestPath } from "../../src/types";
 import EdgeInfo from "../../src/core/graph/EdgeInfo";
 const manager: WeightManager<number> = {
   compare(w1: number, w2: number): number {
@@ -236,6 +237,176 @@ describe("Graph", () => {
       const graph = getNewGraph();
       const kruskal = graph.mst(Mst.kruskal);
       expect(kruskal.size).toBe(0);
+    });
+  });
+  describe("shortestPath", () => {
+    const manager: WeightManager<number> = {
+      compare(w1: number, w2: number): number {
+        return w1 - w2;
+      },
+      add(w1: number, w2: number): number {
+        return w1 + w2;
+      },
+      zero(): number {
+        return 0;
+      }
+    };
+    function getNewGraph(): ListGraph<MyString, number> {
+      return new ListGraph<MyString, number>(manager);
+    }
+    describe("dijkstra", () => {
+      test("has no begin", () => {
+        const graph = getNewGraph();
+        expect(graph.shortestPathSingle(new MyString("A"))).toBeUndefined();
+      });
+      test("selectedPaths include edge.to.value", () => {
+        const graph = getNewGraph();
+        graph.addEdge(new MyString("A"), new MyString("B"), 1);
+        graph.addEdge(new MyString("A"), new MyString("C"), 2);
+        graph.addEdge(new MyString("B"), new MyString("D"), 3);
+        graph.addEdge(new MyString("D"), new MyString("C"), 4);
+        const shortestMap = graph.shortestPathSingle(new MyString("A"));
+        let string = "";
+        if (shortestMap !== undefined)
+          shortestMap.traversal((vertex, pathInfo) => {
+            string += toString(vertex) + "," + toString(pathInfo) + "\n";
+            return false;
+          });
+        string = string.substr(0, string.length - 1);
+        const res =
+          "String value:B,PathInfo [weight=1,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=1]]\n" +
+          "String value:C,PathInfo [weight=2,edgeInfos=EdgeInfo [from=String value:A, to=String value:C, weight=2]]\n" +
+          "String value:D,PathInfo [weight=4,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=1],EdgeInfo [from=String value:B, to=String value:D, weight=3]]";
+        expect(string).toBe(res);
+      });
+      test("common", () => {
+        const graph = getNewGraph();
+        graph.addEdge(new MyString("A"), new MyString("D"), 30);
+        graph.addEdge(new MyString("A"), new MyString("E"), 100);
+        graph.addEdge(new MyString("A"), new MyString("B"), 10);
+        graph.addEdge(new MyString("B"), new MyString("C"), 50);
+        graph.addEdge(new MyString("C"), new MyString("E"), 10);
+        graph.addEdge(new MyString("D"), new MyString("C"), 20);
+        graph.addEdge(new MyString("D"), new MyString("E"), 60);
+        const shortestMap = graph.shortestPathSingle(new MyString("A"));
+        let string = "";
+        if (shortestMap !== undefined)
+          shortestMap.traversal((vertex, pathInfo) => {
+            string += toString(vertex) + "," + toString(pathInfo) + "\n";
+            return false;
+          });
+        string = string.substr(0, string.length - 1);
+        const res =
+          "String value:B,PathInfo [weight=10,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10]]\n" +
+          "String value:C,PathInfo [weight=50,edgeInfos=EdgeInfo [from=String value:A, to=String value:D, weight=30],EdgeInfo [from=String value:D, to=String value:C, weight=20]]\n" +
+          "String value:D,PathInfo [weight=30,edgeInfos=EdgeInfo [from=String value:A, to=String value:D, weight=30]]\n" +
+          "String value:E,PathInfo [weight=60,edgeInfos=EdgeInfo [from=String value:A, to=String value:D, weight=30],EdgeInfo [from=String value:D, to=String value:C, weight=20],EdgeInfo [from=String value:C, to=String value:E, weight=10]]";
+        expect(string).toBe(res);
+      });
+    });
+    describe("bellmanFord", () => {
+      test("has no begin", () => {
+        const graph = getNewGraph();
+        expect(
+          graph.shortestPathSingle(
+            new MyString("A"),
+            SingleShortestPath.bellmanFord
+          )
+        ).toBeUndefined();
+      });
+      test("common", () => {
+        const graph = getNewGraph();
+        graph.addEdge(new MyString("A"), new MyString("B"), 10);
+        graph.addEdge(new MyString("A"), new MyString("E"), 8);
+        graph.addEdge(new MyString("B"), new MyString("E"), -5);
+        graph.addEdge(new MyString("B"), new MyString("C"), 8);
+        graph.addEdge(new MyString("D"), new MyString("C"), 2);
+        graph.addEdge(new MyString("D"), new MyString("F"), 6);
+        graph.addEdge(new MyString("E"), new MyString("F"), 3);
+        graph.addEdge(new MyString("E"), new MyString("D"), 7);
+        const shortestMap = graph.shortestPathSingle(
+          new MyString("A"),
+          SingleShortestPath.bellmanFord
+        );
+        let string = "";
+        if (shortestMap !== undefined)
+          shortestMap.traversal((vertex, pathInfo) => {
+            string += toString(vertex) + "," + toString(pathInfo) + "\n";
+            return false;
+          });
+        string = string.substr(0, string.length - 1);
+        const res =
+          "String value:B,PathInfo [weight=10,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10]]\n" +
+          "String value:C,PathInfo [weight=14,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:D, weight=7],EdgeInfo [from=String value:D, to=String value:C, weight=2]]\n" +
+          "String value:D,PathInfo [weight=12,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:D, weight=7]]\n" +
+          "String value:E,PathInfo [weight=5,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5]]\n" +
+          "String value:F,PathInfo [weight=8,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:F, weight=3]]";
+        expect(string).toBe(res);
+      });
+      test("has negative weight ring", () => {
+        const graph = getNewGraph();
+        graph.addEdge(new MyString("A"), new MyString("B"), 4);
+        graph.addEdge(new MyString("A"), new MyString("E"), 8);
+        graph.addEdge(new MyString("B"), new MyString("E"), 11);
+        graph.addEdge(new MyString("B"), new MyString("C"), 8);
+        graph.addEdge(new MyString("D"), new MyString("C"), 2);
+        graph.addEdge(new MyString("D"), new MyString("F"), 6);
+        graph.addEdge(new MyString("E"), new MyString("D"), 7);
+        graph.addEdge(new MyString("F"), new MyString("E"), -20);
+        try {
+          graph.shortestPathSingle(
+            new MyString("A"),
+            SingleShortestPath.bellmanFord
+          );
+        } catch (error) {
+          expect(error.toString()).toBe("Error: 有负权环");
+        }
+      });
+    });
+    describe("floyd", () => {
+      test("common", () => {
+        const graph = getNewGraph();
+        graph.addEdge(new MyString("A"), new MyString("B"), 10);
+        graph.addEdge(new MyString("A"), new MyString("E"), 8);
+        graph.addEdge(new MyString("B"), new MyString("E"), -5);
+        graph.addEdge(new MyString("B"), new MyString("C"), 8);
+        graph.addEdge(new MyString("D"), new MyString("C"), 2);
+        graph.addEdge(new MyString("D"), new MyString("F"), 6);
+        graph.addEdge(new MyString("E"), new MyString("F"), 3);
+        graph.addEdge(new MyString("E"), new MyString("D"), 7);
+        const shortestMap = graph.shortestPathMulti();
+        let string = "";
+        if (shortestMap !== undefined)
+          shortestMap.traversal((vertex, map) => {
+            string += `======【${toString(vertex)}】======\n`;
+            map.traversal((key, pathInfo) => {
+              string += key + "," + pathInfo + "\n";
+              return false;
+            });
+            return false;
+          });
+        string = string.substr(0, string.length - 1);
+        const res =
+          "======【String value:A】======\n" +
+          "String value:B,PathInfo [weight=10,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10]]\n" +
+          "String value:C,PathInfo [weight=14,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:D, weight=7],EdgeInfo [from=String value:D, to=String value:C, weight=2]]\n" +
+          "String value:D,PathInfo [weight=12,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:D, weight=7]]\n" +
+          "String value:E,PathInfo [weight=5,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5]]\n" +
+          "String value:F,PathInfo [weight=8,edgeInfos=EdgeInfo [from=String value:A, to=String value:B, weight=10],EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:F, weight=3]]\n" +
+          "======【String value:B】======\n" +
+          "String value:C,PathInfo [weight=4,edgeInfos=EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:D, weight=7],EdgeInfo [from=String value:D, to=String value:C, weight=2]]\n" +
+          "String value:D,PathInfo [weight=2,edgeInfos=EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:D, weight=7]]\n" +
+          "String value:E,PathInfo [weight=-5,edgeInfos=EdgeInfo [from=String value:B, to=String value:E, weight=-5]]\n" +
+          "String value:F,PathInfo [weight=-2,edgeInfos=EdgeInfo [from=String value:B, to=String value:E, weight=-5],EdgeInfo [from=String value:E, to=String value:F, weight=3]]\n" +
+          "======【String value:D】======\n" +
+          "String value:C,PathInfo [weight=2,edgeInfos=EdgeInfo [from=String value:D, to=String value:C, weight=2]]\n" +
+          "String value:F,PathInfo [weight=6,edgeInfos=EdgeInfo [from=String value:D, to=String value:F, weight=6]]\n" +
+          "======【String value:E】======\n" +
+          "String value:C,PathInfo [weight=9,edgeInfos=EdgeInfo [from=String value:E, to=String value:D, weight=7],EdgeInfo [from=String value:D, to=String value:C, weight=2]]\n" +
+          "String value:D,PathInfo [weight=7,edgeInfos=EdgeInfo [from=String value:E, to=String value:D, weight=7]]\n" +
+          "String value:F,PathInfo [weight=3,edgeInfos=EdgeInfo [from=String value:E, to=String value:F, weight=3]]";
+        expect(string).toBe(res);
+      });
     });
   });
 });

@@ -10,6 +10,8 @@ import Trie from "../core/trie/ITrie";
 import UnionFind from "../core/union/IUnionFind";
 import Graph from "../core/graph/IGraph";
 import WeightManager from "../core/graph/WeightManager";
+import EdgeInfo from "../core/graph/EdgeInfo";
+import PathInfo from "../core/graph/PathInfo";
 const ELEMENT_NOT_FOUND = -1;
 type Comparator<T> = (el1: T, el2: T) => number;
 interface Sort {
@@ -56,6 +58,10 @@ enum Mst {
   prim,
   kruskal
 }
+enum SingleShortestPath {
+  dijkstra,
+  bellmanFord
+}
 export {
   List,
   Queue,
@@ -70,10 +76,13 @@ export {
   UnionFind,
   Graph,
   WeightManager,
+  EdgeInfo,
+  PathInfo,
   Comparable,
   BinaryTreesPrinter,
   ELEMENT_NOT_FOUND,
   Comparator,
   Sort,
-  Mst
+  Mst,
+  SingleShortestPath
 };
