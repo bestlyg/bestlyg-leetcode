@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "push": "git push origin master",
+    "commit-push": "git-cz && git push origin master"
   },
   "repository": {
     "type": "git",
