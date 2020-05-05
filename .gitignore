@@ -1,11 +1,2 @@
-#all
 node_modules
 package-lock.json
-yarn.lock
-yarn-error.log
-#data-structure-and-algorithm
-##typescript
-data-structure-and-algorithm/typescript/dist
-data-structure-and-algorithm/typescript/coverage
-### java
-data-structure-and-algorithm/java/bin
