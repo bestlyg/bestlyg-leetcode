@@ -7,7 +7,7 @@ function TreeNode(val) {
   this.left = this.right = null;
 }
 /**
- * 构造树节点
+ * 构造树
  * @param {number[]} arr
  */
 function treeNodeFactory(arr) {
@@ -64,12 +64,12 @@ function treeNodeLevelOrder(node, visitor) {
  * @param {TreeNode} node
  */
 function treeNodePrint(node) {
-  let string = "";
+  let s = "";
   treeNodeInorder(node, (node) => {
-    string += node.val + " ";
+    s += node.val + " ";
     return false;
   });
-  console.log(string.substr(0, string.length - 1));
+  console.log(s.substr(0, s.length - 1));
 }
 module.exports = {
   TreeNode,
