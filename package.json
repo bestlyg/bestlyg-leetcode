@@ -4,6 +4,8 @@
   "description": "个人LeetCode题解",
   "main": "index.js",
   "scripts": {
+    "start:node": "node temp/index.js",
+    "start:ts-node": "ts-node temp/index.ts",
     "commit": "git-cz",
     "auto-commit": "git pull && git add -A && git-cz && git push origin master"
   },
@@ -25,10 +27,12 @@
     }
   },
   "devDependencies": {
-    "git-cz": "^4.3.1",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "commitizen": "^4.1.1",
-    "cz-conventional-changelog": "^3.2.0"
+    "cz-conventional-changelog": "^3.2.0",
+    "git-cz": "^4.3.1",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
   }
 }
