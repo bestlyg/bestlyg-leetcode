@@ -6,12 +6,12 @@ export class TreeNode {
    * 构造树
    * @param arr
    */
-  static factory(arr: number[]): TreeNode | null {
+  static factory(arr: (number | null)[]): TreeNode | null {
     if (arr.length === 0) return null;
-    let root = new TreeNode(arr.shift());
+    let root = new TreeNode(arr.shift() as number);
     const queue = [root];
     while (queue.length !== 0) {
-      const node = queue.shift();
+      const node = queue.shift() as TreeNode;
       let temp = arr.shift();
       if (temp !== null && temp !== undefined) {
         node.left = new TreeNode(temp);
@@ -33,7 +33,7 @@ export class TreeNode {
   static inorder(node: TreeNode, visitor: (node: TreeNode) => boolean): void {
     let f = false;
     _inorder(node);
-    function _inorder(node) {
+    function _inorder(node: TreeNode | null): void {
       if (node === null || f) return;
       _inorder(node.left);
       if (f) return;
@@ -52,7 +52,7 @@ export class TreeNode {
   ): void {
     const queue = [node];
     while (queue.length !== 0) {
-      const node = queue.shift();
+      const node = queue.shift() as TreeNode;
       if (visitor(node)) return;
       if (node.left !== null) queue.push(node.left);
       if (node.right !== null) queue.push(node.right);
@@ -62,7 +62,7 @@ export class TreeNode {
    * 打印树
    * @param {TreeNode} node
    */
-  static print(node): void {
+  static print(node: TreeNode): void {
     let s = "";
     TreeNode.inorder(node, (node) => {
       s += node.val + " ";

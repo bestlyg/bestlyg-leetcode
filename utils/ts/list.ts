@@ -19,7 +19,7 @@ export class ListNode {
    * @param visitor
    */
   static traversal(node: ListNode, visitor: (node: ListNode) => boolean): void {
-    let temp = node;
+    let temp: ListNode | null = node;
     while (temp !== null) {
       if (visitor(temp)) return;
       temp = temp.next;
@@ -31,7 +31,7 @@ export class ListNode {
    */
   static print(node: ListNode): void {
     let s = "",
-      temp = node;
+      temp: ListNode | null = node;
     while (temp !== null) {
       s += temp.val + " ";
       temp = temp.next;
@@ -43,20 +43,20 @@ export class ListNode {
    * @param node
    */
   static reverse(node: ListNode): ListNode {
-    let newRoot;
-    function _reverse(node, prevNode) {
+    let newRoot: ListNode;
+    function _reverse(node: ListNode, prevNode: ListNode | null) {
       if (node.next !== null) _reverse(node.next, node);
       else newRoot = node;
       node.next = prevNode;
     }
     _reverse(node, null);
-    return newRoot;
+    return newRoot!;
   }
   /**
    * 获取链表最后一个节点
    * @param node
    */
-  static lastNode(node: ListNode): ListNode {
+  static lastNode(node: ListNode): ListNode | null {
     let temp = node;
     if (temp === null) return null;
     while (temp.next !== null) temp = temp.next;
@@ -68,7 +68,7 @@ export class ListNode {
    */
   static len(node: ListNode): number {
     let l = 0;
-    let temp = node;
+    let temp: ListNode | null = node;
     if (temp === null) return l;
     while (temp !== null) {
       l++;
@@ -89,7 +89,7 @@ export class ListNode {
   reverse(): ListNode {
     return ListNode.reverse(this);
   }
-  lastNode(): ListNode {
+  lastNode(): ListNode | null {
     return ListNode.lastNode(this);
   }
 }
