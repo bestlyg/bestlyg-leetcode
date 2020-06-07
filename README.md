@@ -4,6 +4,11 @@
 
 个人 LeetCode 题解
 
+## 待完成题
+
+- [126.单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)
+- [887.鸡蛋掉落](https://leetcode-cn.com/problems/super-egg-drop/)
+
 ## 顺序索引
 
 ### 1-200
