@@ -4,10 +4,11 @@
   "description": "个人LeetCode题解",
   "main": "index.js",
   "scripts": {
+    "gen:README.md": "node utils/gen/readme.js",
     "run:node": "node temp/index.js",
     "run:ts-node": "ts-node temp/index.ts",
     "commit": "git-cz",
-    "auto-commit": "git pull && git add -A && git-cz && git push origin master"
+    "push:auto": "git pull && npm run gen:README.md && prettier --write **/*.md && git add -A && git-cz && git push origin master"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "@commitlint/config-conventional": "^8.3.4",
     "commitizen": "^4.1.1",
     "cz-conventional-changelog": "^3.2.0",
+    "execa": "^4.0.2",
+    "fs-extra": "^9.0.1",
     "git-cz": "^4.3.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.3"
