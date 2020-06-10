@@ -8,7 +8,7 @@ const tagReg = new RegExp("标签：(.*)  ");
 
 const cache = {
   顺序索引: {},
-  标签索引: {},
+  标签索引: {}
 };
 run();
 async function run() {
@@ -19,12 +19,18 @@ async function run() {
   console.log(res);
 }
 function addToBeResolved() {
-  const toBeResolbed = {
-    "126.单词接龙II": "https://leetcode-cn.com/problems/word-ladder-ii/",
-    "887.鸡蛋掉落": "https://leetcode-cn.com/problems/super-egg-drop/",
-  };
+  const toBeResolbed = [
+    {
+      name: "126.单词接龙II",
+      url: "https://leetcode-cn.com/problems/word-ladder-ii/"
+    },
+    {
+      name: "887.鸡蛋掉落",
+      url: "https://leetcode-cn.com/problems/super-egg-drop/"
+    }
+  ];
   res += "## 待完成题\n";
-  for (const [k, v] of Object.entries(toBeResolbed)) res += addField(k, v);
+  for (const { name, url } of toBeResolbed) res += addField(name, url);
 }
 function resolveFolder() {
   const indexCache = cache["顺序索引"];
