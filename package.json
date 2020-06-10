@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --write **/*.md",
-    "gen:README.md": "node utils/gen/readme.js",
+    "gen:solve": "node utils/gen/genSolve.js",
+    "gen:newSolve": "node utils/gen/genNewSolve.js",
+    "gen:README.md": "node utils/gen/genReadme.js",
     "run:node": "node temp/index.js",
     "run:ts-node": "ts-node temp/index.ts",
     "commit": "git-cz",

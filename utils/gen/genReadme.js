@@ -1,6 +1,5 @@
 const fs = require("fs-extra");
-const path = require("path");
-const resolve = (p = "") => path.resolve(path.resolve(__dirname, "../../"), p);
+const { resolve } = require("./utils");
 const srcPath = resolve("src");
 const addField = (name, url) => `- [${name}](${url})\n`;
 let res = "# bestlyg-leetcode\n" + "## 介绍\n" + "个人 LeetCode 题解\n";
