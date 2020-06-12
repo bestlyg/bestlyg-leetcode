@@ -36,6 +36,6 @@ function run() {
   fs.ensureDirSync(tempPath);
   fs.ensureFile(`${tempPath}/index.js`);
   fs.ensureFile(`${tempPath}/index.ts`);
-  fs.writeFile(`${tempPath}/resolve.js`, resolveObjTemplate);
+  fs.writeFile(`${tempPath}/solve.js`, resolveObjTemplate);
   fs.writeFile(`${tempPath}/newSolve.js`, newNesolveObjTemplate);
 }
