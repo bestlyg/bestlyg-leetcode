@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --write **/*.md",
+    "gen:env": "node utils/gen/genEnv.js",
     "gen:solve": "node utils/gen/genSolve.js",
     "gen:newSolve": "node utils/gen/genNewSolve.js",
     "gen:README.md": "node utils/gen/genReadme.js",

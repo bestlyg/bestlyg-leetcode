@@ -14,7 +14,7 @@ async function run() {
   addToBeResolved();
   resolveFolder();
   toString();
-  fs.writeFileSync(resolve("./README.md"), res);
+  fs.writeFileSync(resolve("README.md"), res);
   console.log(res);
 }
 function addToBeResolved() {

@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
-const { solveTemplate, solvePath } = require("./utils");
-const newSolve = {};
+const { solveTemplate, solvePath, resolve } = require("./utils");
+const newSolve = require(resolve("temp/newSolve.js"));
 run();
 function run() {
   let { name, solves } = newSolve;
@@ -25,16 +25,7 @@ function run() {
 //       time: 272,
 //       memory: 45.8,
 //       desc: "翻转一半的数字进行判断",
-//       code: `function isPalindrome(x: number): boolean {
-//         if (x < 0 || (x % 10 === 0 && x !== 0)) return false;
-//         let revertedNumber: number = 0;
-//         while (x > revertedNumber) {
-//           revertedNumber = revertedNumber * 10 + (x % 10);
-//           x = ~~(x / 10);
-//         }
-//         return x === revertedNumber || x === ~~(revertedNumber / 10);
-//       }
-//       `
+//       code: `function isPalindrome(x: number): boolean {\n        if (x < 0 || (x % 10 === 0 && x !== 0)) return false;\n        let revertedNumber: number = 0;\n        while (x > revertedNumber) {\n          revertedNumber = revertedNumber * 10 + (x % 10);\n          x = ~~(x / 10);\n        }\n        return x === revertedNumber || x === ~~(revertedNumber / 10);\n}`
 //     }
 //   ]
 // };
