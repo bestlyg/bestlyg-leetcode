@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const { resolve } = require("./utils");
 const tempPath = resolve("temp");
-const resolveObjTemplate = `const solve = {
+const resolveObjTemplate = `module.exports = {
     name: "9. 回文数",
     url: "https://leetcode-cn.com/problems/palindrome-number/",
     tag: ["数学", "asd", "sad"],
@@ -17,8 +17,8 @@ const resolveObjTemplate = `const solve = {
       }
     ]
   };
-  module.exports = solve`;
-const newNesolveObjTemplate = `const newSolve = {
+  `;
+const newNesolveObjTemplate = `module.exports = {
   name: "9. 回文数",
   solves: [
     {
@@ -30,7 +30,7 @@ const newNesolveObjTemplate = `const newSolve = {
     }
   ]
 };
-module.exports = newSolve;`;
+`;
 run();
 function run() {
   fs.ensureDirSync(tempPath);
