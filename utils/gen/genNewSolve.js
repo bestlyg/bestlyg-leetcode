@@ -16,16 +16,3 @@ function run() {
     str += solveTemplate(++last, type, time, memory, desc, code);
   fs.writeFileSync(path, str);
 }
-
-// const newSolve = {
-//   name: "9. 回文数",
-//   solves: [
-//     {
-//       type: "typescript",
-//       time: 272,
-//       memory: 45.8,
-//       desc: "翻转一半的数字进行判断",
-//       code: `function isPalindrome(x: number): boolean {\n        if (x < 0 || (x % 10 === 0 && x !== 0)) return false;\n        let revertedNumber: number = 0;\n        while (x > revertedNumber) {\n          revertedNumber = revertedNumber * 10 + (x % 10);\n          x = ~~(x / 10);\n        }\n        return x === revertedNumber || x === ~~(revertedNumber / 10);\n}`
-//     }
-//   ]
-// };

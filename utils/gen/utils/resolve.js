@@ -1,4 +1,3 @@
 const path = require("path");
-const resolve = (p = "") =>
+module.exports = (p = "") =>
   path.resolve(path.resolve(__dirname, "../../../"), p);
-module.exports = resolve;

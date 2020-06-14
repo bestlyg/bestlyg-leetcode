@@ -8,6 +8,7 @@
 
 - [126.单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)
 - [887.鸡蛋掉落](https://leetcode-cn.com/problems/super-egg-drop/)
+- [1300.转变数组后最接近目标值的数组和](https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target/)
 
 ## 顺序索引
 

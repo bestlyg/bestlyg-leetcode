@@ -1,5 +1,6 @@
 const fs = require("fs-extra");
 const { resolve } = require("./utils");
+const toBeSolbed = require("./toBeSolved");
 const srcPath = resolve("src");
 const addField = (name, url) => `- [${name}](${url})\n`;
 let res = "# bestlyg-leetcode\n" + "## 介绍\n" + "个人 LeetCode 题解\n";
@@ -18,18 +19,8 @@ async function run() {
   console.log(res);
 }
 function addToBeResolved() {
-  const toBeResolbed = [
-    {
-      name: "126.单词接龙II",
-      url: "https://leetcode-cn.com/problems/word-ladder-ii/"
-    },
-    {
-      name: "887.鸡蛋掉落",
-      url: "https://leetcode-cn.com/problems/super-egg-drop/"
-    }
-  ];
   res += "## 待完成题\n";
-  for (const { name, url } of toBeResolbed) res += addField(name, url);
+  for (const { name, url } of toBeSolbed) res += addField(name, url);
 }
 function resolveFolder() {
   const indexCache = cache["顺序索引"];
