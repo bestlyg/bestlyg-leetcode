@@ -10,7 +10,7 @@
     "gen:newSolve": "node utils/gen/genNewSolve.js",
     "gen:README.md": "node utils/gen/genReadme.js",
     "run:node": "node temp/index.js",
-    "run:ts-node": "ts-node temp/index.ts",
+    "run:ts": "ts-node temp/index.ts",
     "commit": "git-cz",
     "push:auto": "git pull && npm run gen:README.md && npm run format && git add -A && git-cz && git push origin master"
   },
