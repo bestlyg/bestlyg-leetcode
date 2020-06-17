@@ -1,7 +1,8 @@
 const fs = require("fs-extra");
 const { resolve } = require("./utils");
 const tempPath = resolve("temp");
-const resolveObjTemplate = `module.exports = {
+const resolveObjTemplate =
+  `module.exports = {
     name: "leetcode name",
     url: "leetcode url",
     tag: ["some","type"],
@@ -13,12 +14,16 @@ const resolveObjTemplate = `module.exports = {
         time: 80,
         memory: 35.9,
         desc: "description",
-        code: ``
+        code: ` +
+  "`" +
+  "`" +
+  `
       }
     ]
   };
   `;
-const newNesolveObjTemplate = `module.exports = {
+const newNesolveObjTemplate =
+  `module.exports = {
   name: "leetcode name",
   solves: [
     {
@@ -26,7 +31,10 @@ const newNesolveObjTemplate = `module.exports = {
       time: 272,
       memory: 45.8,
       desc: "description",
-      code: ``
+      code: ` +
+  "`" +
+  "`" +
+  `
     }
   ]
 };
