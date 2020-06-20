@@ -6,5 +6,9 @@ module.exports = [
   {
     name: "887.鸡蛋掉落",
     url: "https://leetcode-cn.com/problems/super-egg-drop/"
+  },
+  {
+    name: "10. 正则表达式匹配",
+    url: "https://leetcode-cn.com/problems/regular-expression-matching/"
   }
 ];
