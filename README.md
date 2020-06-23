@@ -9,6 +9,7 @@
 - [126.单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)
 - [887.鸡蛋掉落](https://leetcode-cn.com/problems/super-egg-drop/)
 - [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/)
+- [面试题 16.18. 模式匹配](https://leetcode-cn.com/problems/pattern-matching-lcci/)
 
 ## 顺序索引
 

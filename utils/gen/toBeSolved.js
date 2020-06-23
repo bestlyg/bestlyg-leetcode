@@ -10,5 +10,9 @@ module.exports = [
   {
     name: "10. 正则表达式匹配",
     url: "https://leetcode-cn.com/problems/regular-expression-matching/"
+  },
+  {
+    name: "面试题 16.18. 模式匹配",
+    url: "https://leetcode-cn.com/problems/pattern-matching-lcci/"
   }
 ];
