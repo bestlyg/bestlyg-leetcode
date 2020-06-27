@@ -10,7 +10,6 @@
 - [887.鸡蛋掉落](https://leetcode-cn.com/problems/super-egg-drop/)
 - [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/)
 - [面试题 16.18. 模式匹配](https://leetcode-cn.com/problems/pattern-matching-lcci/)
-- [面试题 02.01. 移除重复节点](https://leetcode-cn.com/problems/remove-duplicate-node-lcci/)
 
 ## 顺序索引
 
@@ -179,6 +178,7 @@
 ### other
 
 - [面试题 01.07.旋转矩阵](src/other/面试题01.07.旋转矩阵.md)
+- [面试题 02.01.移除重复节点](src/other/面试题02.01.移除重复节点.md)
 - [面试题 13.机器人的运动范围](src/other/面试题13.机器人的运动范围.md)
 - [面试题 16.03.交点](src/other/面试题16.03.交点.md)
 - [面试题 16.18.模式匹配](src/other/面试题16.18.模式匹配.md)
@@ -439,6 +439,7 @@
 - [237.删除链表中的节点](src/201-400/237.删除链表中的节点.md)
 - [445.两数相加 II](src/401-600/445.两数相加II.md)
 - [876.链表的中间结点](src/801-1000/876.链表的中间结点.md)
+- [面试题 02.01.移除重复节点](src/other/面试题02.01.移除重复节点.md)
 
 ### 设计
 
