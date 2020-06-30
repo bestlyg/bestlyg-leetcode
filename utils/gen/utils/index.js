@@ -3,6 +3,7 @@ const solveTemplate = require("./solve-template");
 const formatTemplate = require("./format-template");
 const resolve = require("./resolve");
 const solvePath = require("./solve-path");
+const otherReg = require("./other-reg");
 module.exports = {
   getNowYear,
   getNowMonth,
@@ -10,5 +11,6 @@ module.exports = {
   solveTemplate,
   formatTemplate,
   resolve,
-  solvePath
+  solvePath,
+  otherReg
 };
