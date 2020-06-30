@@ -5,6 +5,7 @@ const resolve = require("./resolve");
 const { getPath, solvePath } = require("./solve-path");
 const { otherReg, otherStr } = require("./other-reg");
 const { specMark, specMarkStr } = require("./spec-mark");
+const constants = require("./constants");
 module.exports = {
   getNowYear,
   getNowMonth,
@@ -17,5 +18,6 @@ module.exports = {
   otherReg,
   otherStr,
   specMark,
-  specMarkStr
+  specMarkStr,
+  constants
 };

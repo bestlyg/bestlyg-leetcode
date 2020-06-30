@@ -18,7 +18,8 @@ const mdSort = (a, b) => {
 };
 const cache = {
   顺序索引: {},
-  标签索引: {}
+  标签索引: {},
+  难度索引: {}
 };
 run();
 async function run() {

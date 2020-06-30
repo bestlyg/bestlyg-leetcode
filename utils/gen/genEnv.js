@@ -6,6 +6,7 @@ const resolveObjTemplate =
 module.exports = {
   name: "leetcode name",
   url: "leetcode url",
+  difficulty:'简单|中等|困难',
   tag: ["some","type"],
   desc:
     "input some description",

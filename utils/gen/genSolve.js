@@ -8,8 +8,8 @@ const {
 const solve = require(resolve("temp/solve.js"));
 run();
 function run() {
-  const { name, url, tag, desc, solves } = solve;
-  let str = formatTemplate(name, url, tag, desc);
+  const { name, url, difficulty, tag, desc, solves } = solve;
+  let str = formatTemplate(name, url, difficulty, tag, desc);
   let no = 1;
   for (const { type, time, memory, desc, code } of solves)
     str += solveTemplate(no++, type, time, memory, desc, code);

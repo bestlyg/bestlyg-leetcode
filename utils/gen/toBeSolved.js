@@ -16,3 +16,15 @@ module.exports = [
     url: "https://leetcode-cn.com/problems/pattern-matching-lcci/"
   }
 ];
+// 待完善题目
+// 剑指Offer29
+
+// 剑指Offer13
+// 剑指Offer46
+// 剑指Offer56
+// 剑指Offer64
+// 面试题 16.26
+
+// 剑指Offer51
+// 126
+// 887
