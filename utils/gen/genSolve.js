@@ -13,5 +13,5 @@ function run() {
   let no = 1;
   for (const { type, time, memory, desc, code } of solves)
     str += solveTemplate(no++, type, time, memory, desc, code);
-  fs.writeFileSync(solvePath(name.replace(" ", "")), str);
+  fs.writeFileSync(solvePath(name.replace(/ /g, "")), str);
 }
