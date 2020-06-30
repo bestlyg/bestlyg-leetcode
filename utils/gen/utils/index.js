@@ -2,7 +2,7 @@ const { getNowYear, getNowMonth, getNowDay } = require("./time");
 const solveTemplate = require("./solve-template");
 const formatTemplate = require("./format-template");
 const resolve = require("./resolve");
-const solvePath = require("./solve-path");
+const { getPath, solvePath } = require("./solve-path");
 const { otherReg, otherStr } = require("./other-reg");
 const { specMark, specMarkStr } = require("./spec-mark");
 module.exports = {
@@ -12,6 +12,7 @@ module.exports = {
   solveTemplate,
   formatTemplate,
   resolve,
+  getPath,
   solvePath,
   otherReg,
   otherStr,

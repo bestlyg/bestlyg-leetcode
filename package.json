@@ -9,7 +9,7 @@
     "gen:solve": "node utils/gen/genSolve.js",
     "gen:addSolve": "node utils/gen/genAddSolve.js",
     "gen:README.md": "node utils/gen/genReadme.js",
-    "run:node": "node temp/index.js",
+    "run:js": "node temp/index.js",
     "run:ts": "ts-node temp/index.ts",
     "run:ts:deno": "deno temp/index.ts",
     "commit": "git-cz",
