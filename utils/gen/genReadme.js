@@ -1,11 +1,21 @@
 const fs = require("fs-extra");
-const { resolve } = require("./utils");
+const { resolve, otherReg } = require("./utils");
 const toBeSolbed = require("./toBeSolved");
 const srcPath = resolve("src");
 const addField = (name, url) => `- [${name}](${url})\n`;
 let res = "# bestlyg-leetcode\n" + "## 介绍\n" + "个人 LeetCode 题解\n";
 const tagReg = new RegExp("标签：(.*)  ");
-
+/**
+ * 文档排序规则，若存在特殊字符串与数字比较则数字排前
+ */
+const mdSort = (a, b) => {
+  const isOther1 = otherReg.test(a);
+  const isOther2 = otherReg.test(b);
+  if (isOther1 && !isOther2) return 1;
+  else if (!isOther1 && isOther2) return -1;
+  else if (isOther1 && isOther2) return 0;
+  else return parseInt(a.substr(3)) - parseInt(b.substr(3));
+};
 const cache = {
   顺序索引: {},
   标签索引: {}
@@ -34,15 +44,6 @@ function resolveFolder() {
       return n1 - n2;
     }
   });
-  const mdSort = (a, b) => {
-    const isface1 = a.substr(3, 3) === "面试题";
-    const isface2 = b.substr(3, 3) === "面试题";
-    if (isface1 && !isface2) return 1;
-    else if (!isface1 && isface2) return -1;
-    const n1 = isface1 ? parseInt(a.substr(6)) : parseInt(a.substr(3));
-    const n2 = isface2 ? parseInt(b.substr(6)) : parseInt(b.substr(3));
-    return n1 - n2;
-  };
   for (const folder of folders) {
     indexCache[folder] = !indexCache[folder] ? [] : indexCache[folder];
     const mds = fs.readdirSync(`${srcPath}/${folder}`);
