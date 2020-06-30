@@ -1,29 +1,31 @@
 const fs = require("fs-extra");
-const { resolve } = require("./utils");
+const { resolve, specMarkStr } = require("./utils");
 const tempPath = resolve("temp");
 const resolveObjTemplate =
-  `module.exports = {
-    name: "leetcode name",
-    url: "leetcode url",
-    tag: ["some","type"],
-    desc:
-      "input some description",
-    solves: [
-      {
-        type: "typescript",
-        time: 80,
-        memory: 35.9,
-        desc: "description",
-        code: ` +
+  `${specMarkStr}
+module.exports = {
+  name: "leetcode name",
+  url: "leetcode url",
+  tag: ["some","type"],
+  desc:
+    "input some description",
+  solves: [
+    {
+      type: "typescript",
+      time: 80,
+      memory: 35.9,
+      desc: "description",
+      code: ` +
   "`" +
   "`" +
   `
-      }
-    ]
-  };
+    }
+  ]
+};
   `;
 const newNesolveObjTemplate =
-  `module.exports = {
+  `${specMarkStr}
+module.exports = {
   name: "leetcode name",
   solves: [
     {

@@ -4,6 +4,7 @@ const formatTemplate = require("./format-template");
 const resolve = require("./resolve");
 const solvePath = require("./solve-path");
 const { otherReg, otherStr } = require("./other-reg");
+const { specMark, specMarkStr } = require("./spec-mark");
 module.exports = {
   getNowYear,
   getNowMonth,
@@ -13,5 +14,7 @@ module.exports = {
   resolve,
   solvePath,
   otherReg,
-  otherStr
+  otherStr,
+  specMark,
+  specMarkStr
 };
