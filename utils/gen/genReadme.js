@@ -17,11 +17,27 @@ const mdSort = (a, b) => {
   else if (isOther1 && isOther2) return 0;
   else return parseInt(a.substr(3)) - parseInt(b.substr(3));
 };
+const folders = fs.readdirSync(srcPath).sort((a, b) => {
+  if (a === "other") return 1;
+  else if (b === "other") return -1;
+  else {
+    const n1 = parseInt(a.substring(0, a.indexOf("-")));
+    const n2 = parseInt(b.substring(0, b.indexOf("-")));
+    return n1 - n2;
+  }
+});
 const cache = {
   顺序索引: {},
   标签索引: {},
-  难度索引: {}
+  难度索引: {
+    简单: [],
+    中等: [],
+    困难: []
+  }
 };
+const indexCache = cache["顺序索引"];
+const tagCache = cache["标签索引"];
+const difCache = cache["难度索引"];
 run();
 async function run() {
   addToBeResolved();
@@ -35,18 +51,6 @@ function addToBeResolved() {
   for (const { name, url } of toBeSolbed) res += addField(name, url);
 }
 function resolveFolder() {
-  const indexCache = cache["顺序索引"];
-  const tagCache = cache["标签索引"];
-  const difCache = cache["难度索引"];
-  const folders = fs.readdirSync(srcPath).sort((a, b) => {
-    if (a === "other") return 1;
-    else if (b === "other") return -1;
-    else {
-      const n1 = parseInt(a.substring(0, a.indexOf("-")));
-      const n2 = parseInt(b.substring(0, b.indexOf("-")));
-      return n1 - n2;
-    }
-  });
   for (const folder of folders) {
     indexCache[folder] = !indexCache[folder] ? [] : indexCache[folder];
     const mds = fs.readdirSync(`${srcPath}/${folder}`);
@@ -54,18 +58,8 @@ function resolveFolder() {
       const path = addField(md.substr(0, md.length - 3), `src/${folder}/${md}`);
       indexCache[folder].push(path);
       const file = fs.readFileSync(`${srcPath}/${folder}/${md}`).toString();
-      const difGroup = difReg.exec(file);
-      if (difGroup !== null) {
-        const dif = difGroup[1];
-        difCache[dif] = !difCache[dif] ? [] : difCache[dif];
-        difCache[dif].push(path);
-      }
-      const tagGroup = tagReg.exec(file);
-      const tags = tagGroup[1].split("、").filter((v) => v !== "");
-      for (const tag of tags) {
-        tagCache[tag] = !tagCache[tag] ? [] : tagCache[tag];
-        tagCache[tag].push(path);
-      }
+      analysisDif(file, path);
+      analysisTag(file, path);
     }
   }
 }
@@ -77,5 +71,20 @@ function toString() {
       res += `### ${k}\n`;
       for (const field of v) res += field;
     }
+  }
+}
+function analysisDif(file, path) {
+  const difGroup = difReg.exec(file);
+  if (difGroup !== null) {
+    const dif = difGroup[1];
+    difCache[dif].push(path);
+  }
+}
+function analysisTag(file, path) {
+  const tagGroup = tagReg.exec(file);
+  const tags = tagGroup[1].split("、").filter((v) => v !== "");
+  for (const tag of tags) {
+    tagCache[tag] = !tagCache[tag] ? [] : tagCache[tag];
+    tagCache[tag].push(path);
   }
 }
