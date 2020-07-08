@@ -4,7 +4,7 @@
   "description": "个人LeetCode题解",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write **/*.md",
+    "format": "prettier --write .",
     "gen:env": "node utils/gen/genEnv.js",
     "gen:solve": "node utils/gen/genSolve.js",
     "gen:addSolve": "node utils/gen/genAddSolve.js",

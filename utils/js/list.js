@@ -91,5 +91,5 @@ module.exports = {
   listNodePrint,
   listNodeLength,
   listNodeReverse,
-  listNodeLastNode,
+  listNodeLastNode
 };

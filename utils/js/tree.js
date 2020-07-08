@@ -76,5 +76,5 @@ module.exports = {
   treeNodeFactory,
   treeNodeInorder,
   treeNodeLevelOrder,
-  treeNodePrint,
+  treeNodePrint
 };
