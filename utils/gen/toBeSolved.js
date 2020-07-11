@@ -14,6 +14,10 @@ module.exports = [
   {
     name: "面试题 16.18. 模式匹配",
     url: "https://leetcode-cn.com/problems/pattern-matching-lcci/"
+  },
+  {
+    name: "315. 计算右侧小于当前元素的个数",
+    url: "https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/"
   }
 ];
 // 待完善题目
