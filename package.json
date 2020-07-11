@@ -11,7 +11,7 @@
     "gen:README.md": "node utils/gen/genReadme.js",
     "run:js": "node temp/index.js",
     "run:ts": "ts-node temp/index.ts",
-    "run:ts:deno": "deno temp/index.ts",
+    "run:ts:deno": "deno run temp/index.ts",
     "commit": "git-cz",
     "push": "git-cz && git push origin master",
     "push:auto": "git pull && npm run gen:README.md && npm run format && git add -A && git-cz && git push -u origin master"
