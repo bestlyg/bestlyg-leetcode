@@ -22,6 +22,10 @@ module.exports = [
   {
     name: "410. 分割数组的最大值",
     url: "https://leetcode-cn.com/problems/split-array-largest-sum/"
+  },
+  {
+    name: "LCP 13. 寻宝",
+    url: "https://leetcode-cn.com/problems/xun-bao/"
   }
 ];
 // 待完善题目

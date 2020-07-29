@@ -12,6 +12,7 @@
 - [面试题 16.18. 模式匹配](https://leetcode-cn.com/problems/pattern-matching-lcci/)
 - [315. 计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/)
 - [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
+- [LCP 13. 寻宝](https://leetcode-cn.com/problems/xun-bao/)
 
 ## 顺序索引
 
