@@ -26,6 +26,11 @@ module.exports = [
   {
     name: "LCP 13. 寻宝",
     url: "https://leetcode-cn.com/problems/xun-bao/"
+  },
+  {
+    name: "632. 最小区间",
+    url:
+      "https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists/"
   }
 ];
 // 待完善题目

@@ -13,6 +13,7 @@
 - [315. 计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/)
 - [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
 - [LCP 13. 寻宝](https://leetcode-cn.com/problems/xun-bao/)
+- [632. 最小区间](https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists/)
 
 ## 顺序索引
 
