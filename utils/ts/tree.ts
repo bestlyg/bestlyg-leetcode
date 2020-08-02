@@ -26,6 +26,24 @@ export class TreeNode {
     return root;
   }
   /**
+   * 树的前序遍历
+   * @param node
+   * @param visitor
+   */
+  static preorder(
+    node: TreeNode | null,
+    visitor: (node: TreeNode) => boolean
+  ): void {
+    let f = false;
+    _preorder(node);
+    function _preorder(node: TreeNode | null): void {
+      if (node === null || f) return;
+      f = visitor(node);
+      node.left !== null && _preorder(node.left);
+      node.right !== null && _preorder(node.right);
+    }
+  }
+  /**
    * 树的中序遍历
    * @param node
    * @param visitor
@@ -64,7 +82,7 @@ export class TreeNode {
    */
   static print(node: TreeNode): void {
     let s = "";
-    TreeNode.inorder(node, (node) => {
+    TreeNode.preorder(node, (node) => {
       s += node.val + " ";
       return false;
     });
@@ -77,6 +95,9 @@ export class TreeNode {
   ) {}
   print(): void {
     TreeNode.print(this);
+  }
+  preorder(visitor: (node: TreeNode) => boolean): void {
+    TreeNode.preorder(this, visitor);
   }
   inorder(visitor: (node: TreeNode) => boolean): void {
     TreeNode.inorder(this, visitor);
