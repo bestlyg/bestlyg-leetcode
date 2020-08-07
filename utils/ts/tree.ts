@@ -25,6 +25,33 @@ export class TreeNode {
     }
     return root;
   }
+  static deserialize(data: string): TreeNode | null {
+    if (data === "[]") return null;
+    const arr: (number | null)[] = data
+      .substring(1, data.length - 1)
+      .split(",")
+      .map((v) => (v === "null" ? null : Number(v)));
+    return this.factory(arr);
+  }
+  static serialize(node: TreeNode | null): string {
+    const queue = [node];
+    const hasNum = () => queue.some((v) => v !== null);
+    let str = "";
+    while (hasNum()) {
+      const node = queue.shift() as TreeNode | null;
+      if (node === null) {
+        str += "null,";
+        continue;
+      } else {
+        str += node.val + ",";
+      }
+      if (node.left !== null) queue.push(node.left);
+      else queue.push(null);
+      if (node.right !== null) queue.push(node.right);
+      else queue.push(null);
+    }
+    return `[${str.substr(0, str.length - 1)}]`;
+  }
   /**
    * 树的前序遍历
    * @param node
@@ -104,5 +131,8 @@ export class TreeNode {
   }
   levelOrder(visitor: (node: TreeNode) => boolean): void {
     TreeNode.levelOrder(this, visitor);
+  }
+  serialize(): string {
+    return TreeNode.serialize(this);
   }
 }
