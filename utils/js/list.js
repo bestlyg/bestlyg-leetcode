@@ -38,10 +38,10 @@ function listNodeTraversal(node, visitor) {
  * @param {ListNode} node
  */
 function listNodePrint(node) {
-  let s = "",
+  let s = '',
     temp = node;
   while (temp !== null) {
-    s += temp.val + " ";
+    s += temp.val + ' ';
     temp = temp.next;
   }
   console.log(s.substr(0, s.length - 1));
@@ -91,5 +91,5 @@ module.exports = {
   listNodePrint,
   listNodeLength,
   listNodeReverse,
-  listNodeLastNode
+  listNodeLastNode,
 };

@@ -1,6 +1,6 @@
-const fs = require("fs-extra");
-const { resolve, specMarkStr } = require("./utils");
-const tempPath = resolve("temp");
+const fs = require('fs-extra');
+const { resolve, specMarkStr } = require('./utils');
+const tempPath = resolve('temp');
 const resolveObjTemplate =
   `${specMarkStr}
 module.exports = {
@@ -17,8 +17,8 @@ module.exports = {
       memory: 35.9,
       desc: "description",
       code: ` +
-  "`" +
-  "`" +
+  '`' +
+  '`' +
   `
     }
   ]
@@ -35,8 +35,8 @@ module.exports = {
       memory: 45.8,
       desc: "description",
       code: ` +
-  "`" +
-  "`" +
+  '`' +
+  '`' +
   `
     }
   ]

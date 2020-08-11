@@ -1,11 +1,11 @@
-const fs = require("fs-extra");
-const { resolve, otherReg } = require("./utils");
-const toBeSolbed = require("./toBeSolved");
-const srcPath = resolve("src");
+const fs = require('fs-extra');
+const { resolve, otherReg } = require('./utils');
+const toBeSolbed = require('./toBeSolved');
+const srcPath = resolve('src');
 const addField = (name, url) => `- [${name}](${url})\n`;
-let res = "# bestlyg-leetcode\n" + "## 介绍\n" + "个人 LeetCode 题解\n";
-const tagReg = new RegExp("标签：(.*)  ");
-const difReg = new RegExp("难度：(.*)  ");
+let res = '# bestlyg-leetcode\n' + '## 介绍\n' + '个人 LeetCode 题解\n';
+const tagReg = new RegExp('标签：(.*)  ');
+const difReg = new RegExp('难度：(.*)  ');
 /**
  * 文档排序规则，若存在特殊字符串与数字比较则数字排前
  */
@@ -18,11 +18,11 @@ const mdSort = (a, b) => {
   else return parseInt(a.substr(3)) - parseInt(b.substr(3));
 };
 const folders = fs.readdirSync(srcPath).sort((a, b) => {
-  if (a === "other") return 1;
-  else if (b === "other") return -1;
+  if (a === 'other') return 1;
+  else if (b === 'other') return -1;
   else {
-    const n1 = parseInt(a.substring(0, a.indexOf("-")));
-    const n2 = parseInt(b.substring(0, b.indexOf("-")));
+    const n1 = parseInt(a.substring(0, a.indexOf('-')));
+    const n2 = parseInt(b.substring(0, b.indexOf('-')));
     return n1 - n2;
   }
 });
@@ -32,22 +32,22 @@ const cache = {
   难度索引: {
     简单: [],
     中等: [],
-    困难: []
-  }
+    困难: [],
+  },
 };
-const indexCache = cache["顺序索引"];
-const tagCache = cache["标签索引"];
-const difCache = cache["难度索引"];
+const indexCache = cache['顺序索引'];
+const tagCache = cache['标签索引'];
+const difCache = cache['难度索引'];
 run();
 async function run() {
   addToBeResolved();
   resolveFolder();
   toString();
-  fs.writeFileSync(resolve("README.md"), res);
+  fs.writeFileSync(resolve('README.md'), res);
   console.log(res);
 }
 function addToBeResolved() {
-  res += "## 待完成题\n";
+  res += '## 待完成题\n';
   for (const { name, url } of toBeSolbed) res += addField(name, url);
 }
 function resolveFolder() {
@@ -82,7 +82,7 @@ function analysisDif(file, path) {
 }
 function analysisTag(file, path) {
   const tagGroup = tagReg.exec(file);
-  const tags = tagGroup[1].split("、").filter((v) => v !== "");
+  const tags = tagGroup[1].split('、').filter(v => v !== '');
   for (const tag of tags) {
     tagCache[tag] = !tagCache[tag] ? [] : tagCache[tag];
     tagCache[tag].push(path);

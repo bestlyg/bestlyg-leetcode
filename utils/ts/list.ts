@@ -30,10 +30,10 @@ export class ListNode {
    * @param node
    */
   static print(node: ListNode): void {
-    let s = "",
+    let s = '',
       temp: ListNode | null = node;
     while (temp !== null) {
-      s += temp.val + " ";
+      s += temp.val + ' ';
       temp = temp.next;
     }
     console.log(s.substr(0, s.length - 1));

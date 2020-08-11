@@ -64,9 +64,9 @@ function treeNodeLevelOrder(node, visitor) {
  * @param {TreeNode} node
  */
 function treeNodePrint(node) {
-  let s = "";
-  treeNodeInorder(node, (node) => {
-    s += node.val + " ";
+  let s = '';
+  treeNodeInorder(node, node => {
+    s += node.val + ' ';
     return false;
   });
   console.log(s.substr(0, s.length - 1));
@@ -76,5 +76,5 @@ module.exports = {
   treeNodeFactory,
   treeNodeInorder,
   treeNodeLevelOrder,
-  treeNodePrint
+  treeNodePrint,
 };

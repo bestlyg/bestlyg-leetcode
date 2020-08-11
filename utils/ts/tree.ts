@@ -26,24 +26,24 @@ export class TreeNode {
     return root;
   }
   static deserialize(data: string): TreeNode | null {
-    if (data === "[]") return null;
+    if (data === '[]') return null;
     const arr: (number | null)[] = data
       .substring(1, data.length - 1)
-      .split(",")
-      .map((v) => (v === "null" ? null : Number(v)));
+      .split(',')
+      .map(v => (v === 'null' ? null : Number(v)));
     return this.factory(arr);
   }
   static serialize(node: TreeNode | null): string {
     const queue = [node];
-    const hasNum = () => queue.some((v) => v !== null);
-    let str = "";
+    const hasNum = () => queue.some(v => v !== null);
+    let str = '';
     while (hasNum()) {
       const node = queue.shift() as TreeNode | null;
       if (node === null) {
-        str += "null,";
+        str += 'null,';
         continue;
       } else {
-        str += node.val + ",";
+        str += node.val + ',';
       }
       if (node.left !== null) queue.push(node.left);
       else queue.push(null);
@@ -57,10 +57,7 @@ export class TreeNode {
    * @param node
    * @param visitor
    */
-  static preorder(
-    node: TreeNode | null,
-    visitor: (node: TreeNode) => boolean
-  ): void {
+  static preorder(node: TreeNode | null, visitor: (node: TreeNode) => boolean): void {
     let f = false;
     _preorder(node);
     function _preorder(node: TreeNode | null): void {
@@ -91,10 +88,7 @@ export class TreeNode {
    * @param node
    * @param visitor
    */
-  static levelOrder(
-    node: TreeNode,
-    visitor: (node: TreeNode) => boolean
-  ): void {
+  static levelOrder(node: TreeNode, visitor: (node: TreeNode) => boolean): void {
     const queue = [node];
     while (queue.length !== 0) {
       const node = queue.shift() as TreeNode;
@@ -108,9 +102,9 @@ export class TreeNode {
    * @param {TreeNode} node
    */
   static print(node: TreeNode): void {
-    let s = "";
-    TreeNode.preorder(node, (node) => {
-      s += node.val + " ";
+    let s = '';
+    TreeNode.preorder(node, node => {
+      s += node.val + ' ';
       return false;
     });
     console.log(s.substr(0, s.length - 1));

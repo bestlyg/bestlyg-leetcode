@@ -1,4 +1,4 @@
-const { getNowYear, getNowMonth, getNowDay } = require("./time");
+const { getNowYear, getNowMonth, getNowDay } = require('./time');
 module.exports = function solveTemplate(no, type, time, memory, desc, code) {
   let str = `## 题解 ${no} - ${type}
 - 编辑时间：${getNowYear()}.${getNowMonth()}.${getNowDay()}
@@ -7,6 +7,6 @@ module.exports = function solveTemplate(no, type, time, memory, desc, code) {
 - 编程语言：${type}
 - 解法介绍：${desc}。
 `;
-  str += "```" + type + "\n" + code + "\n```\n";
+  str += '```' + type + '\n' + code + '\n```\n';
   return str;
 };
