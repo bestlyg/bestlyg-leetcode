@@ -11,7 +11,7 @@
 - 执行用时：76ms
 - 内存消耗：37.9MB
 - 编程语言：typescript
-- 解法介绍：二分查找。。
+- 解法介绍：二分查找。
 
 ```typescript
 function minArray(numbers: number[]): number {
