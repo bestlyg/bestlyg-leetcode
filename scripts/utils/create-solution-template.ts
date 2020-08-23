@@ -1,7 +1,7 @@
 import { backquote } from './backquote';
 import { Solution, SolutionMarkdown } from '../models';
 import { getNow } from './get-time';
-import {} from '../models/solution-readme';
+import {} from '../models/solution-makdown';
 export function createSolutionTemplate(no: number, { script, time, memory, desc }: Solution) {
   return `## 题解 ${no} - ${script}
 - 编辑时间：${getNow()}
