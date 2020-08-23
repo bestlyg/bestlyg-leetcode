@@ -1,7 +1,7 @@
-import { Indexes, SolutionReadme, Difficulty } from '../models';
+import { Indexes, SolutionMarkdown, Difficulty } from '../models';
 
-export function createCache(): Record<Indexes, Record<string, SolutionReadme[]>> {
-  const cache: Record<Indexes, Record<string, SolutionReadme[]>> = {
+export function createCache(): Record<Indexes, Record<string, SolutionMarkdown[]>> {
+  const cache: Record<Indexes, Record<string, SolutionMarkdown[]>> = {
     [Indexes.ORDER]: {},
     [Indexes.TAG]: {},
     [Indexes.DIFFICULTY]: {

@@ -1,9 +1,9 @@
 import { tempPath, fs } from '../utils';
-import { solutionReadmeTemplate } from './solution-readme-template';
+import { SolutionMarkdownTemplate } from './solution-markdown-template';
 function run() {
   fs.ensureDirSync(tempPath);
   fs.ensureFile(`${tempPath}/index.js`);
   fs.ensureFile(`${tempPath}/index.ts`);
-  fs.writeFile(`${tempPath}/solution-readme.ts`, solutionReadmeTemplate);
+  fs.writeFile(`${tempPath}/solution-markdown.ts`, SolutionMarkdownTemplate);
 }
 run();
