@@ -7,3 +7,5 @@ export * from './create-solution-template';
 export * from './get-time';
 export * from './create-markdown-template';
 export * from './solution-name';
+export * from './get-path';
+export * from './get-solutions-count';

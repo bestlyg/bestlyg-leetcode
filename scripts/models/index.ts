@@ -3,3 +3,4 @@ export * from './script';
 export * from './solution';
 export * from './solution-readme';
 export * from './indexes';
+export * from './solutions-file';

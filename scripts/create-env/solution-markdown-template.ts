@@ -1,6 +1,6 @@
 import { backquote } from '../utils';
-export const SolutionMarkdownTemplate: string = `import { SolutionMarkdown, Difficulty, Script } from '../scripts/models';
-const specMark = '${backquote}';
+export const solutionMarkdownTemplate: string = `import { SolutionMarkdown, Difficulty, Script } from '../scripts/models';
+import { backquote } from './../scripts/utils';
 const solutionMarkdown: SolutionMarkdown = {
   name: 'solution name',
   url: 'solution url',

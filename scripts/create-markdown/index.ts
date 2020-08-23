@@ -1,8 +1,7 @@
-import fs from 'fs-extra';
 import solutionMarkdown from '../../temp/solution-markdown';
 import { createTemplate } from './create-template';
-import { getPath } from './get-path';
+import { getFilePath, fs } from '../utils';
 run();
 function run() {
-  fs.writeFileSync(getPath(solutionMarkdown), createTemplate(solutionMarkdown));
+  fs.writeFileSync(getFilePath(solutionMarkdown.name), createTemplate(solutionMarkdown));
 }
