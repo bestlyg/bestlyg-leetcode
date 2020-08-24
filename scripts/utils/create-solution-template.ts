@@ -2,7 +2,7 @@ import { backquote } from './backquote';
 import { Solution, SolutionMarkdown } from '../models';
 import { getNow } from './get-time';
 import {} from '../models/solution-makdown';
-export function createSolutionTemplate(no: number, { script, time, memory, desc }: Solution) {
+export function createSolutionTemplate(no: number, { script, time, memory, desc, code }: Solution) {
   return `## 题解 ${no} - ${script}
 - 编辑时间：${getNow()}
 - 执行用时：${time}ms
@@ -10,6 +10,7 @@ export function createSolutionTemplate(no: number, { script, time, memory, desc 
 - 编程语言：${script}
 - 解法介绍：${desc}
 ${backquote}${backquote}${backquote}${script}
+${code}
 ${backquote}${backquote}${backquote}
 `;
 }

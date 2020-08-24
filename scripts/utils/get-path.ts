@@ -1,4 +1,7 @@
-import { SolutionName, srcPath, fs } from '../utils';
+import { SolutionName } from '../models';
+import { srcPath } from './resolve';
+import { fs } from './fs';
+
 export function getFileDir(name: string): string {
   name = name.replace(/ /g, '');
   const num = ~~((parseInt(name) - 1) / 200);

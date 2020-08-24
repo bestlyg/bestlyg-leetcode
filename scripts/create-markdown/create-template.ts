@@ -1,6 +1,7 @@
 import { SolutionMarkdown } from '../models';
-import { createMarkdownTemplate } from '../utils';
+import { createHeaderTemplate } from './create-header-template';
+import { createSolutionTemplates } from '../utils';
 
 export function createTemplate(md: SolutionMarkdown): string {
-  return createMarkdownTemplate(md);
+  return createHeaderTemplate(md) + createSolutionTemplates(md);
 }
