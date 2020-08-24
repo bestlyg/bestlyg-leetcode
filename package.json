@@ -12,6 +12,7 @@
     "create:env": "ts-node scripts/create-env",
     "create:markdown": "ts-node scripts/create-markdown",
     "create:solutions": "ts-node scripts/create-solutions",
+    "create:readme": "ts-node scripts/create-readme",
     "run:js": "node temp/index.js",
     "run:ts": "ts-node temp/index.ts",
     "run:ts:deno": "deno run temp/index.ts",

@@ -1,9 +1,10 @@
 import { SolutionName } from '../models';
 import { srcPath } from './resolve';
 import { fs } from './fs';
+import { nameFormat } from './name-format';
 
 export function getFileDir(name: string): string {
-  name = name.replace(/ /g, '');
+  name = nameFormat(name);
   const num = ~~((parseInt(name) - 1) / 200);
   let filDirName = `${num === 0 ? '' : num * 20}1-${(num + 1) * 20}0`;
   if (name.startsWith(SolutionName.INTERVIEW)) {

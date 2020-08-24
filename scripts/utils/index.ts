@@ -6,3 +6,4 @@ export * from './get-time';
 export * from './get-folders';
 export * from './get-path';
 export * from './get-solutions-count';
+export * from './name-format';

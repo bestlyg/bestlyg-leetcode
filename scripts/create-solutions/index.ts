@@ -1,8 +1,8 @@
 import solutions from '../../temp/solutions';
-import { fs, getFilePath, getSolutionsCount, createSolutionTemplate } from '../utils';
+import { fs, getFilePath, getSolutionsCount, createSolutionTemplate, nameFormat } from '../utils';
 run();
 function run() {
-  const name = solutions.name.replace(/ /g, '');
+  const name = nameFormat(solutions.name);
   const path = getFilePath(name);
   let count = getSolutionsCount(path);
   let str = fs.readFileSync(path).toString();
