@@ -10,4 +10,5 @@ export function nameSort({ name: name1 }: SolutionReadme, { name: name2 }: Solut
   } else {
     return num1 - num2;
   }
+  return 0;
 }
