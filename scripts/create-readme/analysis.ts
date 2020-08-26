@@ -1,6 +1,6 @@
 import { getFolders, fs, srcPath } from '../utils';
 import { fileToString } from './to-string';
-import { analysisIndex } from './analysis-index';
+import { analysisIndex, cacheIndexSort } from './analysis-index';
 import { analysisTag } from './analysis-tag';
 import { analysisDifficulty } from './analysis-difficulty';
 export function analysis(): void {
@@ -15,4 +15,5 @@ export function analysis(): void {
       analysisDifficulty(fileName, file);
     }
   });
+  cacheIndexSort();
 }

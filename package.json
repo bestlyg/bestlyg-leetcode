@@ -5,10 +5,6 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --write .",
-    "gen:env": "node utils/gen/genEnv.js",
-    "gen:solve": "node utils/gen/genSolve.js",
-    "gen:addSolve": "node utils/gen/genAddSolve.js",
-    "gen:README.md": "node utils/gen/genReadme.js",
     "create:env": "ts-node scripts/create-env",
     "create:markdown": "ts-node scripts/create-markdown",
     "create:solutions": "ts-node scripts/create-solutions",

@@ -6,14 +6,14 @@
 
 ## 待完成题
 
+- [10.正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/)
 - [126.单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)
+- [315.计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/)
+- [410.分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
+- [632.最小区间](https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists/)
 - [887.鸡蛋掉落](https://leetcode-cn.com/problems/super-egg-drop/)
-- [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/)
-- [面试题 16.18. 模式匹配](https://leetcode-cn.com/problems/pattern-matching-lcci/)
-- [315. 计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/)
-- [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
-- [LCP 13. 寻宝](https://leetcode-cn.com/problems/xun-bao/)
-- [632. 最小区间](https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists/)
+- [LCP13.寻宝](https://leetcode-cn.com/problems/xun-bao/)
+- [面试题 16.18.模式匹配](https://leetcode-cn.com/problems/pattern-matching-lcci/)
 
 ## 顺序索引
 
@@ -163,7 +163,7 @@
 - [459.重复的子字符串](src/401-600/459.重复的子字符串.md)
 - [460.LFU 缓存](src/401-600/460.LFU缓存.md)
 - [466.统计重复个数](src/401-600/466.统计重复个数.md)
-- [491. 递增子序列](src/401-600/491. 递增子序列.md)
+- [491.递增子序列](src/401-600/491.递增子序列.md)
 - [509.斐波那契数](src/401-600/509.斐波那契数.md)
 - [520.检测大写字母](src/401-600/520.检测大写字母.md)
 - [529.扫雷游戏](src/401-600/529.扫雷游戏.md)
@@ -223,8 +223,6 @@
 
 ### other
 
-- [剑指 Offer09.用两个栈实现队列](src/other/剑指Offer09.用两个栈实现队列.md)
-- [剑指 Offer11.旋转数组的最小数字](src/other/剑指Offer11.旋转数组的最小数字.md)
 - [面试题 01.07.旋转矩阵](src/other/面试题01.07.旋转矩阵.md)
 - [面试题 02.01.移除重复节点](src/other/面试题02.01.移除重复节点.md)
 - [面试题 08.03.魔术索引](src/other/面试题08.03.魔术索引.md)
@@ -238,6 +236,8 @@
 - [面试题 51.数组中的逆序对](src/other/面试题51.数组中的逆序对.md)
 - [面试题 56-I.数组中数字出现的次数](src/other/面试题56-I.数组中数字出现的次数.md)
 - [面试题 64.求 1+2+…+n](src/other/面试题64.求1+2+…+n.md)
+- [剑指 Offer09.用两个栈实现队列](src/other/剑指Offer09.用两个栈实现队列.md)
+- [剑指 Offer11.旋转数组的最小数字](src/other/剑指Offer11.旋转数组的最小数字.md)
 
 ## 标签索引
 
@@ -451,7 +451,7 @@
 - [329.矩阵中的最长递增路径](src/201-400/329.矩阵中的最长递增路径.md)
 - [337.打家劫舍 III](src/201-400/337.打家劫舍III.md)
 - [394.字符串解码](src/201-400/394.字符串解码.md)
-- [491. 递增子序列](src/401-600/491. 递增子序列.md)
+- [491.递增子序列](src/401-600/491.递增子序列.md)
 - [529.扫雷游戏](src/401-600/529.扫雷游戏.md)
 - [542.01 矩阵](src/401-600/542.01矩阵.md)
 - [559.N 叉树的最大深度](src/401-600/559.N叉树的最大深度.md)
@@ -607,8 +607,8 @@
 - [1095.山脉数组中查找目标值](src/1001-1200/1095.山脉数组中查找目标值.md)
 - [1111.有效括号的嵌套深度](src/1001-1200/1111.有效括号的嵌套深度.md)
 - [1300.转变数组后最接近目标值的数组和](src/1201-1400/1300.转变数组后最接近目标值的数组和.md)
-- [剑指 Offer11.旋转数组的最小数字](src/other/剑指Offer11.旋转数组的最小数字.md)
 - [面试题 08.03.魔术索引](src/other/面试题08.03.魔术索引.md)
+- [剑指 Offer11.旋转数组的最小数字](src/other/剑指Offer11.旋转数组的最小数字.md)
 
 ### 排序
 
@@ -752,11 +752,11 @@
 - [938.二叉搜索树的范围和](src/801-1000/938.二叉搜索树的范围和.md)
 - [1025.除数博弈](src/1001-1200/1025.除数博弈.md)
 - [1431.拥有最多糖果的孩子](src/1401-1600/1431.拥有最多糖果的孩子.md)
-- [剑指 Offer09.用两个栈实现队列](src/other/剑指Offer09.用两个栈实现队列.md)
-- [剑指 Offer11.旋转数组的最小数字](src/other/剑指Offer11.旋转数组的最小数字.md)
 - [面试题 02.01.移除重复节点](src/other/面试题02.01.移除重复节点.md)
 - [面试题 08.03.魔术索引](src/other/面试题08.03.魔术索引.md)
 - [面试题 16.11.跳水板](src/other/面试题16.11.跳水板.md)
+- [剑指 Offer09.用两个栈实现队列](src/other/剑指Offer09.用两个栈实现队列.md)
+- [剑指 Offer11.旋转数组的最小数字](src/other/剑指Offer11.旋转数组的最小数字.md)
 
 ### 中等
 
@@ -826,7 +826,7 @@
 - [394.字符串解码](src/201-400/394.字符串解码.md)
 - [445.两数相加 II](src/401-600/445.两数相加II.md)
 - [450.删除二叉搜索树中的节点](src/401-600/450.删除二叉搜索树中的节点.md)
-- [491. 递增子序列](src/401-600/491. 递增子序列.md)
+- [491.递增子序列](src/401-600/491.递增子序列.md)
 - [529.扫雷游戏](src/401-600/529.扫雷游戏.md)
 - [542.01 矩阵](src/401-600/542.01矩阵.md)
 - [560.和为 K 的子数组](src/401-600/560.和为K的子数组.md)
