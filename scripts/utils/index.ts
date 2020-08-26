@@ -7,3 +7,6 @@ export * from './get-folders';
 export * from './get-path';
 export * from './get-solutions-count';
 export * from './name-format';
+export * from './sort';
+export * from './compare-solution-name';
+export * from './get-solution-name-index';

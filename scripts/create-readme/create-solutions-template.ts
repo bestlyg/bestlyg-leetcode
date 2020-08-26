@@ -1,7 +1,7 @@
 import { Indexes } from '../models/indexes';
 import { analysis } from './analysis';
 import { getCache } from './get-cache';
-import { nameSort } from './name-sort';
+import { nameSort } from '../utils';
 const cache = getCache();
 export function createSolutionsTemplate(): string {
   analysis();
