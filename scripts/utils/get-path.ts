@@ -1,7 +1,7 @@
 import { SolutionName } from '../models';
 import { srcPath } from './resolve';
 import { fs } from './fs';
-import { nameFormat } from './name-format';
+import { nameFormat } from './format';
 
 export function getFileDir(name: string): string {
   name = nameFormat(name);
