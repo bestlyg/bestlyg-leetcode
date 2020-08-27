@@ -17,5 +17,6 @@ export function getFileDir(name: string): string {
   return path;
 }
 export function getFilePath(name: string): string {
+  name = nameFormat(name);
   return `${getFileDir(name)}/${name}.md`;
 }
