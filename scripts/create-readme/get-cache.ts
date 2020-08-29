@@ -6,7 +6,7 @@ const cache: Record<Indexes, SolutionReadme[]> = {
   [Indexes.DIFFICULTY]: [
     { name: Difficulty.EASY, solutions: [] },
     { name: Difficulty.MIDDLE, solutions: [] },
-    { name: Difficulty.DIFFICULT, solutions: [] },
+    { name: Difficulty.HARD, solutions: [] },
   ],
 };
 export function getCache(): Record<Indexes, SolutionReadme[]> {
