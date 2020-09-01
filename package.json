@@ -14,7 +14,9 @@
     "run:ts:deno": "deno run temp/index.ts",
     "commit": "git-cz",
     "push": "git-cz && git push origin master",
-    "push:auto": "git pull && npm run create:readme && npm run format && git add -A && git-cz && git push -u origin master"
+    "push:auto": "git pull && npm run create:readme && npm run format && git add -A && git-cz && git push -u origin master",
+    "push:auto:markdown": "npm run create:markdown && npm run push:auto",
+    "push:auto:solutions": "npm run create:solutions && npm run push:auto"
   },
   "repository": {
     "type": "git",
