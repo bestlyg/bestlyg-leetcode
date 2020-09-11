@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - 10010:80
+    volumes:
+      - ./config/nginx/conf.d/:/etc/nginx/conf.d
+      - ./dist:/var/www/html/
+      - ./static/:/static/

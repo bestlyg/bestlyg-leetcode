@@ -4,6 +4,8 @@
   "description": "个人LeetCode题解",
   "main": "index.js",
   "scripts": {
+    "dev:docs": "vuepress dev .",
+    "build:docs": "vuepress build .",
     "format": "prettier --write .",
     "create:env": "ts-node scripts/create-env",
     "create:markdown": "ts-node scripts/create-markdown",
@@ -39,12 +41,16 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@types/fs-extra": "^9.0.1",
+    "@vuepress/plugin-active-header-links": "^1.5.4",
+    "@vuepress/plugin-back-to-top": "^1.5.4",
     "commitizen": "^4.1.1",
     "cz-conventional-changelog": "^3.2.0",
     "execa": "^4.0.2",
     "fs-extra": "^9.0.1",
     "git-cz": "^4.3.1",
+    "git-webhook-handler": "^1.0.6",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "vuepress": "^1.5.4"
   }
 }
