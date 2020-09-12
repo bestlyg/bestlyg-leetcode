@@ -6905,6 +6905,11 @@ prettier@^1.18.2:
   resolved "https://repo.jx.smobiler.com/repository/npm/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha1-99f1/4qc2HKnvkyhQglZVqYHl8s=
 
+prettier@^2.1.1:
+  version "2.1.1"
+  resolved "https://repo.jx.smobiler.com/repository/npm/prettier/-/prettier-2.1.1.tgz#d9485dd5e499daa6cb547023b87a6cf51bee37d6"
+  integrity sha1-2Uhd1eSZ2qbLVHAjuHps9RvuN9Y=
+
 pretty-error@^2.0.2:
   version "2.1.1"
   resolved "https://repo.jx.smobiler.com/repository/npm/pretty-error/-/pretty-error-2.1.1.tgz#5f4f87c8f91e5ae3f3ba87ab4cf5e03b1a17f1a3"
