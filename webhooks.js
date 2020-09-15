@@ -3,7 +3,7 @@
 var http = require('http');
 var createHandler = require('git-webhook-handler');
 var handler = createHandler({
-  path: '/webhooks',
+  path: '/deploy',
   secret: '@bestlyg',
 });
 function run_cmd(cmd, args, callback) {
@@ -38,7 +38,7 @@ try {
         res.end('no such location');
       });
     })
-    .listen(10011);
+    .listen(9004);
 } catch (err) {
   console.error('Error:', err.message);
 }

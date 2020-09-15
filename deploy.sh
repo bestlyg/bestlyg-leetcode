@@ -5,6 +5,7 @@
 docker-compose down
 # 获取最新版代码
 git pull
+yarn
 yarn build
 docker-compose up -d --force-recreate --build
 
