@@ -26,7 +26,7 @@ handler.on('Push Hook', function (event) {
     event.payload.repository.name,
     event.payload.ref
   );
-  run_cmd('sh', ['./config/deploy.sh'], function (text) {
+  run_cmd('sh', ['./deploy.sh'], function (text) {
     console.log(text);
   });
 });
