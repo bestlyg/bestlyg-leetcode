@@ -20,7 +20,7 @@ function run_cmd(cmd, args, callback) {
 handler.on('error', function (err) {
   console.error('Error:', err.message);
 });
-handler.on('Push Hook', function (event) {
+handler.on('push', function (event) {
   console.log(
     'Received a push event for %s to %s',
     event.payload.repository.name,
