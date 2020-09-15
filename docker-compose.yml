@@ -6,6 +6,6 @@ services:
     ports:
       - 10004:80
     volumes:
-      - ./config/nginx/conf.d/:/etc/nginx/conf.d
+      - ./conf.d/:/etc/nginx/conf.d
       - ./dist:/var/www/html/
       - ./static/:/static/
