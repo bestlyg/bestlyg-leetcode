@@ -10,3 +10,4 @@ export * from './format';
 export * from './sort';
 export * from './compare-solution-name';
 export * from './get-solution-name-index';
+export * from './link';
