@@ -103,7 +103,7 @@ export class TreeNode {
    */
   static print(node: TreeNode): void {
     let s = '';
-    TreeNode.preorder(node, node => {
+    TreeNode.levelOrder(node, node => {
       s += node.val + ' ';
       return false;
     });
