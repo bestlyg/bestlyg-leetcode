@@ -11,6 +11,8 @@ export function getFileDir(name: string): string {
     filDirName = SolutionName.INTERVIEW;
   } else if (name.startsWith(SolutionName.SWORD)) {
     filDirName = SolutionName.SWORD;
+  } else if (name.startsWith(SolutionName.LCP)) {
+    filDirName = SolutionName.LCP;
   }
   const path = `${srcPath}/${filDirName}`;
   fs.ensureDirSync(path);
