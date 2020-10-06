@@ -7,10 +7,12 @@
 ## 待完成题
 
 - [10.正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/)
+- [18.四数之和](https://leetcode-cn.com/problems/4sum/)
 - [126.单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)
 - [315.计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/)
 - [410.分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
 - [632.最小区间](https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists/)
+- [834.树中距离之和](https://leetcode-cn.com/problems/sum-of-distances-in-tree/)
 - [887.鸡蛋掉落](https://leetcode-cn.com/problems/super-egg-drop/)
 - [LCP13.寻宝](https://leetcode-cn.com/problems/xun-bao/)
 - [面试题 16.18.模式匹配](https://leetcode-cn.com/problems/pattern-matching-lcci/)

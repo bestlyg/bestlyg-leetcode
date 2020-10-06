@@ -32,5 +32,13 @@ const waitSolutions: WaitSolution[] = [
     name: '632. 最小区间',
     url: 'https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists/',
   },
+  {
+    name: '834. 树中距离之和',
+    url: 'https://leetcode-cn.com/problems/sum-of-distances-in-tree/',
+  },
+  {
+    name: '18. 四数之和',
+    url: 'https://leetcode-cn.com/problems/4sum/',
+  },
 ];
 export default waitSolutions;
