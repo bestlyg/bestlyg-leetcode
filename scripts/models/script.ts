@@ -3,4 +3,5 @@ export enum Script {
   TS = 'typescript',
   PY = 'python',
   CS = 'c#',
+  JAVA = 'java',
 }
