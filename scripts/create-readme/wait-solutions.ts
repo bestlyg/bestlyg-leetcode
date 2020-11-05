@@ -1,6 +1,10 @@
 import { WaitSolution } from '../models';
 const waitSolutions: WaitSolution[] = [
   {
+    name: '127. 单词接龙',
+    url: 'https://leetcode-cn.com/problems/word-ladder/',
+  },
+  {
     name: '126.单词接龙II',
     url: 'https://leetcode-cn.com/problems/word-ladder-ii/',
   },
