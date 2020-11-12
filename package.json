@@ -42,8 +42,8 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@types/fs-extra": "^9.0.1",
     "@types/lodash": "^4.14.162",
-    "@vuepress/plugin-active-header-links": "^1.5.4",
-    "@vuepress/plugin-back-to-top": "^1.5.4",
+    "@vuepress/plugin-active-header-links": "^1.7.1",
+    "@vuepress/plugin-back-to-top": "^1.7.1",
     "commitizen": "^4.1.1",
     "cz-conventional-changelog": "^3.2.0",
     "execa": "^4.0.2",
@@ -54,6 +54,6 @@
     "prettier": "^2.1.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.3",
-    "vuepress": "^1.5.4"
+    "vuepress": "^1.7.1"
   }
 }
