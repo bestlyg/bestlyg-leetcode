@@ -44,5 +44,9 @@ const waitSolutions: WaitSolution[] = [
     name: '18. 四数之和',
     url: 'https://leetcode-cn.com/problems/4sum/',
   },
+  {
+    name: '493. 翻转对',
+    url: 'https://leetcode-cn.com/problems/reverse-pairs/',
+  },
 ];
 export default waitSolutions;
