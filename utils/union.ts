@@ -3,6 +3,9 @@ export class UnionFind {
   constructor(public size: number) {
     this.elements = new Array(size).fill(0).map((_, i) => i);
   }
+  same(v1: number, v2: number): boolean {
+    return this.find(v1) === this.find(v2);
+  }
   find(v: number): number {
     return v === this.elements[v] ? v : (this.elements[v] = this.find(this.elements[v]));
   }
