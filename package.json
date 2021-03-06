@@ -17,9 +17,9 @@
     "commit": "git-cz",
     "commit:auto": "git add -A && git-cz",
     "push": "git-cz && git push origin master",
-    "push:auto": "git pull && npm run create:readme && npm run format && git add -A && git-cz && git push -u origin master",
-    "push:auto:markdown": "npm run create:markdown && npm run push:auto",
-    "push:auto:solutions": "npm run create:solutions && npm run push:auto"
+    "push:auto": "git pull && yarn create:readme && yarn format && git add -A && git-cz && git push -u origin master",
+    "push:auto:markdown": "yarn create:markdown && yarn push:auto",
+    "push:auto:solutions": "yarn create:solutions && yarn push:auto"
   },
   "repository": {
     "type": "git",
